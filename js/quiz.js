@@ -113,7 +113,7 @@ function renderQuestionCard(q, opts = {}) {
       <div class="q-meta"><span class="pill">${escapeHtml(q.round || "")}</span>${q.subject ? `<span class="pill">${escapeHtml(q.subject)}</span>` : ""}${freqBadge}</div>
       <div class="q-number">QUESTION ${String(q.number || state.index + 1).padStart(2, "0")}</div>
       <div class="q-text">${escapeHtml(q.question)}</div>
-      ${q.image ? `<div class="q-image"><img src="${escapeHtml(q.image)}" alt="문제 참고 이미지" /></div>` : ""}
+      ${q.imageText ? `<pre class="q-image-text">${escapeHtml(q.imageText)}</pre>` : q.image ? `<div class="q-image"><img src="${escapeHtml(q.image)}" alt="문제 참고 이미지" /></div>` : ""}
       <div class="choices" id="choicesBox">${q.choices.map((c, i) => `<button class="choice ${saved === i + 1 ? "selected" : ""}" data-idx="${i + 1}" type="button"><span class="num">${i + 1}</span><span class="txt">${escapeHtml(c)}</span></button>`).join("")}</div>
       <div class="explain-box" id="explainBox"></div>
       <div class="quiz-actions">
@@ -188,13 +188,34 @@ function renderResult(autoSubmitted = false) {
   const total = state.queue.length;
   const rate = total ? Math.round((state.correct / total) * 100) : 0;
   const examScore = state.exam ? Math.round((state.correct / total) * 100) : state.correct;
-  const wrongRows = state.exam ? state.queue.map((q, i) => {
+  const reviewRows = state.exam ? state.queue.map((q, i) => {
     const chosen = state.answers[q.id];
-    if (chosen === q.answer) return "";
-    return `<details class="review-item"><summary><span>${i + 1}번</span><strong>${chosen ? `${chosen}번 선택 · 정답 ${q.answer}번` : `미응답 · 정답 ${q.answer}번`}</strong></summary><p>${escapeHtml(q.question)}</p><div class="review-answer">${escapeHtml(q.explanation || "해설이 등록되지 않았습니다.")}</div></details>`;
+    const status = !chosen ? "unanswered" : chosen === q.answer ? "correct" : "wrong";
+    const statusText = status === "correct" ? "정답" : status === "wrong" ? "오답" : "미응답";
+    const choices = q.choices.map((choice, choiceIndex) => {
+      const number = choiceIndex + 1;
+      const classes = ["review-choice"];
+      if (number === q.answer) classes.push("answer");
+      if (number === chosen && number !== q.answer) classes.push("picked-wrong");
+      return `<li class="${classes.join(" ")}"><span>${number}</span><p>${escapeHtml(choice)}</p>${number === q.answer ? `<b>정답</b>` : ""}${number === chosen ? `<em>내 선택</em>` : ""}</li>`;
+    }).join("");
+    return `<details class="review-item ${status}" data-status="${status}" ${status !== "correct" ? "open" : ""}>
+      <summary><span class="review-number">${i + 1}번</span><strong>${statusText}</strong><small>${chosen ? `내 답 ${chosen}번 · 정답 ${q.answer}번` : `미응답 · 정답 ${q.answer}번`}</small></summary>
+      <div class="review-body">
+        <div class="review-question">${escapeHtml(q.question)}</div>
+        ${q.imageText ? `<pre class="q-image-text">${escapeHtml(q.imageText)}</pre>` : q.image ? `<div class="q-image review-image"><img src="${escapeHtml(q.image)}" alt="문제 참고 이미지" /></div>` : ""}
+        <ol class="review-choices">${choices}</ol>
+        <div class="review-explanation"><b>해설</b><p>${escapeHtml(q.explanation || "해설이 등록되지 않았습니다.")}</p></div>
+      </div>
+    </details>`;
   }).join("") : "";
-  els.resultArea.innerHTML = `<section class="result-card"><span class="eyebrow">RESULT</span><h2>${autoSubmitted ? "시간이 종료되어 자동 제출됐습니다" : "채점이 완료됐습니다"}</h2><div class="score">${state.exam ? `${examScore}<small> / 100점</small>` : `${state.correct}<small> / ${total}문제</small>`}</div><div class="result-rate">${state.correct}문제 정답 · 정답률 ${rate}% · ${state.answered}문제 응답</div><div class="result-actions"><button class="btn secondary" id="retryBtn" type="button">다시 풀기</button><a class="btn" href="index.html">홈으로</a></div></section>${wrongRows ? `<section class="review-list"><h2>틀린 문제 확인</h2>${wrongRows}</section>` : ""}`;
+  els.resultArea.innerHTML = `<section class="result-card"><span class="eyebrow">RESULT</span><h2>${autoSubmitted ? "시간이 종료되어 자동 제출됐습니다" : "채점이 완료됐습니다"}</h2><div class="score">${state.exam ? `${examScore}<small> / 100점</small>` : `${state.correct}<small> / ${total}문제</small>`}</div><div class="result-rate">${state.correct}문제 정답 · 정답률 ${rate}% · ${state.answered}문제 응답</div><div class="result-actions"><button class="btn secondary" id="retryBtn" type="button">다시 풀기</button><a class="btn" href="index.html">홈으로</a></div></section>${reviewRows ? `<section class="review-list"><div class="review-heading"><div><span class="eyebrow">ANSWER REVIEW</span><h2>전체 문제 다시 보기</h2></div><div class="review-filters"><button class="active" type="button" data-filter="all">전체</button><button type="button" data-filter="wrong">오답</button><button type="button" data-filter="correct">정답</button><button type="button" data-filter="unanswered">미응답</button></div></div>${reviewRows}</section>` : ""}`;
   document.getElementById("retryBtn").addEventListener("click", () => MODE === "round" ? (els.roundControls.hidden = false, els.resultArea.hidden = true, els.toolbar.hidden = true) : location.reload());
+  document.querySelectorAll(".review-filters button").forEach((button) => button.addEventListener("click", () => {
+    document.querySelectorAll(".review-filters button").forEach((item) => item.classList.toggle("active", item === button));
+    const filter = button.dataset.filter;
+    document.querySelectorAll(".review-item").forEach((item) => { item.hidden = filter !== "all" && item.dataset.status !== filter; });
+  }));
 }
 
 function updateTimer() {

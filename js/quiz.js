@@ -114,7 +114,7 @@ function renderQuestionCard(q, opts = {}) {
       <div class="q-meta"><span class="pill">${escapeHtml(q.round || "")}</span>${q.subject ? `<span class="pill">${escapeHtml(q.subject)}</span>` : ""}${freqBadge}</div>
       <div class="q-number">QUESTION ${String(q.number || state.index + 1).padStart(2, "0")}</div>
       <div class="q-text">${escapeHtml(q.question)}</div>
-      ${q.imageText ? `<pre class="q-image-text">${escapeHtml(q.imageText)}</pre>` : q.image ? `<div class="q-image"><img src="${escapeHtml(q.image)}" alt="문제 참고 이미지" /></div>` : ""}
+      ${renderQuestionMaterial(q)}
       <div class="choices" id="choicesBox">${q.choices.map((c, i) => `<button class="choice ${saved === i + 1 ? "selected" : ""}" data-idx="${i + 1}" type="button"><span class="num">${i + 1}</span><span class="txt">${escapeHtml(c)}</span></button>`).join("")}</div>
       <div class="explain-box" id="explainBox"></div>
       <div class="quiz-actions">
@@ -142,6 +142,13 @@ function renderQuestionCard(q, opts = {}) {
   document.getElementById("nextBtn")?.addEventListener("click", () => state.exam ? goToQuestion((state.index + 1) % state.queue.length) : goNext());
   document.getElementById("submitBtn")?.addEventListener("click", () => submitExam(false));
   if (MODE === "random") setupAiShare(q);
+}
+
+function renderQuestionMaterial(q) {
+  const text = q.imageText ? `<pre class="q-image-text">${escapeHtml(q.imageText)}</pre>` : "";
+  const source = q.imageOriginal || q.image;
+  const original = source ? `<details class="original-image"><summary>원본 이미지 확인</summary><div class="q-image"><img src="${escapeHtml(source)}" alt="문제 원본 이미지" loading="lazy" /></div></details>` : "";
+  return text + original;
 }
 
 function buildAiPrompt(q) {
@@ -250,7 +257,7 @@ function renderResult(autoSubmitted = false) {
       <summary><span class="review-number">${i + 1}번</span><strong>${statusText}</strong><small>${chosen ? `내 답 ${chosen}번 · 정답 ${q.answer}번` : `미응답 · 정답 ${q.answer}번`}</small></summary>
       <div class="review-body">
         <div class="review-question">${escapeHtml(q.question)}</div>
-        ${q.imageText ? `<pre class="q-image-text">${escapeHtml(q.imageText)}</pre>` : q.image ? `<div class="q-image review-image"><img src="${escapeHtml(q.image)}" alt="문제 참고 이미지" /></div>` : ""}
+        ${renderQuestionMaterial(q)}
         <ol class="review-choices">${choices}</ol>
         <div class="review-explanation"><b>해설</b><p>${escapeHtml(q.explanation || "해설이 등록되지 않았습니다.")}</p></div>
       </div>

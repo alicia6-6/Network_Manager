@@ -1,3 +1,6 @@
+# Original Hangul documents are local-only source material.
 hwp/
+*.hwp
+*.hwpx
 node_modules/
 .DS_Store

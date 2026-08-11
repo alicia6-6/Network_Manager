@@ -3,8 +3,8 @@
     "examName": "네트워크관리사 2급",
     "description": "2023~2026년 실제 기출문제 (2·5·8·11월 정기 시험)",
     "updatedAt": "2026-08-11",
-    "totalRounds": 14,
-    "totalQuestions": 700
+    "totalRounds": 15,
+    "totalQuestions": 750
   },
   "questions": [
     {
@@ -113,7 +113,7 @@
       "id": "2023-02-07",
       "round": "2023년 1차",
       "number": 7,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "서울본사에 근무하는 Kim은 신규부서에 IP를 할당하려고 L3 스위치에 접속하였는데 IP검색 도중에 허가되지 않은 불법 IP 및 mac address를 발견하여 차단조치 하였다. Kim이 L3 스위치에서 불법 IP를 검색하기 위해서 내린 명령어(A)를 선택하시오. (단, 불법적으로 사용된 IP는 아래의 그림이며 사용된 L3 스위치는 Cisco 3750G이다.)",
       "choices": [
         "rarp",
@@ -317,7 +317,7 @@
       "id": "2023-02-19",
       "round": "2023년 1차",
       "number": 19,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "프로토콜 계층 구조상의 기본 구성요소 중 실체(Entity) 간의 통신 속도 및 메시지 순서를 위한 제어정보는?",
       "choices": [
         "타이밍(Timing)",
@@ -334,7 +334,7 @@
       "id": "2023-02-20",
       "round": "2023년 1차",
       "number": 20,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "OSI 7 Layer 중 데이터 링크 계층의 기능으로 옳지 않은 것은?",
       "choices": [
         "통신 프로토콜을 정의한 OSI 7 Layer 중 세 번째 계층에 해당한다.",
@@ -368,7 +368,7 @@
       "id": "2023-02-22",
       "round": "2023년 1차",
       "number": 22,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "네트워크 계층의 데이터 단위를 나타내는 용어는?",
       "choices": [
         "세그먼트",
@@ -708,7 +708,7 @@
       "id": "2023-02-42",
       "round": "2023년 1차",
       "number": 42,
-      "subject": "네트워크 일반",
+      "subject": "NOS(윈도우서버)",
       "question": "다음 중 (ㄱ), (ㄴ)에 들어갈 말로 알맞은 것은?",
       "choices": [
         "ㄱ: 21, ㄴ : 1024",
@@ -759,7 +759,7 @@
       "id": "2023-02-45",
       "round": "2023년 1차",
       "number": 45,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "DHCP로부터 새로운 IP Address를 부여받기 위해 사용되는 명령어 옵션은?",
       "choices": [
         "ipconfig /renew",
@@ -776,7 +776,7 @@
       "id": "2023-02-46",
       "round": "2023년 1차",
       "number": 46,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "내부에 코어(Core)와 이를 감싸는 굴절률이 다른 유리나 플라스틱으로 된 외부 클래딩(Cladding)으로 구성된 전송 매체는?",
       "choices": [
         "이중 나선(Twisted Pair)",
@@ -793,7 +793,7 @@
       "id": "2023-02-47",
       "round": "2023년 1차",
       "number": 47,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "IP Address의 부족과 내부 네트워크 주소의 보안을 위해 사용하는 방법 중 하나로, 내부에서는 사설 IP Address를 사용하고 외부 네트워크로 나가는 주소는 공인 IP Address를 사용하도록 하는 IP Address 변환 방식은?",
       "choices": [
         "DHCP 방식",
@@ -810,7 +810,7 @@
       "id": "2023-02-48",
       "round": "2023년 1차",
       "number": 48,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "가상 근거리 네트워크(VLAN, Virtual Local Area Network)은 물리적인 케이블이 아닌 소프트웨어에 의해 구성된 LAN으로 정의할 수 있는데, VLAN의 특징으로 맞지 않는 것은?",
       "choices": [
         "데이터링크 계층에서 브로드캐스트 도메인(Broadcast Domain)을 나누기 위해 사용하는 기술이다.",
@@ -827,7 +827,7 @@
       "id": "2023-02-49",
       "round": "2023년 1차",
       "number": 49,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "Repeater가 동작하는 OSI 7 Layer의 계층은?",
       "choices": [
         "물리 계층",
@@ -844,7 +844,7 @@
       "id": "2023-02-50",
       "round": "2023년 1차",
       "number": 50,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "RAID의 레벨 중에서 회전 패리티 방식으로 병목현상을 줄이는 것은?",
       "choices": [
         "RAID-2",
@@ -1082,7 +1082,7 @@
       "id": "2023-05-14",
       "round": "2023년 2차",
       "number": 14,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "아래에서 설명하는 기술의 명칭은?",
       "choices": [
         "WLAN",
@@ -1184,7 +1184,7 @@
       "id": "2023-05-20",
       "round": "2023년 2차",
       "number": 20,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "OSI 7 Layer에서 Data Link 계층의 기능으로 옳지 않은 것은?",
       "choices": [
         "전송 오류 제어기능",
@@ -1201,7 +1201,7 @@
       "id": "2023-05-21",
       "round": "2023년 2차",
       "number": 21,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "패킷교환의 특징에 대한 설명 중 옳지 않은 것은?",
       "choices": [
         "패킷과 함께 오류제어를 함으로서 고품질/고신뢰성 통신이 가능하다.",
@@ -1278,7 +1278,7 @@
         "1000Base-AX"
       ],
       "answer": 1,
-      "explanation": "기가비트 이더넷의 표준 규격에는 1000Base-SX, 1000Base-LX, 1000Base-T 등이 있으며, 1000Base-NX·BX·AX는 실제로 존재하지 않는 규격명이다.",
+      "explanation": "기가비트 이더넷의 표준 규격에는 짧은 파장 광섬유를 사용하는 1000Base-SX를 비롯해 1000Base-LX, 1000Base-CX, 1000Base-T 등이 있다. 1000Base-NX와 1000Base-AX는 실제로 존재하지 않는 규격명이며, 이 문제에서 다루는 기본 규격에 속하지 않는다.",
       "image": null,
       "tags": []
     },
@@ -1371,7 +1371,7 @@
       "id": "2023-05-31",
       "round": "2023년 2차",
       "number": 31,
-      "subject": "네트워크 일반",
+      "subject": "NOS(윈도우서버)",
       "question": "서버 담당자 Park 사원은 데이터를 안전하게 보호하는 일을 하기 위해 BitLocker 기능을 사용하고자 한다. BitLocker를 사용하기 위해서 메인보드와 BIOS에서 지원해야 하는 기능은 무엇인가?",
       "choices": [
         "FSRM",
@@ -1456,7 +1456,7 @@
       "id": "2023-05-36",
       "round": "2023년 2차",
       "number": 36,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "네임서버 레코드 정보를 변경한지 충분한 시일이 지났지만 특정 기기에서 해당(기존) 도메인으로 접속이 원할한 경우, 컴퓨터에 DNS cache가 갱신되지 않아 발생할 수 있다. DNS cache를 초기화 하는 명령어는 어느것인가?",
       "choices": [
         "ipconfig /displydns",
@@ -1626,7 +1626,7 @@
       "id": "2023-05-46",
       "round": "2023년 2차",
       "number": 46,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "사람의 머리카락 굵기만큼의 가는 유리 섬유로 정보를 보내고 받는 속도가 가장 빠르고 넓은 대역폭을 가지는 장점도 있지만 구리선에 비해 가격이 비싸고 설치나 유지보수가 어렵다는 단점이 있는 케이블은 무엇인가?",
       "choices": [
         "Coaxial Cable",
@@ -1643,7 +1643,7 @@
       "id": "2023-05-47",
       "round": "2023년 2차",
       "number": 47,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "네트워크 담당자 Kim 사원은 물리적인 하나의 LAN을 논리적으로 여러 개로 나누어 효율적으로 네트워크를 관리하고자 한다. 내부망을 분리할 때 사용되고, 방화벽에서 외부망으로부터 내부망을 보호할 때도 사용할 수 있는 것은 무엇인가?",
       "choices": [
         "NAC",
@@ -1660,7 +1660,7 @@
       "id": "2023-05-48",
       "round": "2023년 2차",
       "number": 48,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "IP 주소와 같은 TCP/IP 통신을 수행하기 위한 네트워크 구성 파라메터들을 동적으로 설정하기 위해 사용되는 표준 네트워크 프로토콜로서 호스트가 네트워크에 접속하고자 할 때마다 IP를 동적으로 할당받을 수 있도록 하는 장치는?",
       "choices": [
         "DHCP(Dynamic Host Configuration Protocol)",
@@ -1677,7 +1677,7 @@
       "id": "2023-05-49",
       "round": "2023년 2차",
       "number": 49,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "RAID 방식 중 미러링(Mirroring)이라고 하며, 최고의 성능과 고장대비 능력을 발휘하는 것은?",
       "choices": [
         "RAID 0",
@@ -1694,7 +1694,7 @@
       "id": "2023-05-50",
       "round": "2023년 2차",
       "number": 50,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "무선랜(LAN)은 무선신호 전달방식을 이용하여 두 대 이상의 장치를 연결하는 기술이다. 이를 이용하여 사용자는 근거리 지역에서 이동하면서 지속적으로 네트워크에 접근할 수 있게 된다. 다음의 지문에서 설명하는 와이파이 IEEE 802.11규격은 무엇인가?",
       "choices": [
         "IEEE 802.11n",
@@ -1711,7 +1711,7 @@
       "id": "2023-08-01",
       "round": "2023년 3차",
       "number": 1,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "다음 설명하는 내용에 가장 적합한 기술을 고르시오.",
       "choices": [
         "SSL",
@@ -1745,7 +1745,7 @@
       "id": "2023-08-03",
       "round": "2023년 3차",
       "number": 3,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "(A) 안에 들어가는 용어 중 옳은 것은?",
       "choices": [
         "ARP",
@@ -1830,7 +1830,7 @@
       "id": "2023-08-08",
       "round": "2023년 3차",
       "number": 8,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "CSMA/CD의 특징으로 옳지 않은 것은?",
       "choices": [
         "충돌 도메인이 작을수록 좋다.",
@@ -1864,7 +1864,7 @@
       "id": "2023-08-10",
       "round": "2023년 3차",
       "number": 10,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "멀티캐스트(Multicast)에 사용되는 IP Class는?",
       "choices": [
         "A Class",
@@ -2068,7 +2068,7 @@
       "id": "2023-08-22",
       "round": "2023년 3차",
       "number": 22,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "아래 내용에서 IPv6의 일반적인 특징만을 나열한 것은?",
       "choices": [
         "A, B, C, D",
@@ -2102,7 +2102,7 @@
       "id": "2023-08-24",
       "round": "2023년 3차",
       "number": 24,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "OSI 7 Layer에서 암호/복호, 인증, 압축 등의 기능이 수행되는 계층은?",
       "choices": [
         "Transport Layer",
@@ -2119,7 +2119,7 @@
       "id": "2023-08-25",
       "round": "2023년 3차",
       "number": 25,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "파장분할다중화방식(WDM)의 특징으로 옳은 것은?",
       "choices": [
         "선로의 증설 없이 회선의 증설이 어렵다.",
@@ -2170,7 +2170,7 @@
       "id": "2023-08-28",
       "round": "2023년 3차",
       "number": 28,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "FTP는 원격 서버에 파일을 주고받을 때 사용하는 프로토콜이다. FTP는 2가지 Mode로 구분되는데, 서버에서 따로 포트 대역을 설정해주고 서버는 임의로 지정된 데이터 포트정보를 클라이언트에 보내 클라이언트에서 해당 포트로 접속하는 방식은 무엇인가?",
       "choices": [
         "Active Mode",
@@ -2238,7 +2238,7 @@
       "id": "2023-08-32",
       "round": "2023년 3차",
       "number": 32,
-      "subject": "NOS(리눅스)",
+      "subject": "NOS(윈도우서버)",
       "question": "′netstat′ 명령어에 사용하는 옵션 설명에 대해 옳지 않은 것은?",
       "choices": [
         "-r : 라우팅 테이블을 표시한다.",
@@ -2264,7 +2264,7 @@
         "chmod go=w file"
       ],
       "answer": 4,
-      "explanation": "chmod 666, a+w, ugo+w는 모두 기존 권한을 유지한 채 소유자·그룹·기타 사용자 모두에게 쓰기 권한을 추가한다. 반면 chmod go=w는 등호(=)로 그룹과 기타 사용자의 권한을 쓰기 권한만으로 절대 지정해버려 기존에 있던 읽기·실행 권한이 사라지므로 결과가 다르다.",
+      "explanation": "chmod a+w와 chmod ugo+w는 기존 권한은 그대로 둔 채 소유자·그룹·기타 사용자 모두에게 쓰기 권한만 추가하므로 항상 같은 결과가 된다. chmod 666은 절대 모드로 rw-rw-rw-를 지정하는 것이지만 원본 파일에 실행 비트가 없다면 결과적으로 앞의 두 명령과 동일한 권한이 되는 반면, chmod go=w는 등호(=)로 그룹과 기타 사용자의 권한을 쓰기 권한만으로 절대 지정해버려 기존에 있던 읽기 권한까지 사라지므로 결과가 다르다.",
       "image": null,
       "tags": []
     },
@@ -2476,7 +2476,7 @@
       "id": "2023-08-46",
       "round": "2023년 3차",
       "number": 46,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "L2 LAN 스위치가 이더넷 프레임을 중계 처리할 때 사용하는 주소는 무엇인가?",
       "choices": [
         "MAC 주소",
@@ -2493,7 +2493,7 @@
       "id": "2023-08-47",
       "round": "2023년 3차",
       "number": 47,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "게이트웨이(Gateway)의 역할로 올바른 것은?",
       "choices": [
         "전혀 다른 프로토콜을 채용한 네트워크 간의 인터페이스이다.",
@@ -2510,7 +2510,7 @@
       "id": "2023-08-48",
       "round": "2023년 3차",
       "number": 48,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "RAID는 Redundant Array of Independent Disk 혹은 Redundant Array of Inexpensive Disk의 약자로 말 그대로 여러개의 디스크를 묶어 하나의 디스크처럼 사용하는 기술이다. 그러면 다음에서 RAID Level 0(영)의 설명으로 옳지 않은 것은?",
       "choices": [
         "최소 2개의 디스크에 데이터를 동시에 분산 저장한다.",
@@ -2527,7 +2527,7 @@
       "id": "2023-08-49",
       "round": "2023년 3차",
       "number": 49,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "신뢰하지 않는 외부 네트워크와 신뢰하는 내부 네트워크 사이를 지나는 패킷을 미리 정한 규칙에 따라 차단하거나 보내주는 기능을 하는 하드웨어나 소프트웨어를 방화벽(Firewall) 이라고 한다. 다음 중 방화벽의 주요 기능이 아닌 것은?",
       "choices": [
         "통과시킬 접근과 거부할 접근에 따라 허용 또는 차단을 수행한다.",
@@ -2544,7 +2544,7 @@
       "id": "2023-08-50",
       "round": "2023년 3차",
       "number": 50,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "기업에서 근무하는 네트워크 담당자 Kim 대리는 하나의 물리적인 네트워크 스위치를 영업부, 인사부, 구매부, 기술부 등 각 부서별로 여러 네트워크로 구분하여 사용할 수 있도록 하고자 하며, 부서별로 분리된 네트워크는 3계층 장비를 통해서만 통신이 되도록 하고자 한다. 이 기술 방식은?",
       "choices": [
         "VPN(Virtual Private Network)",
@@ -2714,7 +2714,7 @@
       "id": "2023-11-10",
       "round": "2023년 4차",
       "number": 10,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "네트워크와 서버를 관리하는 Kim 사원은 인터넷이 느려졌다는 민원을 받았다. 이를 해결하기 위해서 해당 ISP 주소쪽으로 명령어(A)를 입력하였더니 다소 지연이 있었음을 발견하였다. 이 사항을 확인하기 위해서 (A)에 들어가야 할 명령어는?(단, 윈도우 계열의 명령프롬프트(cmd)에서 실행하였다.)",
       "choices": [
         "nslookup",
@@ -2791,7 +2791,7 @@
         "TTL"
       ],
       "answer": 1,
-      "explanation": "IP 헤더의 Flags 필드에 포함된 DF(Don't Fragment) 비트는 데이터그램의 단편화 여부를 제어하며, Identification 값 및 Fragment Offset과 함께 하나의 원본 데이터그램에서 분할된 조각들을 식별하고 재조립하는 데 사용된다.",
+      "explanation": "IP 헤더의 Flags 필드에 있는 DF(Don't Fragment) 비트는 해당 데이터그램을 단편화(분할)해도 되는지 여부를 지정하여, 분할이 금지된 데이터와 분할이 가능한 데이터를 구별하는 역할을 한다. 반면 오프셋은 이미 분할된 조각의 상대적 위치만 나타낼 뿐 단편화 여부 자체를 구별하지는 않는다.",
       "image": null,
       "tags": []
     },
@@ -2799,7 +2799,7 @@
       "id": "2023-11-15",
       "round": "2023년 4차",
       "number": 15,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "(A) 안에 들어가는 용어 중 옳은 것은?",
       "choices": [
         "L1 스위치",
@@ -2867,7 +2867,7 @@
       "id": "2023-11-19",
       "round": "2023년 4차",
       "number": 19,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "전송을 받는 개체에서 발송지로부터 오는 데이터의 양이나 속도를 제한하는 프로토콜의 기능을 나타내는 용어는?",
       "choices": [
         "에러 제어",
@@ -2884,7 +2884,7 @@
       "id": "2023-11-20",
       "round": "2023년 4차",
       "number": 20,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "IEEE 802 프로토콜의 연결이 올바른 것은?",
       "choices": [
         "IEEE 802.3 : 토큰 버스",
@@ -2901,7 +2901,7 @@
       "id": "2023-11-21",
       "round": "2023년 4차",
       "number": 21,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "OSI 7 Layer 중 세션계층의 역할로 옳지 않은 것은?",
       "choices": [
         "대화 제어",
@@ -3088,7 +3088,7 @@
       "id": "2023-11-32",
       "round": "2023년 4차",
       "number": 32,
-      "subject": "네트워크 일반",
+      "subject": "NOS(윈도우서버)",
       "question": "서버 담당자 Park 사원은 데이터를 안전하게 보호하는 일을 담당하고 있다. 도난 발생 시 데이터를 보호하기 위해 강력한 암호화를 사용해 데이터를 보호하는 Windows 기능을 선택하여 로컬 보안이 없는 지사나 데이터센터의 경우 적절한 솔루션을 지원할 수 있도록 하고자 한다. 다음 중 이러한 기능을 지원하는 것은?",
       "choices": [
         "BitLocker",
@@ -3105,7 +3105,7 @@
       "id": "2023-11-33",
       "round": "2023년 4차",
       "number": 33,
-      "subject": "네트워크 일반",
+      "subject": "NOS(윈도우서버)",
       "question": "웹서버 담당자 Kim은 디렉터리 리스팅 방지, 심볼릭 링크 사용방지, SSI(Server-Side Includes)사용 제한, CGI실행 디렉터리 제한 등의 보안 설정을 진행하려고 한다. Apache 서버의 설정 파일 이름은?",
       "choices": [
         "httpd.conf",
@@ -3122,7 +3122,7 @@
       "id": "2023-11-34",
       "round": "2023년 4차",
       "number": 34,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "네트워크를 관리하는 Kim 사원은 네트워크 연결을 구축하거나 문제를 해결할 때 패킷이 출발지에서 목적지까지 가는 경로를 살펴볼 수 있도록 네트워크 명령어를 사용하고자 한다. 이 명령은 ′tracert′에서 수행하는 동일한 정보를 보여주면서 홉과 다른 세부 정보사이의 시간에 관한 정보를 출력이 끝날 때까지 저장한다. Kim 사원이 사용할 명령어는?",
       "choices": [
         "ping",
@@ -3173,7 +3173,7 @@
       "id": "2023-11-37",
       "round": "2023년 4차",
       "number": 37,
-      "subject": "NOS(리눅스)",
+      "subject": "NOS(윈도우서버)",
       "question": "Windows Server 2016의 ′netstat′ 명령 중 라우팅 테이블을 확인할 수 있는 명령 옵션은?",
       "choices": [
         "netstat –a",
@@ -3309,7 +3309,7 @@
       "id": "2023-11-45",
       "round": "2023년 4차",
       "number": 45,
-      "subject": "NOS(리눅스)",
+      "subject": "NOS(윈도우서버)",
       "question": "Windows Server 2016에서 클라이언트의 Host Name, IP 주소, 서브넷 마스크, DNS Server, 기본 게이트웨이 등의 설정 사항을 볼 수 있는 명령어는?",
       "choices": [
         "arp –a",
@@ -3326,7 +3326,7 @@
       "id": "2023-11-46",
       "round": "2023년 4차",
       "number": 46,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "현재 LAN 카드의 MAC Address는 몇 비트의 번호체계인가?",
       "choices": [
         "32 비트",
@@ -3343,7 +3343,7 @@
       "id": "2023-11-47",
       "round": "2023년 4차",
       "number": 47,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "RAID 시스템 중 한 드라이브에 기록되는 모든 데이터를 다른 드라이브에 복사해 놓는 방법으로 복구 능력을 제공하며, ′Mirroring′으로 불리는 것은?",
       "choices": [
         "RAID 0",
@@ -3360,7 +3360,7 @@
       "id": "2023-11-48",
       "round": "2023년 4차",
       "number": 48,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "기존의 IP Routing 데이터 전송 방식과 다르게, 데이터의 목적지 IP 주소를 확인하는 대신 ′Label′이라고 불리는 패킷에 더해진 식별자를 확인하여 목적지까지 데이터를 전달 및 포워딩을 실시하며, 짧고 고정된 길이의 라벨을 이용하여 L2 스위칭에 의해 고속으로 패킷을 전달하는 기술은?",
       "choices": [
         "VPN(Virtual Private Network)",
@@ -3377,7 +3377,7 @@
       "id": "2023-11-49",
       "round": "2023년 4차",
       "number": 49,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "과거 IP관리 시스템에서 발전한 솔루션으로서 네트워크 통제를 강화한, 아래 설명하는 시스템은 무엇인가?",
       "choices": [
         "F/W(Firewall)",
@@ -3394,7 +3394,7 @@
       "id": "2023-11-50",
       "round": "2023년 4차",
       "number": 50,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "라우터에서 ′show running-config′ 란 명령어로 내용을 확인할 수 있는 것은?",
       "choices": [
         "ROM",
@@ -3411,7 +3411,7 @@
       "id": "2024-02-01",
       "round": "2024년 1차",
       "number": 1,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "IP 헤더에 포함이 되지 않는 필드는?",
       "choices": [
         "ACK",
@@ -3598,7 +3598,7 @@
       "id": "2024-02-12",
       "round": "2024년 1차",
       "number": 12,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "CSMA/CD의 특징으로 옳지 않은 것은?",
       "choices": [
         "충돌 도메인이 작을수록 좋다.",
@@ -3649,7 +3649,7 @@
       "id": "2024-02-15",
       "round": "2024년 1차",
       "number": 15,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "다음 보기 중 공인 IP로 설정 시 공중망(Public Network)에서 통신의 문제가 발생할 수 있는 것은?",
       "choices": [
         "209.37.4.11",
@@ -3666,7 +3666,7 @@
       "id": "2024-02-16",
       "round": "2024년 1차",
       "number": 16,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "다음 (A) 안에 들어가는 용어 중 옳은 것은?",
       "choices": [
         "DNS",
@@ -3768,7 +3768,7 @@
       "id": "2024-02-22",
       "round": "2024년 1차",
       "number": 22,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "아래 내용에서 IPv6의 일반적인 특징만을 나열한 것은?",
       "choices": [
         "A, B, C, D",
@@ -3785,7 +3785,7 @@
       "id": "2024-02-23",
       "round": "2024년 1차",
       "number": 23,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "OSI 7 Layer에서 Data Link 계층의 기능으로 옳지 않은 것은?",
       "choices": [
         "전송 오류 제어기능",
@@ -3802,7 +3802,7 @@
       "id": "2024-02-24",
       "round": "2024년 1차",
       "number": 24,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "프로토콜의 기본적인 기능 중 정보의 신뢰성을 부여하는 것으로, 데이터를 전송한 개체가 보낸 PDU(Protocol Data Unit)에 대한 애크널러지먼트(ACK)를 특정시간 동안 받지 못하면 재전송하는 기능은?",
       "choices": [
         "Flow Control",
@@ -3887,7 +3887,7 @@
       "id": "2024-02-29",
       "round": "2024년 1차",
       "number": 29,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "TCP 3Way-HandShaking 과정 중 클라이언트가 보낸 연결 요청에서 패킷을 수신한 서버는 LISTEN 상태에서 무슨 상태로 변경되는가?",
       "choices": [
         "SYN_SENT",
@@ -4023,7 +4023,7 @@
       "id": "2024-02-37",
       "round": "2024년 1차",
       "number": 37,
-      "subject": "NOS(리눅스)",
+      "subject": "NOS(윈도우서버)",
       "question": "Windows Server 2016에서 ′netstat′ 명령이 제공하는 정보로 옳지 않은 것은?",
       "choices": [
         "인터페이스의 구성 정보",
@@ -4108,7 +4108,7 @@
       "id": "2024-02-42",
       "round": "2024년 1차",
       "number": 42,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "다음의 지문이 설명하고 있는 DNS 질의 과정을 무엇이라고 하는가?",
       "choices": [
         "재귀적 질의",
@@ -4176,7 +4176,7 @@
       "id": "2024-02-46",
       "round": "2024년 1차",
       "number": 46,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "RAID 방식 중 미러링(Mirroring)이라고 하며, 최고의 성능과 고장대비 능력을 발휘하는 것은?",
       "choices": [
         "RAID 0",
@@ -4193,7 +4193,7 @@
       "id": "2024-02-47",
       "round": "2024년 1차",
       "number": 47,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "로드밸런싱(Load Balancing)에 대한 설명이 맞는 것은?",
       "choices": [
         "물리적인 망 구성과는 상관없이 가상적으로 구성된 근거리 통신망 기술",
@@ -4210,7 +4210,7 @@
       "id": "2024-02-48",
       "round": "2024년 1차",
       "number": 48,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "게이트웨이(Gateway)에 대한 설명으로 옳지 않은 것은?",
       "choices": [
         "OSI 참조 모델에서 전송계층만 연결하는 네트워크 장비이다.",
@@ -4227,7 +4227,7 @@
       "id": "2024-02-49",
       "round": "2024년 1차",
       "number": 49,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "IEEE 802.11 무선랜의 전송 방식에 대한 설명 중 올바른 것은?",
       "choices": [
         "적외선 방식 : 장비 구성이 간편하고 빛의 성질로 인해 중간에 장애물이 있어도 통신이 가능하다. 저렴한 비용 때문에 상업적으로 많이 사용된다.",
@@ -4244,7 +4244,7 @@
       "id": "2024-02-50",
       "round": "2024년 1차",
       "number": 50,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "광케이블에 대한 설명으로 옳지 않은 것은?",
       "choices": [
         "멀티 모드형과 싱글 모드형이 있다.",
@@ -4270,7 +4270,7 @@
         "TTL"
       ],
       "answer": 1,
-      "explanation": "IP 헤더의 Flags 필드에 포함된 DF(Don't Fragment) 비트는 데이터그램의 단편화 여부를 제어하며, Identification 값 및 Fragment Offset과 함께 하나의 원본 데이터그램에서 분할된 조각들을 식별하고 재조립하는 데 사용된다.",
+      "explanation": "IP 헤더의 Flags 필드에 있는 DF(Don't Fragment) 비트는 해당 데이터그램을 단편화(분할)해도 되는지 여부를 지정하여, 분할이 금지된 데이터와 분할이 가능한 데이터를 구별하는 역할을 한다. 반면 오프셋은 이미 분할된 조각의 상대적 위치만 나타낼 뿐 단편화 여부 자체를 구별하지는 않는다.",
       "image": null,
       "tags": []
     },
@@ -4448,7 +4448,7 @@
       "id": "2024-05-12",
       "round": "2024년 2차",
       "number": 12,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "네트워크를 관리하는 Lee 사원은 사내에서 잦은 IP 충돌로 인하여 장애신고를 많이 받고 있어 기존 IP정책을 DHCP로 변경하려고 한다. 다음 중 DHCP를 적용해야 하는 장비로 가장 적합한 것은?",
       "choices": [
         "웹서버",
@@ -4499,7 +4499,7 @@
       "id": "2024-05-15",
       "round": "2024년 2차",
       "number": 15,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "다음 (A) 안에 들어가는 용어 중 옳은 것은?",
       "choices": [
         "SNMP (Simple Network Management Protocol)",
@@ -4533,7 +4533,7 @@
       "id": "2024-05-17",
       "round": "2024년 2차",
       "number": 17,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "다음 (A) 안에 들어가는 용어 중 옳은 것은?",
       "choices": [
         "/etc/deny",
@@ -4601,7 +4601,7 @@
       "id": "2024-05-21",
       "round": "2024년 2차",
       "number": 21,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "패킷 교환망의 특징으로 옳지 않은 것은?",
       "choices": [
         "연결설정에 따라 가상회선과 데이터그램으로 분류된다.",
@@ -4652,7 +4652,7 @@
       "id": "2024-05-24",
       "round": "2024년 2차",
       "number": 24,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "OSI 참조 모델의 계층별 기능에 대한 설명으로 적절하지 않은 것은?",
       "choices": [
         "Session Layer : 통신시스템 간의 상호대화를 허용하여 프로세스 간의 통신을 허용하고 동기화 한다.",
@@ -4890,7 +4890,7 @@
       "id": "2024-05-38",
       "round": "2024년 2차",
       "number": 38,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "네트워크를 관리하는 Kim 사원은 네트워크 연결을 구축하거나 문제를 해결할 때 패킷이 출발지에서 목적지까지 가는 경로를 살펴볼 수 있도록 네트워크 명령어를 사용하고자 한다. 이 명령은 ′tracert′에서 수행하는 동일한 정보를 보여주면서 홉과 다른 세부 정보사이의 시간에 관한 정보를 출력이 끝날 때까지 저장한다. Kim 사원이 사용할 명령어는?",
       "choices": [
         "ping",
@@ -4975,7 +4975,7 @@
       "id": "2024-05-43",
       "round": "2024년 2차",
       "number": 43,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "아래 지문의 ping 명령어의 결과로 옳지 않은 것은?",
       "choices": [
         "ICMP 패킷을 전송한 곳은 icqa.or.kr이다.",
@@ -4992,7 +4992,7 @@
       "id": "2024-05-44",
       "round": "2024년 2차",
       "number": 44,
-      "subject": "네트워크 일반",
+      "subject": "NOS(윈도우서버)",
       "question": "보안담당자 Kim 사원은 내부망의 보안을 위해 외부에서의 접근을 통제하려고 한다. 외부에서의 Telnet 접근을 금지하려고 할때, 다음 중 알맞은 것은?",
       "choices": [
         "iptables -A OUTPUT -p tcp --dport 23 -j DROP",
@@ -5026,7 +5026,7 @@
       "id": "2024-05-46",
       "round": "2024년 2차",
       "number": 46,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "L2 LAN 스위치가 이더넷 프레임을 중계 처리할 때 사용하는 주소는?",
       "choices": [
         "MAC 주소",
@@ -5043,7 +5043,7 @@
       "id": "2024-05-47",
       "round": "2024년 2차",
       "number": 47,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "내부 통신에는 사설 IP 주소를 사용하고 외부와의 통신에는 공인 IP 주소를 사용할 수 있도록 하는 기술은?",
       "choices": [
         "ARP",
@@ -5060,7 +5060,7 @@
       "id": "2024-05-48",
       "round": "2024년 2차",
       "number": 48,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "내부에 코어(Core)와 이를 감싸는, 굴절률이 다른 유리나 플라스틱으로 된 외부 클래딩(Cladding)으로 구성된 전송 매체는?",
       "choices": [
         "이중 나선(Twisted Pair)",
@@ -5077,7 +5077,7 @@
       "id": "2024-05-49",
       "round": "2024년 2차",
       "number": 49,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "아래 지문에 해당하는 RAID 방식은?",
       "choices": [
         "Linear RAID",
@@ -5094,7 +5094,7 @@
       "id": "2024-05-50",
       "round": "2024년 2차",
       "number": 50,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "다음 (A) 안에 들어가는 용어 중 옳은 것은?",
       "choices": [
         "L2 Switch",
@@ -5196,7 +5196,7 @@
       "id": "2024-08-06",
       "round": "2024년 3차",
       "number": 6,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "다음 중 사설 IP주소로 옳지 않은 것은?",
       "choices": [
         "10.100.12.5",
@@ -5332,7 +5332,7 @@
       "id": "2024-08-14",
       "round": "2024년 3차",
       "number": 14,
-      "subject": "NOS(리눅스)",
+      "subject": "TCP/IP",
       "question": "다음 중 SSH(secure shell) 보안 프로토콜의 특징으로 옳지 않은 것은?",
       "choices": [
         "데이터를 암호화하여 전송",
@@ -5502,7 +5502,7 @@
       "id": "2024-08-24",
       "round": "2024년 3차",
       "number": 24,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "프로토콜 계층 구조상의 기본 구성요소 중 실체(Entity) 간의 통신 속도 및 메시지 순서를 위한 제어정보는?",
       "choices": [
         "타이밍(Timing)",
@@ -5536,7 +5536,7 @@
       "id": "2024-08-26",
       "round": "2024년 3차",
       "number": 26,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "OSI 7 Layer 중에서 아래에서 설명하는 계층은?",
       "choices": [
         "물리적 계층(Physical Layer)",
@@ -5613,7 +5613,7 @@
         "도메인 컨트롤러(DC)"
       ],
       "answer": 2,
-      "explanation": "Active Directory에서 도메인 또는 포리스트 사이의 신뢰 여부에 대한 관계를 나타내며, 포리스트 안의 도메인 사이에 상호 양방향으로 자동 형성되는 것은 트러스트(Trust) 관계이다.",
+      "explanation": "Active Directory에서 도메인 또는 포리스트 사이의 신뢰할지 여부에 대한 관계를 나타내는 의미로 사용되며, 포리스트 안의 도메인 사이에는 상호 양방향의 전이 트러스트(Trust)를 갖는다.",
       "image": "data/images/2024-08/q30.gif",
       "tags": []
     },
@@ -5706,7 +5706,7 @@
       "id": "2024-08-36",
       "round": "2024년 3차",
       "number": 36,
-      "subject": "네트워크 일반",
+      "subject": "NOS(윈도우서버)",
       "question": "웹서버 담당자 Kim은 디렉터리 리스팅 방지, 심볼릭 링크 사용방지, SSI(Server-Side Includes)사용 제한, CGI실행 디렉터리 제한 등의 보안 설정을 진행하려고 한다. Apache 서버의 설정 파일 이름은?",
       "choices": [
         "httpd.conf",
@@ -5876,7 +5876,7 @@
       "id": "2024-08-46",
       "round": "2024년 3차",
       "number": 46,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "전송 매체의 특성 중 Fiber Optics에 해당하는 것은?",
       "choices": [
         "여러 라인의 묶음으로 사용하면 간섭 현상을 줄일 수 있다.",
@@ -5893,7 +5893,7 @@
       "id": "2024-08-47",
       "round": "2024년 3차",
       "number": 47,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "RAID의 특징으로 옳지 않은 것은?",
       "choices": [
         "여러 개의 Disk에 일부 중복된 데이터를 나누어 저장",
@@ -5910,7 +5910,7 @@
       "id": "2024-08-48",
       "round": "2024년 3차",
       "number": 48,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "가상 근거리 네트워크(VLAN, Virtual Local Area Network)은 물리적인 케이블이 아닌 소프트웨어에 의해 구성된 LAN으로 정의할 수 있는데, VLAN의 특징으로 맞지 않는 것은?",
       "choices": [
         "데이터링크 계층에서 브로드캐스트 도메인(Broadcast Domain)을 나누기 위해 사용하는 기술이다.",
@@ -5927,7 +5927,7 @@
       "id": "2024-08-49",
       "round": "2024년 3차",
       "number": 49,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "로드밸런서(Load Balancer)가 사전에 설정한 분산 알고리즘을 통해 부하분산이 이루어지는데, 부하분산 방식 중 특별한 규칙 없이 현재 구성된 장비에 순차적으로 돌아가면서 트래픽을 분산하는 방식은?",
       "choices": [
         "Least Connection",
@@ -5944,7 +5944,7 @@
       "id": "2024-08-50",
       "round": "2024년 3차",
       "number": 50,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "L2 스위치에서 프레임을 전송 시 목적지의 어떤 주소를 확인 후 전송하는가?",
       "choices": [
         "IP 주소",
@@ -6148,7 +6148,7 @@
       "id": "2024-11-12",
       "round": "2024년 4차",
       "number": 12,
-      "subject": "NOS(리눅스)",
+      "subject": "TCP/IP",
       "question": "네트워크 및 서버 관리자 Kim은 불법적으로 443 포트를 이용하여 52.139.250.253번 IP에서 관리자 Kim의 업무PC에 원격으로 접속시도가 이뤄진 흔적을 발견하게 되었다. 이 사항을 발견하기 위해서 (A)에 들어가야 할 명령어는?(단, Windows 계열의 명령프롬프트(cmd)에서 실행하였다.)",
       "choices": [
         "ping",
@@ -6216,7 +6216,7 @@
       "id": "2024-11-16",
       "round": "2024년 4차",
       "number": 16,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "다음 (A) 안에 들어가는 용어 중 옳은 것은?",
       "choices": [
         "FTP(file Transfer Protocol)",
@@ -6233,7 +6233,7 @@
       "id": "2024-11-17",
       "round": "2024년 4차",
       "number": 17,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "다음 (A) 안에 들어가는 용어 중 옳은 것은?",
       "choices": [
         "/etc/deny",
@@ -6250,7 +6250,7 @@
       "id": "2024-11-18",
       "round": "2024년 4차",
       "number": 18,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "패킷 교환망의 특징으로 옳지 않은 것은?",
       "choices": [
         "연결설정에 따라 가상회선과 데이터그램으로 분류된다.",
@@ -6318,7 +6318,7 @@
       "id": "2024-11-22",
       "round": "2024년 4차",
       "number": 22,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "OSI 7 Layer 중 세션계층의 역할로 옳지 않은 것은?",
       "choices": [
         "대화 제어",
@@ -6335,7 +6335,7 @@
       "id": "2024-11-23",
       "round": "2024년 4차",
       "number": 23,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "FDDI(Fiber Distributed Data Interface)의 설명으로 옳지 않은 것은?",
       "choices": [
         "광섬유를 사용하고 토큰 패싱 기술을 활용하는 한 개의 링 토폴로지를 가지는 기술이다.",
@@ -6403,7 +6403,7 @@
       "id": "2024-11-27",
       "round": "2024년 4차",
       "number": 27,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "메시 네트워크(Mesh Network)의 특징으로 옳지 않은 것은?",
       "choices": [
         "노드의 이동이 자유롭기 때문에 네트워크 토폴로지가 동적으로 변한다.",
@@ -6420,7 +6420,7 @@
       "id": "2024-11-28",
       "round": "2024년 4차",
       "number": 28,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "DHCP의 장점으로 옳지 않은 것은?",
       "choices": [
         "클라이언트에게 자동으로 IP Address를 할당해 줄 수 있다.",
@@ -6726,7 +6726,7 @@
       "id": "2024-11-46",
       "round": "2024년 4차",
       "number": 46,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "다음 설명의 (A)에 들어갈 알맞은 용어는?",
       "choices": [
         "IP Masquerading",
@@ -6743,7 +6743,7 @@
       "id": "2024-11-47",
       "round": "2024년 4차",
       "number": 47,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "아래 지문은 라우팅의 Distance Vector방식을 설명한 것이다. 이에 해당하지 않는 프로토콜은?",
       "choices": [
         "IGRP",
@@ -6760,7 +6760,7 @@
       "id": "2024-11-48",
       "round": "2024년 4차",
       "number": 48,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "기업에서 근무하는 네트워크 담당자 Kim 대리는 하나의 물리적인 네트워크 스위치를 영업부, 인사부, 구매부, 기술부 등 각 부서별로 여러 네트워크로 구분하여 사용할 수 있도록 하고자 하며, 부서별로 분리된 네트워크는 3계층 장비를 통해서만 통신이 되도록 하고자 한다. 이 기술 방식은?",
       "choices": [
         "VPN(Virtual Private Network)",
@@ -6777,7 +6777,7 @@
       "id": "2024-11-49",
       "round": "2024년 4차",
       "number": 49,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "L2 스위치 네트워크상의 루프구조는 복합적인 다중 루프가 발생할 수도 있다. 이러한 경우 전체 네트워크는 구조에 따른 과도한 브로드캐스트 트래픽으로 인해 사용할 수 없는 지경에 이른다. 이와 같은 다중 루프를 방지하기 위해 만들어진 기술은?",
       "choices": [
         "VLAN(Virtual Local Area Network)",
@@ -6794,7 +6794,7 @@
       "id": "2024-11-50",
       "round": "2024년 4차",
       "number": 50,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "아래 전송 선로 중 대역폭이 가장 넓은 전송매체는?",
       "choices": [
         "Twist Pair 케이블",
@@ -6930,7 +6930,7 @@
       "id": "2025-02-08",
       "round": "2025년 1차",
       "number": 8,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "인터넷 전송 방식 중, 특정 호스트로부터 같은 네트워크상의 모든 호스트에게 데이터를 전송하는 방식은?",
       "choices": [
         "Unicast",
@@ -7066,7 +7066,7 @@
       "id": "2025-02-16",
       "round": "2025년 1차",
       "number": 16,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "다음 중 (A), (B)에 들어갈 내용으로 알맞은 용어로 옳은 것은?",
       "choices": [
         "(A) 암호화, (B) 복호화",
@@ -7117,7 +7117,7 @@
       "id": "2025-02-19",
       "round": "2025년 1차",
       "number": 19,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "OSI 7 Layer에서 Data Link 계층의 기능으로 옳지 않은 것은?",
       "choices": [
         "전송 오류제어 기능",
@@ -7168,7 +7168,7 @@
       "id": "2025-02-22",
       "round": "2025년 1차",
       "number": 22,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "프로토콜 계층 구조상의 기본 구성요소 중 실체(Entity) 간의 통신 속도 및 메시지 순서를 위한 제어정보는?",
       "choices": [
         "타이밍(Timing)",
@@ -7253,7 +7253,7 @@
       "id": "2025-02-27",
       "round": "2025년 1차",
       "number": 27,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "OSI 7 Layer 모델 중, 흐름 제어 및 오류 없는 전송을 보장하는 계층은?",
       "choices": [
         "Session Layer",
@@ -7389,7 +7389,7 @@
       "id": "2025-02-35",
       "round": "2025년 1차",
       "number": 35,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "TCP 3Way-HandShaking 과정 중 클라이언트가 보낸 연결 요청에서 패킷을 수신한 서버는 LISTEN 상태에서 무슨 상태로 변경되는가?",
       "choices": [
         "SYN_SENT",
@@ -7440,7 +7440,7 @@
       "id": "2025-02-38",
       "round": "2025년 1차",
       "number": 38,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "네임서버 레코드 정보를 변경한 지 충분한 시간이 지났지만, 특정 기기에서 여전히 이전 도메인으로 접속되는 경우가 있다. 이는 컴퓨터의 DNS 캐시가 갱신되지 않아 발생할 수 있다. DNS 캐시를 초기화하는 명령어는?",
       "choices": [
         "ipconfig /displydns",
@@ -7576,7 +7576,7 @@
       "id": "2025-02-46",
       "round": "2025년 1차",
       "number": 46,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "L2 스위치에서 프레임을 전송 시 목적지의 어떤 주소를 확인 후 전송하는가?",
       "choices": [
         "IP 주소",
@@ -7593,7 +7593,7 @@
       "id": "2025-02-47",
       "round": "2025년 1차",
       "number": 47,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "무선랜(LAN)은 무선신호 전달방식을 이용하여 두 대 이상의 장치를 연결하는 기술이다. 이를 이용하여 사용자는 근거리 지역에서 이동하면서 지속적으로 네트워크에 접근할 수 있게 된다. 다음의 지문에서 설명하는 와이파이 IEEE 802.11규격은?",
       "choices": [
         "IEEE 802.11n",
@@ -7610,7 +7610,7 @@
       "id": "2025-02-48",
       "round": "2025년 1차",
       "number": 48,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "게이트웨이(Gateway)의 역할로 올바른 것은?",
       "choices": [
         "전혀 다른 프로토콜을 채용한 네트워크 간의 인터페이스이다.",
@@ -7627,7 +7627,7 @@
       "id": "2025-02-49",
       "round": "2025년 1차",
       "number": 49,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "아래 지문이 설명하는 용어는?",
       "choices": [
         "NAC(Network Access Control)",
@@ -7644,7 +7644,7 @@
       "id": "2025-02-50",
       "round": "2025년 1차",
       "number": 50,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "RAID에 대한 특징 중 옳지 않은 것은?",
       "choices": [
         "데이터를 다수의 하드디스크에 병렬 전송하여 가상 하드디스크의 전송속도가 향상된다.",
@@ -7848,7 +7848,7 @@
       "id": "2025-05-12",
       "round": "2025년 2차",
       "number": 12,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "다음 중 사설 IP주소로 옳지 않은 것은?",
       "choices": [
         "10.100.12.5",
@@ -7899,7 +7899,7 @@
       "id": "2025-05-15",
       "round": "2025년 2차",
       "number": 15,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "다음은 무엇에 관한 설명인가?",
       "choices": [
         "OSPF",
@@ -8018,7 +8018,7 @@
       "id": "2025-05-22",
       "round": "2025년 2차",
       "number": 22,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "파장분할다중화방식(WDM)의 특징으로 옳은 것은?",
       "choices": [
         "선로의 증설 없이 회선의 증설이 어렵다.",
@@ -8086,7 +8086,7 @@
       "id": "2025-05-26",
       "round": "2025년 2차",
       "number": 26,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "다음 중 TCP/IP와 OSI 7 Layer의 비교로서 옳지 않은 것은?",
       "choices": [
         "TCP 프로토콜은 OSI 7 Layer의 전송계층에 해당한다.",
@@ -8256,7 +8256,7 @@
       "id": "2025-05-36",
       "round": "2025년 2차",
       "number": 36,
-      "subject": "네트워크 일반",
+      "subject": "NOS(윈도우서버)",
       "question": "서버 담당자 Park 사원은 1대의 서버가 아니라 여러 대의 웹 서버를 운영해서, 웹 클라이언트가 서비스를 요청할 경우에 교대로 서비스를 실행하는 방법으로 웹 서버의 부하를 여러 대가 공평하게 나눌 수 있도록 설계하고자 한다. 이에 적절한 서비스 방식은?",
       "choices": [
         "Round Robin",
@@ -8392,7 +8392,7 @@
       "id": "2025-05-44",
       "round": "2025년 2차",
       "number": 44,
-      "subject": "네트워크 일반",
+      "subject": "NOS(윈도우서버)",
       "question": "사용자가 웹사이트에 접속했지만 다음과 같은 메시지가 출력되었다. 이 오류 상황에 해당하는 HTTP 상태 코드는?",
       "choices": [
         "400",
@@ -8426,7 +8426,7 @@
       "id": "2025-05-46",
       "round": "2025년 2차",
       "number": 46,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "RAID는 Redundant Array of Independent Disk 혹은 Redundant Array of Inexpensive Disk의 약자로, 말 그대로 여러 개의 디스크를 묶어 하나의 디스크처럼 사용하는 기술이다. 그러면 다음에서 RAID Level 0(영)의 설명으로 옳지 않은 것은?",
       "choices": [
         "최소 2개의 디스크에 데이터를 동시에 분산 저장한다.",
@@ -8443,7 +8443,7 @@
       "id": "2025-05-47",
       "round": "2025년 2차",
       "number": 47,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "로드밸런싱(Load Balancing)에 대한 설명으로 옳은 것은?",
       "choices": [
         "물리적인 망 구성과는 상관없이 가상적으로 구성된 근거리 통신망 기술",
@@ -8460,7 +8460,7 @@
       "id": "2025-05-48",
       "round": "2025년 2차",
       "number": 48,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "IP Address의 부족과 내부 네트워크 주소의 보안을 위해 사용하는 방법 중 하나로, 내부에서는 사설 IP Address를 사용하고 외부 네트워크로 나가는 주소는 공인 IP Address를 사용하도록 하는 IP Address 변환 방식은?",
       "choices": [
         "DHCP 방식",
@@ -8477,7 +8477,7 @@
       "id": "2025-05-49",
       "round": "2025년 2차",
       "number": 49,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "웹서버를 보호하는 전용 보안장비로 HTTP, HTTPS 처럼 웹서버에서 동작하는 웹 프로토콜의 공격을 방어하는데 사용되는 보안장비는?",
       "choices": [
         "IDS",
@@ -8494,7 +8494,7 @@
       "id": "2025-05-50",
       "round": "2025년 2차",
       "number": 50,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "다음 ( )에 해당하는 용어는?",
       "choices": [
         "포트(Port)",
@@ -8715,7 +8715,7 @@
       "id": "2025-08-13",
       "round": "2025년 3차",
       "number": 13,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "네트워크를 관리하는 Lee 사원은 사내에서 잦은 IP 충돌로 인하여 장애신고를 많이 받고 있어 기존 IP정책을 DHCP로 변경하려고 한다. 다음 중 DHCP를 적용해야 하는 장비로 가장 적합한 것은?",
       "choices": [
         "웹서버",
@@ -8783,7 +8783,7 @@
       "id": "2025-08-17",
       "round": "2025년 3차",
       "number": 17,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "다음 (A) 안에 들어가는 용어 중 옳은 것은?",
       "choices": [
         "SNMP (Simple Network Management Protocol)",
@@ -8817,7 +8817,7 @@
       "id": "2025-08-19",
       "round": "2025년 3차",
       "number": 19,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "메시 네트워크(Mesh Network)의 특징으로 옳지 않은 것은?",
       "choices": [
         "노드의 이동이 자유롭기 때문에 네트워크 토폴로지가 동적으로 변한다.",
@@ -8885,7 +8885,7 @@
       "id": "2025-08-23",
       "round": "2025년 3차",
       "number": 23,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "전송을 받는 개체에서 발송지로부터 오는 데이터의 양이나 속도를 제한하는 프로토콜의 기능을 나타내는 용어는?",
       "choices": [
         "에러 제어",
@@ -8970,7 +8970,7 @@
       "id": "2025-08-28",
       "round": "2025년 3차",
       "number": 28,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "아래 지문의 ping 명령어의 결과로 옳지 않은 것은?",
       "choices": [
         "ICMP 패킷의 대상(host)은 ′icqa.or.kr′이다.",
@@ -9242,7 +9242,7 @@
       "id": "2025-08-44",
       "round": "2025년 3차",
       "number": 44,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "FTP(File Transfer Protocol)는 파일 전송을 위한 표준 네트워크 프로토콜이다. 이 중 사용자 인증과 명령 제어용으로 사용되는 기본 포트번호로 옳은 것은?",
       "choices": [
         "20번",
@@ -9259,7 +9259,7 @@
       "id": "2025-08-45",
       "round": "2025년 3차",
       "number": 45,
-      "subject": "네트워크 일반",
+      "subject": "NOS(윈도우서버)",
       "question": "아래 지문에서 설명하는 부하분산 방식은?",
       "choices": [
         "Least Connection Method",
@@ -9276,7 +9276,7 @@
       "id": "2025-08-46",
       "round": "2025년 3차",
       "number": 46,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "RAID의 레벨 중에서 회전 패리티 방식으로 병목현상을 줄이는 것은?",
       "choices": [
         "RAID-2",
@@ -9293,7 +9293,7 @@
       "id": "2025-08-47",
       "round": "2025년 3차",
       "number": 47,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "네트워크에서 신호가 약해질 경우 이를 단순 증폭·재생성하여 전송 거리를 늘려주는 장비가 있다. OSI 7계층 중 이 장비가 속하는 계층은?",
       "choices": [
         "물리 계층 (Physical Layer)",
@@ -9310,7 +9310,7 @@
       "id": "2025-08-48",
       "round": "2025년 3차",
       "number": 48,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "내부에 코어(Core)와, 이를 감싸는 유리나 플라스틱 등 굴절률이 다른 외부 클래딩(Cladding)으로 구성된 전송 매체는?",
       "choices": [
         "이중 나선(Twisted Pair)",
@@ -9327,7 +9327,7 @@
       "id": "2025-08-49",
       "round": "2025년 3차",
       "number": 49,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "다음 지문처럼 VLAN 식별을 위해 이더넷 프레임에 태그 정보를 추가하여 스위치 간 VLAN 트래픽을 전달하는 방식은?",
       "choices": [
         "STP",
@@ -9344,7 +9344,7 @@
       "id": "2025-08-50",
       "round": "2025년 3차",
       "number": 50,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "다음 중 Layer 4 스위치(Layer 4 Switch, L4)의 기능 또는 특징으로 옳지 않은 것은?",
       "choices": [
         "서버의 부하를 분산하여 효율적으로 처리한다.",
@@ -9650,7 +9650,7 @@
       "id": "2025-11-18",
       "round": "2025년 4차",
       "number": 18,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "OSI 7계층 중 데이터 링크 계층의 기능으로 옳지 않은 것은?",
       "choices": [
         "통신 프로토콜을 정의한 OSI 7계층 중 세 번째 계층에 해당한다.",
@@ -9667,7 +9667,7 @@
       "id": "2025-11-19",
       "round": "2025년 4차",
       "number": 19,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "패킷 교환망의 특징으로 옳지 않은 것은?",
       "choices": [
         "연결 설정 방식에 따라 가상 회선과 데이터그램으로 분류된다.",
@@ -9701,7 +9701,7 @@
       "id": "2025-11-21",
       "round": "2025년 4차",
       "number": 21,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "네트워크 계층의 데이터 단위를 나타내는 용어는?",
       "choices": [
         "세그먼트",
@@ -9905,7 +9905,7 @@
       "id": "2025-11-33",
       "round": "2025년 4차",
       "number": 33,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "DNS에서 지원하는 레코드 형식 중 역방향조회에 사용되는 레코드는?",
       "choices": [
         "A",
@@ -9973,7 +9973,7 @@
       "id": "2025-11-37",
       "round": "2025년 4차",
       "number": 37,
-      "subject": "네트워크 일반",
+      "subject": "NOS(윈도우서버)",
       "question": "다음 중 (ㄱ), (ㄴ)에 들어갈 말로 알맞은 것은?",
       "choices": [
         "ㄱ: 21, ㄴ : 1024",
@@ -10024,7 +10024,7 @@
       "id": "2025-11-40",
       "round": "2025년 4차",
       "number": 40,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "네트워크를 관리하는 Kim 사원은 네트워크 연결을 구축하거나 문제를 해결할 때 패킷이 출발지에서 목적지까지 가는 경로를 살펴볼 수 있도록 네트워크 명령어를 사용하고자 한다. 이 명령은 ′tracert′에서 수행하는 동일한 정보를 보여주면서 홉과 다른 세부 정보 사이의 시간에 관한 정보를 출력이 끝날 때까지 저장한다. Kim 사원이 사용할 명령어는?",
       "choices": [
         "ping",
@@ -10092,7 +10092,7 @@
       "id": "2025-11-44",
       "round": "2025년 4차",
       "number": 44,
-      "subject": "NOS(리눅스)",
+      "subject": "NOS(윈도우서버)",
       "question": "다음 지문에서 설명하는 명령어로 옳은 것은?",
       "choices": [
         "pgrep python",
@@ -10109,7 +10109,7 @@
       "id": "2025-11-45",
       "round": "2025년 4차",
       "number": 45,
-      "subject": "NOS(리눅스)",
+      "subject": "NOS(윈도우서버)",
       "question": "Windows Server 2022에서 관리자 권한으로 명령 프롬프트를 실행한 뒤 ′netstat′로 열린 포트와 연관된 실행 파일(프로세스)을 확인하려고 한다. 어떤 옵션을 사용해야 하는가?",
       "choices": [
         "netstat –b",
@@ -10126,7 +10126,7 @@
       "id": "2025-11-46",
       "round": "2025년 4차",
       "number": 46,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "아래 지문에 해당하는 RAID 방식은?",
       "choices": [
         "Linear RAID",
@@ -10143,7 +10143,7 @@
       "id": "2025-11-47",
       "round": "2025년 4차",
       "number": 47,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "게이트웨이(Gateway)에 대한 설명으로 옳지 않은 것은?",
       "choices": [
         "게이트웨이는 L2 스위치와 같이 프레임만 중계한다.",
@@ -10160,7 +10160,7 @@
       "id": "2025-11-48",
       "round": "2025년 4차",
       "number": 48,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "다음 지문은 L4 스위치(로드 밸런서)의 기능에 대한 설명이다. L4 스위치의 기본 기능이 아닌 것은?",
       "choices": [
         "서버의 상태를 확인하는 헬스 체크(Health Check) 기능",
@@ -10177,7 +10177,7 @@
       "id": "2025-11-49",
       "round": "2025년 4차",
       "number": 49,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "NAT(Network Address Translation)에 대한 설명으로 옳지 않은 것은?",
       "choices": [
         "정적 NAT는 내부 사설 IP를 공인 IP와 1:1로 매핑하는 방식이다.",
@@ -10194,7 +10194,7 @@
       "id": "2025-11-50",
       "round": "2025년 4차",
       "number": 50,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "다음 (A) 안에 들어가는 용어 중 옳은 것은?",
       "choices": [
         "L2 Switch",
@@ -10211,7 +10211,7 @@
       "id": "2026-02-01",
       "round": "2026년 1차",
       "number": 1,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "다음 (A) 안에 들어가는 용어 중 옳은 것은?",
       "choices": [
         "/etc/deny",
@@ -10228,7 +10228,7 @@
       "id": "2026-02-02",
       "round": "2026년 1차",
       "number": 2,
-      "subject": "NOS(리눅스)",
+      "subject": "TCP/IP",
       "question": "다음 중 SSH(secure shell) 보안 프로토콜의 특징으로 옳지 않은 것은?",
       "choices": [
         "데이터를 암호화하여 전송",
@@ -10296,7 +10296,7 @@
       "id": "2026-02-06",
       "round": "2026년 1차",
       "number": 6,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "(A) 안에 들어가는 용어 중 옳은 것은?",
       "choices": [
         "L1 스위치",
@@ -10347,7 +10347,7 @@
       "id": "2026-02-09",
       "round": "2026년 1차",
       "number": 9,
-      "subject": "네트워크 일반",
+      "subject": "TCP/IP",
       "question": "아래에서 설명하는 기술의 명칭은?",
       "choices": [
         "Bluetooth Low Energy(BLE)",
@@ -10534,7 +10534,7 @@
       "id": "2026-02-20",
       "round": "2026년 1차",
       "number": 20,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "OSI 7 Layer 중에서 아래에서 설명하는 계층은?",
       "choices": [
         "물리적 계층(Physical Layer)",
@@ -10738,7 +10738,7 @@
       "id": "2026-02-32",
       "round": "2026년 1차",
       "number": 32,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "아래 지문의 ping 명령어의 결과로 옳지 않은 것은?",
       "choices": [
         "ICMP 패킷의 대상(host)은 ′icqa.or.kr′이다.",
@@ -10891,7 +10891,7 @@
       "id": "2026-02-41",
       "round": "2026년 1차",
       "number": 41,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "DHCP로부터 새로운 IP 주소를 갱신(재할당) 받기 위해 사용하는 Windows 명령어 옵션은?",
       "choices": [
         "ipconfig /renew",
@@ -10976,7 +10976,7 @@
       "id": "2026-02-46",
       "round": "2026년 1차",
       "number": 46,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "L2 스위치에서 프레임을 전송 시 목적지의 어떤 주소를 확인 후 전송하는가?",
       "choices": [
         "IP 주소",
@@ -10993,7 +10993,7 @@
       "id": "2026-02-47",
       "round": "2026년 1차",
       "number": 47,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "로드밸런서(Load Balancer)가 사전에 설정한 분산 알고리즘을 통해 부하분산이 이루어지는데, 부하분산 방식 중 특별한 규칙 없이 현재 구성된 장비에 순차적으로 돌아가면서 트래픽을 분산하는 방식은?",
       "choices": [
         "Least Connection",
@@ -11010,7 +11010,7 @@
       "id": "2026-02-48",
       "round": "2026년 1차",
       "number": 48,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "내부 통신에는 사설 IP를 사용하고, 외부 인터넷 접속 시 엣지 장비가 사설 IP를 공인 IP로 변환해 나가도록 하는 기술은?",
       "choices": [
         "정책 기반 라우팅(PBR)",
@@ -11027,7 +11027,7 @@
       "id": "2026-02-49",
       "round": "2026년 1차",
       "number": 49,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "다음 중 L7 스위치에 대한 설명으로 옳지 않은 것은?",
       "choices": [
         "OSI 7계층(응용 계층)에서 동작하는 네트워크 스위치이다.",
@@ -11044,7 +11044,7 @@
       "id": "2026-02-50",
       "round": "2026년 1차",
       "number": 50,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "OSI 7계층 중 네트워크 계층, 그리고 TCP/IP 4계층 중 인터넷 계층에서 동작하는 네트워크 장비는?",
       "choices": [
         "리피터(Repeater)",
@@ -11350,7 +11350,7 @@
       "id": "2026-05-18",
       "round": "2026년 2차",
       "number": 18,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "OSI 7 Layer에서 Data Link 계층의 기능으로 옳지 않은 것은?",
       "choices": [
         "전송 오류제어 기능",
@@ -11367,7 +11367,7 @@
       "id": "2026-05-19",
       "round": "2026년 2차",
       "number": 19,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "프로토콜의 기본적인 기능 중 정보의 신뢰성을 부여하는 것으로, 데이터를 전송한 개체가 보낸 PDU(Protocol Data Unit)에 대한 애크널러지먼트(ACK)를 특정시간 동안 받지 못하면 재전송하는 기능은?",
       "choices": [
         "Flow Control",
@@ -11384,7 +11384,7 @@
       "id": "2026-05-20",
       "round": "2026년 2차",
       "number": 20,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "파장분할다중화방식(WDM)의 특징으로 옳은 것은?",
       "choices": [
         "선로의 증설 없이 회선의 증설이 어렵다.",
@@ -11418,7 +11418,7 @@
       "id": "2026-05-22",
       "round": "2026년 2차",
       "number": 22,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "IEEE 802 프로토콜의 연결이 올바른 것은?",
       "choices": [
         "IEEE 802.3 : 토큰 버스",
@@ -11469,7 +11469,7 @@
       "id": "2026-05-25",
       "round": "2026년 2차",
       "number": 25,
-      "subject": "TCP/IP",
+      "subject": "네트워크 일반",
       "question": "NAT(Network Address Translation)의 주요 역할로 옳은 것은?",
       "choices": [
         "사설 IP 주소와 공인 IP 주소를 변환하여 공인 IP 주소 사용을 효율화한다.",
@@ -11571,7 +11571,7 @@
       "id": "2026-05-31",
       "round": "2026년 2차",
       "number": 31,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "네트워크를 관리하는 Kim 사원은 네트워크 연결을 구축하거나 문제를 해결할 때 패킷이 출발지에서 목적지까지 가는 경로를 살펴볼 수 있도록 네트워크 명령어를 사용하고자 한다. 이 명령은 ′tracert′에서 수행하는 동일한 정보를 보여주면서 홉과 다른 세부 정보 사이의 시간에 관한 정보를 출력이 끝날 때까지 저장한다. Kim 사원이 사용할 명령어는?",
       "choices": [
         "ping",
@@ -11588,7 +11588,7 @@
       "id": "2026-05-32",
       "round": "2026년 2차",
       "number": 32,
-      "subject": "TCP/IP",
+      "subject": "NOS(윈도우서버)",
       "question": "TCP 3Way-HandShaking 과정 중 클라이언트가 보낸 연결 요청에서 패킷을 수신한 서버는 LISTEN 상태에서 무슨 상태로 변경되는가?",
       "choices": [
         "SYN_SENT",
@@ -11690,7 +11690,7 @@
       "id": "2026-05-38",
       "round": "2026년 2차",
       "number": 38,
-      "subject": "NOS(리눅스)",
+      "subject": "NOS(윈도우서버)",
       "question": "Windows Server 2022에서 클라이언트의 Host Name, IP 주소, 서브넷 마스크, DNS Server, 기본 게이트웨이 등의 설정 사항을 볼 수 있는 명령어는?",
       "choices": [
         "arp –a",
@@ -11741,7 +11741,7 @@
       "id": "2026-05-41",
       "round": "2026년 2차",
       "number": 41,
-      "subject": "네트워크 일반",
+      "subject": "NOS(윈도우서버)",
       "question": "아래 지문에서 설명하는 부하분산 방식은?",
       "choices": [
         "Least Connection Method",
@@ -11809,7 +11809,7 @@
       "id": "2026-05-45",
       "round": "2026년 2차",
       "number": 45,
-      "subject": "네트워크 일반",
+      "subject": "NOS(윈도우서버)",
       "question": "아래 지문의 괄호 (A)에 들어갈 내용으로 옳은 것은?",
       "choices": [
         "가상 스위치",
@@ -11826,7 +11826,7 @@
       "id": "2026-05-46",
       "round": "2026년 2차",
       "number": 46,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "RAID 방식 중 미러링(Mirroring)이라고 하며, 최고의 성능과 고장대비 능력을 발휘하는 것은?",
       "choices": [
         "RAID 0",
@@ -11843,7 +11843,7 @@
       "id": "2026-05-47",
       "round": "2026년 2차",
       "number": 47,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "게이트웨이(Gateway)의 역할로 올바른 것은?",
       "choices": [
         "전혀 다른 프로토콜을 채용한 네트워크 간의 인터페이스이다.",
@@ -11860,7 +11860,7 @@
       "id": "2026-05-48",
       "round": "2026년 2차",
       "number": 48,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "웹서버를 보호하는 전용 보안장비로 HTTP, HTTPS 처럼 웹서버에서 동작하는 웹 프로토콜의 공격을 방어하는데 사용되는 보안장비는?",
       "choices": [
         "IDS",
@@ -11877,7 +11877,7 @@
       "id": "2026-05-49",
       "round": "2026년 2차",
       "number": 49,
-      "subject": "TCP/IP",
+      "subject": "네트워크 운용기기",
       "question": "다음 지문에서 설명하는 네트워크 장비 또는 기술로 옳은 것은?",
       "choices": [
         "네트워크 가상화(Network Virtualization)",
@@ -11894,7 +11894,7 @@
       "id": "2026-05-50",
       "round": "2026년 2차",
       "number": 50,
-      "subject": "네트워크 일반",
+      "subject": "네트워크 운용기기",
       "question": "다음 중 네트워크 카드를 통해 컴퓨터를 부팅할 수 있도록 하는 기술로 옳은 것은?",
       "choices": [
         "PnP(Plug and Play)",
@@ -11904,6 +11904,856 @@
       ],
       "answer": 3,
       "explanation": "PXE(Pre-boot eXecution Environment)는 네트워크 카드(NIC)를 통해 부팅 이미지를 원격 서버로부터 내려받아 운영체제 설치 등 부팅 과정을 수행할 수 있게 하는 기술이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-01",
+      "round": "2026년 3차",
+      "number": 1,
+      "subject": "TCP/IP",
+      "question": "C Class에서 유효한 IP Address는?",
+      "choices": [
+        "33.114.17.24",
+        "128.46.83.25",
+        "202.67.13.87",
+        "222.248.256.34"
+      ],
+      "answer": 3,
+      "explanation": "C Class는 첫 옥텟이 192~223 범위이며 202.67.13.87은 이 조건을 만족하고 각 옥텟도 0~255 범위 내에 있어 유효하다. 33.114.17.24는 A Class, 128.46.83.25는 B Class이고, 222.248.256.34는 첫 옥텟은 C Class 범위이지만 세 번째 옥텟 256이 255를 초과해 유효하지 않다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-02",
+      "round": "2026년 3차",
+      "number": 2,
+      "subject": "TCP/IP",
+      "question": "TCP/IP 프로토콜 계층 구조에서 볼 때, 응용 계층에서 동작하는 프로토콜로 옳지 않은 것은?",
+      "choices": [
+        "ICMP",
+        "SMTP",
+        "SNMP",
+        "TFTP"
+      ],
+      "answer": 1,
+      "explanation": "ICMP는 IP의 오류 보고 및 상태 확인을 담당하는 네트워크 계층(3계층) 프로토콜이며, SMTP·SNMP·TFTP는 모두 응용 계층 프로토콜이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-03",
+      "round": "2026년 3차",
+      "number": 3,
+      "subject": "TCP/IP",
+      "question": "서브넷 마스크(Subnet Mask)에 대한 설명으로 옳지 않은 것은?",
+      "choices": [
+        "A, B, C Class 대역의 IP Address는 모두 같은 서브넷 마스크를 사용한다.",
+        "하나의 네트워크 클래스를 여러 개의 네트워크로 분리하여 IP Address를 효율적으로 사용할 수 있다.",
+        "서브넷 마스크는 목적지 호스트의 IP Address가 동일 네트워크상에 있는지 확인한다.",
+        "서브넷 마스크를 이용하면, Traffic 관리 및 제어가 가능하다."
+      ],
+      "answer": 1,
+      "explanation": "클래스별 기본 서브넷 마스크는 A클래스 255.0.0.0, B클래스 255.255.0.0, C클래스 255.255.255.0으로 서로 다르므로, 모든 클래스가 같은 서브넷 마스크를 사용한다는 설명은 틀렸다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-04",
+      "round": "2026년 3차",
+      "number": 4,
+      "subject": "TCP/IP",
+      "question": "IP 패킷은 네트워크 유형에 따라 전송량에 차이가 나기 때문에 적당한 크기로 분할하게 된다. 이때 기준이 되는 것은?",
+      "choices": [
+        "TOS(Tape Operation System)",
+        "MTU(Maximum Transmission Unit)",
+        "TTL(Time-To-Live)",
+        "Port Number"
+      ],
+      "answer": 2,
+      "explanation": "네트워크 유형(회선)마다 한 번에 전송 가능한 최대 프레임 크기인 MTU(Maximum Transmission Unit)를 기준으로 IP 패킷을 분할(단편화)한다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-05",
+      "round": "2026년 3차",
+      "number": 5,
+      "subject": "TCP/IP",
+      "question": "TCP가 제공하는 기능으로 옳지 않은 것은?",
+      "choices": [
+        "종단 간 흐름 제어를 위해 동적 윈도우(Dynamic Sliding Window) 방식을 사용한다.",
+        "한 번에 많은 데이터의 전송에 유리하기 때문에 화상 통신과 같은 실시간 통신에 사용된다.",
+        "송수신되는 데이터의 에러를 제어함으로써 신뢰성 있는 데이터 전송을 보장한다.",
+        "Three Way Handshaking 과정을 통해 데이터를 주고받는다."
+      ],
+      "answer": 2,
+      "explanation": "TCP는 연결 지향적이며 오류·흐름 제어에 따른 오버헤드가 커서 실시간성이 중요한 화상 통신 등에는 오히려 UDP가 주로 사용되며, TCP는 이러한 실시간 통신에는 적합하지 않다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-06",
+      "round": "2026년 3차",
+      "number": 6,
+      "subject": "TCP/IP",
+      "question": "UDP 헤더에 포함이 되지 않는 항목은?",
+      "choices": [
+        "확인 응답 번호(Acknowledgment Number)",
+        "소스 포트(Source Port) 주소",
+        "체크섬(Checksum) 필드",
+        "목적지 포트(Destination Port) 주소"
+      ],
+      "answer": 1,
+      "explanation": "UDP 헤더는 출발지 포트, 목적지 포트, 길이, 체크섬 4개 필드로만 구성된 단순한 비연결형 구조이며, 확인 응답 번호는 연결지향적인 TCP 헤더에만 존재하는 필드이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-07",
+      "round": "2026년 3차",
+      "number": 7,
+      "subject": "TCP/IP",
+      "question": "ICMP의 Message Type필드의 유형과 질의 메시지 내용을 나타낸 것이다. 타입에 대한 설명으로 옳지 않은 것은?",
+      "choices": [
+        "3 - Echo Request 질의 메시지에 응답하는데 사용된다.",
+        "4 - 흐름제어 및 폭주제어를 위해 사용된다.",
+        "5 - 대체경로(Redirect)를 알리기 위해 라우터가 호스트에 사용한다.",
+        "17 - Address Mask Request 장비의 서브넷 마스크를 요구하는데 사용된다."
+      ],
+      "answer": 1,
+      "explanation": "ICMP Type 3은 목적지 도달 불가(Destination Unreachable) 메시지이며, Echo Request에 대한 응답 메시지는 Type 0(Echo Reply)이므로 해당 연결은 옳지 않다. Type 4는 Source Quench(폭주제어), Type 5는 Redirect, Type 17은 Address Mask Request로 나머지 설명은 올바르다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-08",
+      "round": "2026년 3차",
+      "number": 8,
+      "subject": "TCP/IP",
+      "question": "인터넷 전송 방식 중, 특정 호스트로부터 같은 네트워크상의 모든 호스트에게 데이터를 전송하는 방식은?",
+      "choices": [
+        "Unicast",
+        "Broadcast",
+        "Multicast",
+        "User Datagram Protocol"
+      ],
+      "answer": 2,
+      "explanation": "같은 네트워크(브로드캐스트 도메인) 상의 모든 호스트에게 데이터를 전송하는 방식은 Broadcast이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-09",
+      "round": "2026년 3차",
+      "number": 9,
+      "subject": "TCP/IP",
+      "question": "TCP/IP 프로토콜 4 Layer 구조를 하위 계층부터 상위 계층으로 올바르게 나열한 것은?",
+      "choices": [
+        "Network Interface - Internet - Transport - Application",
+        "Application - Network Interface - Internet - Transport",
+        "Transport - Application - Network Interface - Internet",
+        "Internet - Transport - Application - Network Interface"
+      ],
+      "answer": 1,
+      "explanation": "TCP/IP 4계층은 하위 계층부터 네트워크 인터페이스(링크) 계층, 인터넷 계층, 전송 계층, 응용 계층 순서로 구성되므로 이 순서대로 나열한 보기가 정답이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-10",
+      "round": "2026년 3차",
+      "number": 10,
+      "subject": "TCP/IP",
+      "question": "′B Class′를 6개의 네트워크로 구분하여 사용하고 싶을 때, 가장 적절한 서브넷 마스크 값은?",
+      "choices": [
+        "255.255.224.0",
+        "255.255.240.0",
+        "255.255.248.0",
+        "255.255.255.0"
+      ],
+      "answer": 1,
+      "explanation": "B Class는 기본적으로 호스트 비트가 16개이며, 6개 이상의 서브넷을 만들려면 2^n≥6을 만족하는 최소 비트인 3비트를 빌려야 한다(2^3=8). 세 번째 옥텟의 상위 3비트를 서브넷으로 사용하면 128+64+32=224가 되어 서브넷 마스크는 255.255.224.0이 된다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-11",
+      "round": "2026년 3차",
+      "number": 11,
+      "subject": "TCP/IP",
+      "question": "TCP 3-Way Handshaking 연결 수립 절차의 1, 2, 3단계 중 3단계에서 사용되는 TCP 제어 Flag는?",
+      "choices": [
+        "SYN",
+        "RST",
+        "SYN, ACK",
+        "ACK"
+      ],
+      "answer": 4,
+      "explanation": "3-Way Handshaking의 1단계는 SYN, 2단계는 SYN+ACK이며, 3단계에서는 클라이언트가 서버의 SYN에 대한 응답으로 ACK를 보내 연결을 확정한다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-12",
+      "round": "2026년 3차",
+      "number": 12,
+      "subject": "TCP/IP",
+      "question": "OSI 7 계층의 통신 계층별 PDU(Protocol Data Unit)의 명칭으로 올바른 것은?",
+      "choices": [
+        "7계층 : 세그먼트",
+        "4계층 : 패킷",
+        "3계층 : 비트",
+        "2계층 : 프레임"
+      ],
+      "answer": 4,
+      "explanation": "데이터링크 계층(2계층)의 PDU는 프레임(Frame)이 맞다. 참고로 1계층은 비트, 3계층(네트워크)은 패킷, 4계층(전송)은 세그먼트, 7계층(응용)은 데이터(메시지)이므로 나머지 보기들은 계층과 명칭이 잘못 짝지어졌다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-13",
+      "round": "2026년 3차",
+      "number": 13,
+      "subject": "TCP/IP",
+      "question": "프로토콜의 기본적인 기능 중, 송신기에서 발생된 정보의 정확한 전송을 위해 사용자 정보의 앞, 뒤 부분에 헤더와 트레일러를 부가하는 과정은?",
+      "choices": [
+        "캡슐화(Encapsulation)",
+        "동기화(Synchronization)",
+        "다중화(Multiplexing)",
+        "주소지정(Addressing)"
+      ],
+      "answer": 1,
+      "explanation": "송신 측에서 상위 계층의 데이터에 헤더(및 트레일러)를 붙여 하위 계층으로 전달하는 과정을 캡슐화(Encapsulation)라고 한다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-14",
+      "round": "2026년 3차",
+      "number": 14,
+      "subject": "TCP/IP",
+      "question": "다음 중 IPv4와 IPv6 간 전환 기술에 해당하지 않는 것은?",
+      "choices": [
+        "듀얼 스택(Dual Stack)",
+        "터널링(Tunneling)",
+        "프로토콜 변환(Protocol Translation)",
+        "네트워크 주소 변환(NAT44)"
+      ],
+      "answer": 4,
+      "explanation": "NAT44는 사설 IPv4 주소를 공인 IPv4 주소로 변환하는 IPv4 대 IPv4 기술로 IPv6와는 무관하며, 듀얼 스택·터널링·프로토콜 변환(NAT64 등)은 IPv4와 IPv6를 함께 사용하거나 서로 변환하기 위한 대표적인 전환 기술이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-15",
+      "round": "2026년 3차",
+      "number": 15,
+      "subject": "TCP/IP",
+      "question": "다음 중 RFC 5952에서 권고하는 IPv6 주소의 표준 텍스트 표기 방법으로 옳은 것은?",
+      "choices": [
+        "각 16비트 필드의 선행 0은 생략할 수 없으며, 필드의 값이 모두 0인 경우에는 0000으로 표기한다.",
+        "연속된 0 값의 16비트 필드는 ′::′으로 줄여 쓸 수 있으며, 하나의 IPv6 주소에서 여러 번 사용할 수 있다.",
+        "길이가 같은 연속된 0 필드 구간이 여러 개라면 가장 오른쪽 구간을 ′::′으로 줄여 쓴다.",
+        "연속된 0 값의 16비트 필드가 하나뿐인 경우에는 ′::′으로 줄이지 않고 0으로 표기한다."
+      ],
+      "answer": 4,
+      "explanation": "RFC 5952는 연속된 0 값 필드가 2개 이상일 때만 '::' 압축을 허용하며, 0 필드가 단 하나뿐인 경우에는 압축하지 않고 그대로 0으로 표기하도록 규정한다. 나머지 보기는 선행 0 생략, '::'의 1회 한정 사용, 가장 긴(동일하면 가장 왼쪽) 구간 압축 등 RFC 5952 규정과 어긋난다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-16",
+      "round": "2026년 3차",
+      "number": 16,
+      "subject": "TCP/IP",
+      "question": "다음 중 TCP/IP 기반의 네트워크 관리 프로토콜인 SNMP에 대한 설명으로 옳은 것은?",
+      "choices": [
+        "관리 시스템의 SNMP Manager는 관리 대상 장비에서 실행되는 SNMP Agent와 통신하여 장비의 상태 정보를 조회하거나 설정을 변경한다.",
+        "인터넷에서 전자우편을 전송하기 위해 사용하는 응용 계층 프로토콜이다.",
+        "SNMP Agent는 관리 정보를 데이터베이스에 저장하지 않으며, 모든 관리 정보를 Manager가 직접 생성한다.",
+        "SNMP Manager와 Agent는 TCP 연결을 설정한 후 143번 포트를 이용하여 관리 정보를 교환한다."
+      ],
+      "answer": 1,
+      "explanation": "SNMP는 SNMP Manager가 장비에 설치된 SNMP Agent와 통신하여 관리 정보(MIB)를 조회하거나 설정을 변경하는 구조이다. SMTP 설명(②), Agent가 MIB에 정보를 저장하지 않는다는 설명(③), TCP 연결 및 143번 포트를 사용한다는 설명(④, SNMP는 기본적으로 UDP 161/162번 포트 사용)은 모두 SNMP와 맞지 않는다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-17",
+      "round": "2026년 3차",
+      "number": 17,
+      "subject": "TCP/IP",
+      "question": "다음 중 DHCP(Dynamic Host Configuration Protocol)의 IP 주소 할당 방식에 해당하지 않는 것은?",
+      "choices": [
+        "수동 할당(Manual Allocation)",
+        "자동 할당(Automatic Allocation)",
+        "동적 할당(Dynamic Allocation)",
+        "우선순위 할당(Priority Allocation)"
+      ],
+      "answer": 4,
+      "explanation": "DHCP의 표준 IP 주소 할당 방식은 수동(Manual) 할당, 자동(Automatic) 할당, 동적(Dynamic) 할당 세 가지이며 '우선순위 할당'이라는 방식은 존재하지 않는다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-18",
+      "round": "2026년 3차",
+      "number": 18,
+      "subject": "네트워크 일반",
+      "question": "OSI 7 Layer에서 암호/복호, 인증, 압축 등의 기능이 수행되는 계층은?",
+      "choices": [
+        "Transport Layer",
+        "Datalink Layer",
+        "Presentation Layer",
+        "Application Layer"
+      ],
+      "answer": 3,
+      "explanation": "표현 계층(Presentation Layer)은 데이터의 표현 형식을 관리하는 계층으로, 암호화/복호화, 압축, 코드 변환 등의 기능을 수행한다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-19",
+      "round": "2026년 3차",
+      "number": 19,
+      "subject": "네트워크 일반",
+      "question": "ARQ 방식 중 에러가 발생한 블록으로 되돌아가 모든 블록을 재전송하는 것은?",
+      "choices": [
+        "Go-back-N ARQ",
+        "Selective ARQ",
+        "Adaptive ARQ",
+        "Stop-and-Wait ARQ"
+      ],
+      "answer": 1,
+      "explanation": "Go-back-N ARQ는 오류가 발생한 블록부터 그 이후 전송된 모든 블록을 다시 재전송하는 방식이다. 이에 반해 Selective ARQ는 오류가 발생한 블록만 선택적으로 재전송한다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-20",
+      "round": "2026년 3차",
+      "number": 20,
+      "subject": "네트워크 일반",
+      "question": "모바일 멀티미디어 데이터와 네트워크 트래픽이 급증하고 동적으로 변화하는 환경에 대응하기 위해, 제어 평면과 데이터 평면을 분리하고 소프트웨어를 통해 네트워크를 중앙에서 프로그래밍하고 제어하는 기술은?",
+      "choices": [
+        "SDS(Software Defined Storage)",
+        "SDN(Software Defined Networking)",
+        "SNMP(Simple Network Management Protocol)",
+        "CLI(Command Line Interface)"
+      ],
+      "answer": 2,
+      "explanation": "제어 평면과 데이터 평면을 분리해 중앙의 컨트롤러가 소프트웨어적으로 네트워크를 프로그래밍하고 제어하는 기술은 SDN(Software Defined Networking)이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-21",
+      "round": "2026년 3차",
+      "number": 21,
+      "subject": "네트워크 일반",
+      "question": "다음 중 하나의 물리적 스위치에 연결된 장치들을 여러 개의 논리적 브로드캐스트 도메인으로 분리하는 기술은?",
+      "choices": [
+        "STP(Spanning Tree Protocol)",
+        "LACP(Link Aggregation Control Protocol)",
+        "VTP(VLAN Trunking Protocol)",
+        "VLAN(Virtual Local Area Network)"
+      ],
+      "answer": 4,
+      "explanation": "하나의 물리적 스위치를 여러 개의 논리적 브로드캐스트 도메인으로 분리하는 기술은 VLAN이다. STP는 루프 방지, LACP는 링크 이중화(포트 묶음), VTP는 VLAN 정보 동기화를 위한 기술로 목적이 다르다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-22",
+      "round": "2026년 3차",
+      "number": 22,
+      "subject": "네트워크 일반",
+      "question": "다음 중 클라우드 환경 모델(Cloud Deployment Model)로 옳지 않은 것은?",
+      "choices": [
+        "public",
+        "on-premises",
+        "hybrid",
+        "private"
+      ],
+      "answer": 2,
+      "explanation": "클라우드 배포 모델은 퍼블릭, 프라이빗, 하이브리드(및 커뮤니티) 클라우드로 구분되며, on-premises(사내 구축형)는 클라우드를 사용하지 않는 전통적인 자체 인프라 구축 방식이므로 클라우드 배포 모델에 해당하지 않는다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-23",
+      "round": "2026년 3차",
+      "number": 23,
+      "subject": "네트워크 일반",
+      "question": "기가비트 이더넷은 약 1Gbps의 전송속도를 지원하는 이더넷으로 기존의 이더넷뿐만 아니라 고속 이더넷과도 호환이 가능하다. 다음 중 기가비트 이더넷에 대한 규격으로 옳은 것은?",
+      "choices": [
+        "1000Base-SX",
+        "1000Base-NX",
+        "1000Base-BX",
+        "1000Base-AX"
+      ],
+      "answer": 1,
+      "explanation": "기가비트 이더넷의 표준 규격에는 짧은 파장 광섬유를 사용하는 1000Base-SX를 비롯해 1000Base-LX, 1000Base-CX, 1000Base-T 등이 있다. 1000Base-NX와 1000Base-AX는 실제로 존재하지 않는 규격명이며, 이 문제에서 다루는 기본 규격에 속하지 않는다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-24",
+      "round": "2026년 3차",
+      "number": 24,
+      "subject": "네트워크 일반",
+      "question": "VPN에 대한 설명으로 (A)에 알맞은 용어는?\n\n[제시문] VPN의 터널링 프로토콜로 (A)은/는 OSI 7계층 중 3계층 프로토콜이며, 전송(Transport) 모드와 터널(Tunnel) 모드를 사용한다. 전송 모드는 IP 페이로드만 암호화/캡슐화하고, 터널 모드는 원본 IP 패킷 전체를 새 IP 헤더로 캡슐화해 인터넷으로 전송한다.",
+      "choices": [
+        "PPTP",
+        "L2TP",
+        "IPsec",
+        "SSL/TLS"
+      ],
+      "answer": 3,
+      "explanation": "IPsec은 네트워크 계층(3계층)에서 동작하는 VPN 터널링 프로토콜로, IP 페이로드만 암호화하는 전송(Transport) 모드와 IP 패킷 전체를 새 헤더로 캡슐화하는 터널(Tunnel) 모드를 모두 지원한다. PPTP·L2TP는 2계층 터널링 프로토콜이고 SSL/TLS는 전송~응용 계층에서 동작해 설명과 다르다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-25",
+      "round": "2026년 3차",
+      "number": 25,
+      "subject": "네트워크 일반",
+      "question": "네트워크의 구성(Topology)에서 성형(Star)에 관한 설명으로 옳지 않은 것은?",
+      "choices": [
+        "point-to-point 방식으로 회선을 연결한다.",
+        "단말장치의 추가와 제거가 쉽다.",
+        "하나의 단말장치가 고장나면 전체 통신망에 영향을 줄 수 있다.",
+        "각 단말 장치는 중앙 컴퓨터를 통하여 데이터를 교환한다."
+      ],
+      "answer": 3,
+      "explanation": "성형 구조에서는 각 단말장치가 중앙 장비와 개별적으로 point-to-point 연결되므로, 특정 단말장치 하나가 고장 나도 그 단말만 통신이 끊길 뿐 전체 통신망에는 영향을 주지 않는다. 전체 망이 마비되는 경우는 중앙 장비(허브)가 고장 났을 때이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-26",
+      "round": "2026년 3차",
+      "number": 26,
+      "subject": "네트워크 일반",
+      "question": "다음 중 네트워크 기능 가상화(NFV, Network Functions Virtualization)가 제공하는 주요 장점으로 가장 적절한 것은?",
+      "choices": [
+        "방화벽, 라우터, 로드 밸런서 등의 네트워크 기능을 소프트웨어 기반의 가상 네트워크 기능(VNF)으로 구현하여 필요에 따라 유연하게 배포하고 확장할 수 있다.",
+        "네트워크의 제어 평면을 데이터 평면과 분리하고, 중앙의 컨트롤러에서 네트워크 흐름을 프로그래밍 방식으로 제어할 수 있다.",
+        "네트워크 기능별 전용 하드웨어를 반드시 사용하므로 처리 성능과 운용 방식의 일관성을 보장할 수 있다.",
+        "네트워크 기능을 가상화하면 물리적 서버와 네트워크 인프라를 사용하지 않고도 모든 서비스를 운영할 수 있다."
+      ],
+      "answer": 1,
+      "explanation": "NFV는 방화벽, 라우터, 로드밸런서 등 전용 하드웨어에 의존하던 네트워크 기능을 소프트웨어 기반 가상 네트워크 기능(VNF)으로 구현해 필요에 따라 유연하게 배포·확장할 수 있게 하는 기술이다. 제어/데이터 평면 분리(②)는 SDN의 특징이며, 전용 하드웨어 필수(③)나 물리 인프라 없이 모든 서비스 운영(④)은 NFV의 취지와 반대된다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-27",
+      "round": "2026년 3차",
+      "number": 27,
+      "subject": "네트워크 일반",
+      "question": "TCP/IP Protocol Suite에서 전송 계층의 프로토콜은?",
+      "choices": [
+        "TFTP(Trivial File Transfer Protocol)",
+        "UDP(User Datagram Protocol)",
+        "IP(Internet Protocol)",
+        "PPP(Point-to-Point Protocol)"
+      ],
+      "answer": 2,
+      "explanation": "TCP/IP 4계층 구조에서 전송 계층 프로토콜은 UDP(TCP와 함께)이며, TFTP는 응용 계층, IP는 인터넷 계층, PPP는 네트워크 접근(링크) 계층 프로토콜이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-28",
+      "round": "2026년 3차",
+      "number": 28,
+      "subject": "NOS(윈도우서버)",
+      "question": "DNS에서 지원하는 레코드 형식 중 역방향조회에 사용되는 레코드는?",
+      "choices": [
+        "A",
+        "AAAA",
+        "PTR",
+        "SOA"
+      ],
+      "answer": 3,
+      "explanation": "PTR(Pointer) 레코드는 IP 주소를 도메인 이름으로 변환하는 역방향 조회(in-addr.arpa 영역)에 사용되며, A/AAAA는 정방향 조회, SOA는 영역의 시작 권한 정보를 담는 레코드이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-29",
+      "round": "2026년 3차",
+      "number": 29,
+      "subject": "NOS(윈도우서버)",
+      "question": "Windows Server 2022의 IIS 관리자 기능의 설명으로 옳지 않은 것은?",
+      "choices": [
+        "기본 웹사이트의 홈디렉터리는 반드시 ′C:￦interpub￦wwwroot′로 설정해야 한다.",
+        "기본 문서는 필요하다면 추가 메뉴를 이용해 추가할 수 있다.",
+        "웹사이트의 홈디렉터리에 제공할 문서가 없는 경우에는 디렉터리 검색 기능을 이용하여 보여줄 항목을 지정할 수 있다.",
+        "가상 디렉터리 추가 기능을 이용하여 별칭을 생성하고 실제 경로를 선택할 수 있다."
+      ],
+      "answer": 1,
+      "explanation": "IIS의 기본 웹사이트 홈 디렉터리는 관리자가 원하는 경로로 얼마든지 변경할 수 있으며 반드시 C:\\inetpub\\wwwroot로 고정해야 하는 것은 아니다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-30",
+      "round": "2026년 3차",
+      "number": 30,
+      "subject": "NOS(윈도우서버)",
+      "question": "Windows Server 2022에서 사용하는 PowerShell에 대한 설명으로 옳지 않은 것은?",
+      "choices": [
+        "기존 DOS 명령은 사용할 수 없다.",
+        "스크립트는 콘솔에서 대화형으로 사용될 수 있다.",
+        "스크립트는 텍스트로 구성된다.",
+        "대소문자를 구분하지 않는다."
+      ],
+      "answer": 1,
+      "explanation": "Windows PowerShell은 cmd.exe 시절의 DOS 명령과 상당수 호환되도록 별칭(alias)을 제공하므로(dir, cd, copy 등) 기존 DOS 명령을 사용할 수 없다는 설명은 옳지 않다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-31",
+      "round": "2026년 3차",
+      "number": 31,
+      "subject": "NOS(리눅스)",
+      "question": "Linux 디렉터리 구성에 대한 설명으로 옳지 않은 것은?",
+      "choices": [
+        "/tmp - 임시파일이 저장되는 디렉터리",
+        "/boot - 시스템이 부팅될 때 부팅 가능한 커널 이미지 파일을 담고 있는 디렉터리",
+        "/var - 시스템의 로그 파일과 메일이 저장되는 위치",
+        "/usr - 사용자 계정이 위치하는 파티션 위치"
+      ],
+      "answer": 4,
+      "explanation": "/usr는 응용 프로그램과 라이브러리 등 프로그램 관련 파일이 설치되는 디렉터리이며, 사용자 계정(개인 자료)이 위치하는 곳은 /home 디렉터리이므로 설명이 옳지 않다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-32",
+      "round": "2026년 3차",
+      "number": 32,
+      "subject": "NOS(윈도우서버)",
+      "question": "Windows Server 2022에서 DHCP 구성에 대한 설명으로 올바른 것은?",
+      "choices": [
+        "DHCP에서 새 범위 구성 시 임대 기간은 일, 시간, 분, 초단위로 설정할 수 있다.",
+        "DHCP에서 새 범위 구성 시 더 이상 WINS 서버를 구성하지 않는다.",
+        "새 예약 구성 시 지원되는 유형은 BOOTP 없이 DHCP만 가능하다.",
+        "DHCP 서버에서 주소를 분배할 때, 적용할 지연시간은 ms 단위로 지정한다."
+      ],
+      "answer": 4,
+      "explanation": "Windows Server DHCP는 페일오버 구성 등에서 주소 임대 시 지연시간(Delay)을 ms 단위로 지정하는 옵션을 제공한다. 임대 기간은 일/시/분 단위로 설정하고, WINS 서버 구성 옵션은 여전히 제공되며, 예약 구성 시에는 DHCP뿐 아니라 BOOTP 클라이언트 유형도 지정할 수 있어 나머지 보기는 부정확하다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-33",
+      "round": "2026년 3차",
+      "number": 33,
+      "subject": "NOS(리눅스)",
+      "question": "다음은 Linux 시스템의 계정정보가 담긴 ′/etc/passwd′ 의 내용이다. 다음의 설명 중 옳지 않은 것은?\n\n[제시문] user1:x:500:500::/home/user1:/bin/bash",
+      "choices": [
+        "사용자 계정의 ID는 ′user1′ 이다.",
+        "패스워드는 ′x′ 이다.",
+        "사용자의 UID와 GID는 500번이다.",
+        "사용자의 기본 Shell은 ′/bin/bash′ 이다."
+      ],
+      "answer": 2,
+      "explanation": "/etc/passwd의 두 번째 필드 'x'는 실제 암호화된 비밀번호가 아니라 비밀번호가 /etc/shadow 파일에 별도로 저장되어 있음을 나타내는 표시일 뿐이므로, '패스워드는 x이다'라는 설명은 옳지 않다. 계정 ID(user1), UID/GID(500), 기본 셸(/bin/bash)에 대한 나머지 설명은 필드 값과 일치한다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-34",
+      "round": "2026년 3차",
+      "number": 34,
+      "subject": "NOS(리눅스)",
+      "question": "Linux 시스템 프로세스들의 전반적인 상태를 실시간으로 관리하거나 시스템 사용량을 모니터링할 수 있는 명령어는?",
+      "choices": [
+        "ps",
+        "top",
+        "kill",
+        "nice"
+      ],
+      "answer": 2,
+      "explanation": "top은 CPU·메모리 사용률과 프로세스 상태를 일정 주기로 갱신하며 실시간으로 보여주고 화면에서 바로 우선순위 조정이나 종료도 가능하다. ps는 실행 시점의 프로세스 상태를 한 번만 스냅샷으로 보여준다는 점에서 다르다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-35",
+      "round": "2026년 3차",
+      "number": 35,
+      "subject": "NOS(윈도우서버)",
+      "question": "Windows Server 2022의 ′netstat′ 명령 중 라우팅 테이블을 확인할 수 있는 명령 옵션은?",
+      "choices": [
+        "netstat –a",
+        "netstat -r",
+        "netstat –n",
+        "netstat -s"
+      ],
+      "answer": 2,
+      "explanation": "netstat -r 옵션은 라우팅 테이블 정보를 출력한다. -a는 모든 연결과 리스닝 포트, -n은 주소를 숫자로 표시, -s는 프로토콜별 통계를 보여주는 옵션이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-36",
+      "round": "2026년 3차",
+      "number": 36,
+      "subject": "NOS(윈도우서버)",
+      "question": "다음 (A)에 해당하는 것은?\n\n[제시문] Windows Server Active Directory에서 도메인 또는 포리스트(Forest) 사이에 신뢰할지 여부에 대한 관계를 나타내는 의미로 사용되며, 포리스트 안의 도메인 사이에는 상호 양방향 전이 (A)를 갖는다.",
+      "choices": [
+        "사이트(Site)",
+        "트러스트(Trust)",
+        "조직 구성 단위(OU)",
+        "도메인 컨트롤러(DC)"
+      ],
+      "answer": 2,
+      "explanation": "Active Directory에서 포리스트(또는 도메인) 사이에 서로를 신뢰할지 여부를 나타내는 관계는 트러스트(Trust)이며, 동일 포리스트 내 도메인 간에는 기본적으로 양방향 전이 트러스트가 자동으로 형성된다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-37",
+      "round": "2026년 3차",
+      "number": 37,
+      "subject": "NOS(윈도우서버)",
+      "question": "FTP는 원격 서버에 파일을 주고받을 때 사용하는 프로토콜이다. FTP는 2가지 Mode로 구분되는데, 서버에서 따로 포트 대역을 설정해주고 서버는 임의로 지정된 데이터 포트정보를 클라이언트에 보내 클라이언트에서 해당 포트로 접속하는 방식은?",
+      "choices": [
+        "Active Mode",
+        "Passive Mode",
+        "Privileges Mode",
+        "Proxy Mode"
+      ],
+      "answer": 2,
+      "explanation": "서버가 임의로 지정한 데이터 포트 정보를 클라이언트에 알려주고 클라이언트가 해당 포트로 접속해 데이터를 주고받는 방식은 Passive Mode이다. Active Mode는 반대로 서버가 클라이언트가 지정한 포트로 직접 접속을 시도한다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-38",
+      "round": "2026년 3차",
+      "number": 38,
+      "subject": "NOS(리눅스)",
+      "question": "Linux 시스템 담당자 Park 사원은 시스템 부팅 과정에서 발생한 커널 메시지를 확인하여 하드웨어와 장치 드라이버의 이상 여부를 점검하려고 한다. 다음 중 일반적인 Linux 로그 관리 환경에서 이러한 메시지가 저장되는 로그 파일은?",
+      "choices": [
+        "/var/log/cron",
+        "/var/log/lastlog",
+        "/var/log/dmesg",
+        "/var/log/btmp"
+      ],
+      "answer": 3,
+      "explanation": "시스템 부팅 시 커널이 출력하는 하드웨어·드라이버 관련 메시지는 dmesg 명령으로 확인하며 보통 /var/log/dmesg에 기록된다. /var/log/cron은 크론 작업 로그, /var/log/lastlog는 사용자 마지막 로그인 기록, /var/log/btmp는 로그인 실패 기록을 저장하는 파일이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-39",
+      "round": "2026년 3차",
+      "number": 39,
+      "subject": "NOS(리눅스)",
+      "question": "Linux에서 열려있는 port 정보를 확인하는 명령어로 옳은 것은?",
+      "choices": [
+        "ps",
+        "pstree",
+        "getenforce",
+        "netstat"
+      ],
+      "answer": 4,
+      "explanation": "netstat 명령어는 현재 시스템에서 열려있는 포트와 네트워크 연결 상태, 라우팅 테이블 정보 등을 확인할 수 있는 명령어이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-40",
+      "round": "2026년 3차",
+      "number": 40,
+      "subject": "NOS(리눅스)",
+      "question": "Linux에서 ′sample′ 파일의 소유자 및 소유그룹이 아닌 사람에 대해 파일을 볼 수는 있지만 수정 및 실행을 못하도록 하는 명령어는?",
+      "choices": [
+        "chmod 776 sample",
+        "chmod 774 sample",
+        "chmod 746 sample",
+        "chmod 766 sample"
+      ],
+      "answer": 2,
+      "explanation": "chmod 774는 소유자와 소유그룹에게 rwx(7) 권한을, 그 외 사용자에게는 r--(4) 즉 읽기만 허용하고 쓰기·실행 권한은 주지 않으므로 조건에 맞는 명령어이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-41",
+      "round": "2026년 3차",
+      "number": 41,
+      "subject": "NOS(리눅스)",
+      "question": "아래 지문은 Linux 시스템에서 구동 중인 프로세스를 검색한 결과이다. 옳지 않은 것은?",
+      "choices": [
+        "입력한 명령어는 ′ps -ef | grep /bin/sh′이다.",
+        "네번째 프로세스의 PPID는 1869이다.",
+        "python 프로세스가 실행되고 있다.",
+        "목록에서 다섯번째 프로세스를 종료하는 명령어는 ′kill 1902′이다."
+      ],
+      "answer": 2,
+      "explanation": "ps -ef 결과에서 각 프로세스 행의 PPID(부모 프로세스 ID) 값은 해당 프로세스 항목에 표시된 숫자를 그대로 읽어야 하는데, 네번째 프로세스의 실제 PPID는 1869가 아닌 다른 값이므로 이 설명이 목록 내용과 일치하지 않아 옳지 않은 보기가 된다.",
+      "image": "data/images/2026-08/q41.png",
+      "tags": []
+    },
+    {
+      "id": "2026-08-42",
+      "round": "2026년 3차",
+      "number": 42,
+      "subject": "NOS(리눅스)",
+      "question": "다음 중 systemd를 사용하는 RHEL 계열 Linux에서 systemctl 명령의 사용 예로 적절하지 않은 것은?",
+      "choices": [
+        "systemctl start httpd",
+        "systemctl enable sshd",
+        "systemctl status nginx",
+        "systemctl passwd root"
+      ],
+      "answer": 4,
+      "explanation": "systemctl은 서비스 시작·활성화·상태 확인 등 서비스(유닛) 관리를 위한 명령이며, 계정 비밀번호를 변경하는 기능은 없다. 계정 비밀번호 변경은 passwd 명령을 사용해야 하므로 'systemctl passwd root'는 올바르지 않은 사용례이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-43",
+      "round": "2026년 3차",
+      "number": 43,
+      "subject": "NOS(윈도우서버)",
+      "question": "네트워크 관리자 Park 사원은 Active Directory 도메인 서비스가 구성된 Windows Server 2022에서 새로운 도메인 사용자 계정을 생성하고 관리하려고 한다. 다음 중 사용자 계정 관리에 대한 설명으로 옳은 것은?",
+      "choices": [
+        "사용자 암호 정책은 Windows Server의 보안 정책과 관계없이 각 사용자가 임의로 설정한다.",
+        "도메인 사용자 계정을 생성하면 별도의 권한 설정 없이 모든 네트워크 리소스에 접근할 수 있다.",
+        "Windows Server 2022에서는 로컬 사용자 계정만 생성할 수 있으며 도메인 사용자 계정은 생성할 수 없다.",
+        "Active Directory 사용자 및 컴퓨터에서 도메인 사용자 계정을 생성하고 보안 그룹의 구성원으로 추가할 수 있다."
+      ],
+      "answer": 4,
+      "explanation": "Active Directory 사용자 및 컴퓨터 관리 도구에서 도메인 사용자 계정을 생성한 뒤 필요한 보안 그룹의 구성원으로 추가하는 것이 표준적인 계정 관리 절차이다. 나머지 보기는 그룹 정책·보안 위임 없이 임의 설정이 가능하다거나 도메인 계정을 만들 수 없다는 등 AD의 동작 방식과 어긋난다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-44",
+      "round": "2026년 3차",
+      "number": 44,
+      "subject": "NOS(윈도우서버)",
+      "question": "다음 중 IIS 웹 사이트의 바인딩 및 포트 설정에 대한 설명으로 옳은 것은?",
+      "choices": [
+        "하나의 IIS 서버에서는 하나의 웹 사이트만 운영할 수 있다.",
+        "IIS는 IP 주소와 포트 번호만으로 웹 사이트를 구분하며, 호스트 이름은 사용할 수 없다.",
+        "HTTP의 기본 포트는 80번이고, HTTPS의 기본 포트는 443번이다.",
+        "하나의 IIS 서버에서 여러 웹 사이트를 운영하려면 각 사이트에 반드시 서로 다른 IP 주소를 할당해야 한다."
+      ],
+      "answer": 3,
+      "explanation": "HTTP의 기본 포트는 80번, HTTPS의 기본 포트는 443번으로 정의되어 있다. IIS는 하나의 서버에서 호스트 헤더(호스트 이름)나 포트 번호로 구분해 여러 웹사이트를 운영할 수 있어 나머지 보기는 옳지 않다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-45",
+      "round": "2026년 3차",
+      "number": 45,
+      "subject": "NOS(윈도우서버)",
+      "question": "다음 지문에서 설명하는 Hyper-V의 기능으로 옳은 것은?\n\n[제시문] Windows Server의 Hyper-V에서 가상 머신(VM)의 특정 시점 상태를 저장하고, 이후 해당 시점의 상태로 복원할 수 있도록 하는 기능이다. 테스트, 개발 또는 업데이트 과정에서 문제가 발생했을 때 이전 상태로 되돌리는 용도로 활용할 수 있다.",
+      "choices": [
+        "가상 머신 내보내기(Export)",
+        "롤백(Rollback)",
+        "타임머신(Time Machine)",
+        "검사점(Checkpoint)"
+      ],
+      "answer": 4,
+      "explanation": "가상 머신의 특정 시점 상태를 저장해두었다가 이후 그 시점으로 되돌릴 수 있는 Hyper-V 기능은 검사점(Checkpoint, 과거 명칭은 스냅숏)이다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-46",
+      "round": "2026년 3차",
+      "number": 46,
+      "subject": "네트워크 운용기기",
+      "question": "다음 중 Layer 4 스위치(Layer 4 Switch, L4)의 기능 또는 특징으로 옳지 않은 것은?",
+      "choices": [
+        "서버의 부하를 분산하여 효율적으로 처리한다.",
+        "OSI 7계층 중 네트워크 계층에 해당하는 장비이다.",
+        "TCP, UDP, HTTP 등의 헤더를 분석해 부하 분산을 수행한다.",
+        "외부 요청은 모두 L4 스위치를 거쳐 각 서버로 분산된다."
+      ],
+      "answer": 2,
+      "explanation": "L4 스위치는 TCP/UDP 포트나 HTTP 헤더 등 OSI 4계층(전송 계층) 정보를 참조하여 부하 분산을 수행하는 장비이므로, 네트워크 계층(3계층)에 해당한다는 설명은 옳지 않다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-47",
+      "round": "2026년 3차",
+      "number": 47,
+      "subject": "네트워크 운용기기",
+      "question": "다음 ( )에 해당하는 용어는?\n\n[제시문] VLAN이 강력한 이유는 스위치 단독으로 닫혀 있는 게 아니라 복수의 스위치에 걸쳐 광범위한 네트워크로 운용할 수 있기 때문이다. 스위치는 다른 스위치와 연결하기 위한 인터페이스로서 ( )인터페이스를 갖추고 있다.",
+      "choices": [
+        "포트(Port)",
+        "트렁크(Trunk)",
+        "소켓(Socket)",
+        "플러그(Plug)"
+      ],
+      "answer": 2,
+      "explanation": "여러 스위치에 걸쳐 VLAN 정보를 주고받기 위해 스위치와 스위치를 연결하는 인터페이스를 트렁크(Trunk) 인터페이스라고 하며, 이 링크를 통해 여러 VLAN의 태그된 프레임이 함께 전달된다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-48",
+      "round": "2026년 3차",
+      "number": 48,
+      "subject": "네트워크 운용기기",
+      "question": "아래 지문은 라우팅의 Distance Vector방식을 설명한 것이다. 이에 해당하지 않는 프로토콜은?\n\n[제시문] 네트워크 변화 발생 시 해당 정보를 인접한 라우터에 정기적으로 전달하고, 인접 라우터에서는 라우팅 테이블에 정보를 갱신한다. 최단경로를 구하는 벨만 포드 알고리즘(Bellman–Ford algorithm)을 기반으로 한다.",
+      "choices": [
+        "IGRP",
+        "RIP",
+        "BGP",
+        "OSPF"
+      ],
+      "answer": 4,
+      "explanation": "Distance Vector 방식은 벨만-포드 알고리즘을 기반으로 인접 라우터에 라우팅 정보를 주기적으로 전달하는 방식으로 RIP·IGRP가 대표적이며, BGP도 경로 벡터(Path Vector) 계열로 분류된다. 반면 OSPF는 링크 상태(Link State) 방식으로 다익스트라(SPF) 알고리즘을 사용해 방식 자체가 다르다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-49",
+      "round": "2026년 3차",
+      "number": 49,
+      "subject": "네트워크 운용기기",
+      "question": "다음 중 방화벽의 기능에 대한 설명으로 옳은 것은?",
+      "choices": [
+        "방화벽은 패킷의 IP 주소와 운영체제의 프로세스 번호만을 기준으로 접근을 제어한다.",
+        "방화벽은 사전에 정의된 보안 정책과 접근 제어 규칙에 따라 네트워크 트래픽을 허용하거나 차단한다.",
+        "방화벽은 네트워크 내부에서 발생하는 모든 공격을 완전히 차단할 수 있다.",
+        "방화벽은 자신을 통과하지 않는 네트워크 트래픽도 직접 감시하고 제어할 수 있다."
+      ],
+      "answer": 2,
+      "explanation": "방화벽은 사전에 정의된 보안 정책과 접근 제어 규칙에 따라 네트워크 트래픽의 허용·차단을 결정하는 장비이다. 방화벽은 자신을 통과하는 트래픽만 제어할 수 있고 내부 공격을 완전히 차단할 수는 없으며, IP 주소 외에도 포트·프로토콜 등 다양한 기준을 사용하므로 나머지 보기는 옳지 않다.",
+      "image": null,
+      "tags": []
+    },
+    {
+      "id": "2026-08-50",
+      "round": "2026년 3차",
+      "number": 50,
+      "subject": "네트워크 운용기기",
+      "question": "다음 중 빛을 이용해 데이터를 전송하며, 중심부의 코어(Core)와 이를 둘러싼 클래딩(Cladding)으로 구성된 전송 매체는?",
+      "choices": [
+        "동축 케이블(Coaxial Cable)",
+        "광섬유 케이블(Optical Fiber Cable)",
+        "UTP 케이블(Unshielded Twisted Pair Cable)",
+        "STP 케이블(Shielded Twisted Pair Cable)"
+      ],
+      "answer": 2,
+      "explanation": "중심부의 코어와 이를 감싸는 클래딩으로 구성되어 빛으로 데이터를 전송하는 매체는 광섬유 케이블(Optical Fiber Cable)이다.",
       "image": null,
       "tags": []
     }

@@ -89,6 +89,7 @@ function startRandomMode() {
 
 function renderRandomQuestion() {
   state.currentAnswered = false;
+  state.lastChoice = null;
   state._current = pickRandom(state.all);
   renderQuestionCard(state._current, { showFreq: false });
   updateScoreText();
@@ -117,18 +118,63 @@ function renderQuestionCard(q, opts = {}) {
       <div class="choices" id="choicesBox">${q.choices.map((c, i) => `<button class="choice ${saved === i + 1 ? "selected" : ""}" data-idx="${i + 1}" type="button"><span class="num">${i + 1}</span><span class="txt">${escapeHtml(c)}</span></button>`).join("")}</div>
       <div class="explain-box" id="explainBox"></div>
       <div class="quiz-actions">
-        <a class="btn secondary" href="index.html">나가기</a>
+        <div class="action-group">
+          <a class="btn secondary" href="index.html">나가기</a>
+          ${MODE === "random" ? `<button class="btn ai-share-trigger" id="shareBtn" type="button">AI에게 질문</button>` : ""}
+        </div>
         <div class="action-group">
           ${state.exam && state.index > 0 ? `<button class="btn ghost" id="prevBtn" type="button">이전</button>` : ""}
           ${state.exam ? `<button class="btn ghost" id="nextBtn" type="button">${state.index === state.queue.length - 1 ? "처음으로" : "다음"}</button><button class="btn submit-btn" id="submitBtn" type="button">답안 제출</button>` : `<button class="btn" id="nextBtn" type="button" ${state.currentAnswered ? "" : "disabled"}>다음 문제</button>`}
         </div>
       </div>
+      ${MODE === "random" ? `<div class="ai-share-menu" id="aiShareMenu" hidden>
+        <div><strong>어디에 질문할까요?</strong><span>문제와 보기가 복사되고 새 창이 열립니다.</span></div>
+        <div class="ai-share-links">
+          <a id="chatgptLink" class="ai-link chatgpt" href="#" target="_blank" rel="noopener noreferrer"><b>ChatGPT</b><small>OpenAI</small></a>
+          <a id="geminiLink" class="ai-link gemini" href="#" target="_blank" rel="noopener noreferrer"><b>Gemini</b><small>Google</small></a>
+        </div>
+        <p id="shareStatus" aria-live="polite"></p>
+      </div>` : ""}
     </article>`;
 
   document.querySelectorAll(".choice").forEach((choice) => choice.addEventListener("click", () => onSelectChoice(q, Number(choice.dataset.idx))));
   document.getElementById("prevBtn")?.addEventListener("click", () => goToQuestion(state.index - 1));
   document.getElementById("nextBtn")?.addEventListener("click", () => state.exam ? goToQuestion((state.index + 1) % state.queue.length) : goNext());
   document.getElementById("submitBtn")?.addEventListener("click", () => submitExam(false));
+  if (MODE === "random") setupAiShare(q);
+}
+
+function buildAiPrompt(q) {
+  const choices = q.choices.map((choice, index) => `${index + 1}. ${choice}`).join("\n");
+  const selected = state.lastChoice ? `\n내가 선택한 답: ${state.lastChoice}번` : "";
+  const image = q.image ? `\n참고 이미지: ${new URL(q.image, location.href).href}` : q.imageText ? `\n문제 자료:\n${q.imageText}` : "";
+  return `네트워크관리사 2급 문제를 풀고 있어. 아래 문제의 정답과 각 보기가 맞거나 틀린 이유를 초보자도 이해할 수 있게 설명해 줘.\n\n문제: ${q.question}${image}\n\n보기:\n${choices}${selected}`;
+}
+
+function setupAiShare(q) {
+  const trigger = document.getElementById("shareBtn");
+  const menu = document.getElementById("aiShareMenu");
+  const chatgpt = document.getElementById("chatgptLink");
+  const gemini = document.getElementById("geminiLink");
+  const refreshLinks = () => {
+    const encoded = encodeURIComponent(buildAiPrompt(q));
+    chatgpt.href = `https://chatgpt.com/?q=${encoded}`;
+    gemini.href = `https://gemini.google.com/app?text=${encoded}`;
+  };
+  refreshLinks();
+  trigger.addEventListener("click", () => {
+    refreshLinks();
+    menu.hidden = !menu.hidden;
+    trigger.setAttribute("aria-expanded", String(!menu.hidden));
+  });
+  [chatgpt, gemini].forEach((link) => link.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(buildAiPrompt(q));
+      document.getElementById("shareStatus").textContent = "질문을 복사했습니다. 입력창이 비어 있으면 붙여넣어 주세요.";
+    } catch {
+      document.getElementById("shareStatus").textContent = "새 창에서 문제와 보기를 붙여넣어 질문해 주세요.";
+    }
+  }));
 }
 
 function onSelectChoice(q, idx) {
@@ -142,6 +188,7 @@ function onSelectChoice(q, idx) {
   }
   if (state.currentAnswered) return;
   state.currentAnswered = true; state.answered++;
+  state.lastChoice = idx;
   const isCorrect = idx === q.answer;
   if (isCorrect) state.correct++;
   markAnswerResult(q, isCorrect);

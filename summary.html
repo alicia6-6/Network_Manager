@@ -1,195 +1,209 @@
-<title>요약노트 · 네트워크관리사 2급</title>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="css/style.css?v=20260811-2" />
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="네트워크관리사 2급 기출 핵심 요약노트" />
+  <title>기출 핵심 요약노트 · 네트워크관리사 2급</title>
+  <link rel="stylesheet" href="css/style.css?v=20260811-3" />
+</head>
+<body>
+  <div class="wrap summary-wrap">
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="logo">N</span><span>네트워크관리사 2급</span></a>
+      <nav class="top-nav" aria-label="주요 메뉴">
+        <a href="index.html">홈</a>
+        <a href="summary.html" class="active">요약노트</a>
+        <a href="quiz.html?mode=wrong">오답노트</a>
+      </nav>
+    </header>
 
-<div class="wrap">
-  <header class="site-header">
-    <div class="brand"><span class="logo">🌐</span> 네트워크관리사 2급</div>
-    <nav class="top-nav">
-      <a href="index.html">홈</a>
-      <a href="summary.html" class="active">요약노트</a>
-      <a href="quiz.html?mode=wrong">오답노트</a>
-    </nav>
-  </header>
+    <main>
+      <section class="summary-hero">
+        <div>
+          <span class="eyebrow">EXAM ESSENTIALS</span>
+          <h1>기출 700문제에서 뽑은<br /><em>합격 핵심 요약노트</em></h1>
+          <p>용어를 읽는 데서 끝내지 않고, 시험에서 정답을 고르는 기준까지 정리했습니다.</p>
+        </div>
+        <div class="summary-score-card"><span>학습 목표</span><strong>80<small>+</small></strong><p>개념 확인 → 암기표 → 기출 함정</p></div>
+      </section>
 
-  <div class="hero">
-    <h1>핵심 개념 요약노트</h1>
-    <p>시험 직전에 훑어볼 수 있도록 자주 나오는 개념만 압축했습니다. 기출문제가 추가되는 대로 계속 보강됩니다.</p>
+      <div class="summary-notice"><strong>추천 순서</strong><span>TCP/IP·서브네팅 → 네트워크 일반 → Linux → Windows Server → 마지막 암기장</span></div>
+
+      <nav class="toc summary-toc" aria-label="요약노트 목차">
+        <a href="#osi">OSI·TCP/IP</a><a href="#ipv4">IPv4·서브네팅</a><a href="#protocols">프로토콜·포트</a><a href="#routing">라우팅·장비</a><a href="#general">네트워크 일반</a><a href="#wireless">LAN·무선·보안</a><a href="#windows">Windows Server</a><a href="#linux">Linux</a><a href="#last">마지막 암기장</a>
+      </nav>
+
+      <section class="summary-section high-yield" id="osi">
+        <div class="section-kicker">01 · TCP/IP</div><h2>OSI 7계층과 TCP/IP</h2>
+        <p class="lead">계층 문제는 <b>역할·장비·PDU·주소</b>를 한 묶음으로 외우면 대부분 해결됩니다.</p>
+        <div class="memory-box"><b>상표세전네데물</b><span>응용 → 표현 → 세션 → 전송 → 네트워크 → 데이터링크 → 물리</span></div>
+        <div class="table-scroll"><table>
+          <thead><tr><th>계층</th><th>핵심 기능</th><th>PDU / 주소</th><th>프로토콜·장비</th></tr></thead>
+          <tbody>
+            <tr><td><b>7 응용</b></td><td>사용자에게 네트워크 서비스 제공</td><td>Data</td><td>HTTP, FTP, SMTP, DNS, SNMP</td></tr>
+            <tr><td><b>6 표현</b></td><td>암호화·복호화, 압축, 코드 변환</td><td>Data</td><td>JPEG, ASCII, TLS 표현 기능</td></tr>
+            <tr><td><b>5 세션</b></td><td>연결의 설정·유지·종료, 동기점</td><td>Data</td><td>NetBIOS, RPC</td></tr>
+            <tr><td><b>4 전송</b></td><td>종단 간 신뢰성, 흐름·오류 제어</td><td>Segment / Port</td><td>TCP, UDP, L4 스위치</td></tr>
+            <tr><td><b>3 네트워크</b></td><td>논리 주소와 최적 경로 선택</td><td>Packet / IP</td><td>IP, ICMP, IGMP, Router, L3 스위치</td></tr>
+            <tr><td><b>2 데이터링크</b></td><td>프레임, MAC, 오류 검출, 매체 접근</td><td>Frame / MAC</td><td>Ethernet, ARP, Switch, Bridge</td></tr>
+            <tr><td><b>1 물리</b></td><td>전기·광 신호와 비트 전송</td><td>Bit</td><td>Cable, Hub, Repeater</td></tr>
+          </tbody>
+        </table></div>
+        <div class="exam-trap"><b>기출 함정</b> 암호화·압축은 표현 계층, 경로 선택은 네트워크 계층, 흐름·오류 제어는 전송 계층입니다. 스위치는 보통 L2, 라우터는 L3입니다.</div>
+        <h3>TCP/IP 4계층</h3>
+        <div class="compare-grid">
+          <div><b>응용</b><span>OSI 5~7계층</span><small>HTTP, DNS, FTP, SMTP, SNMP</small></div>
+          <div><b>전송</b><span>OSI 4계층</span><small>TCP, UDP</small></div>
+          <div><b>인터넷</b><span>OSI 3계층</span><small>IP, ICMP, IGMP, ARP</small></div>
+          <div><b>네트워크 접근</b><span>OSI 1~2계층</span><small>Ethernet, Wi-Fi</small></div>
+        </div>
+        <h3>TCP와 UDP</h3>
+        <table><thead><tr><th>TCP</th><th>UDP</th></tr></thead><tbody><tr><td>연결형, 신뢰성, 순서·재전송·흐름 제어, 헤더 20바이트 이상</td><td>비연결형, 빠름, 보장 없음, 헤더 8바이트</td></tr><tr><td>HTTP(S), FTP, SSH, SMTP, POP3, IMAP</td><td>DHCP, TFTP, SNMP, 스트리밍</td></tr></tbody></table>
+        <ul class="key-list">
+          <li><b>3-way handshake</b>: SYN → SYN+ACK → ACK</li>
+          <li><b>4-way 종료</b>: FIN → ACK → FIN → ACK</li>
+          <li><b>TCP 플래그</b>: SYN 연결, ACK 확인, FIN 정상 종료, RST 강제 종료, PSH 즉시 전달, URG 긴급</li>
+          <li><b>Sliding Window</b>: 수신 측 Window Size에 맞춰 전송량을 조절하는 흐름 제어</li>
+        </ul>
+      </section>
+
+      <section class="summary-section high-yield" id="ipv4">
+        <div class="section-kicker">02 · TCP/IP</div><h2>IPv4와 서브네팅</h2>
+        <p class="lead">서브네팅은 매 회차 득점원이 될 수 있습니다. 아래 세 공식과 블록 크기를 반드시 익히세요.</p>
+        <div class="formula-grid"><div><span>호스트 수</span><b>2<sup>h</sup> − 2</b></div><div><span>서브넷 수</span><b>2<sup>s</sup></b></div><div><span>블록 크기</span><b>256 − 마스크 값</b></div></div>
+        <h3>주소 클래스와 특수 주소</h3>
+        <table><thead><tr><th>구분</th><th>첫 옥텟 / 범위</th><th>기본 마스크</th><th>용도</th></tr></thead><tbody>
+          <tr><td>A</td><td>1~126</td><td>/8, 255.0.0.0</td><td>대규모</td></tr><tr><td>B</td><td>128~191</td><td>/16</td><td>중규모</td></tr><tr><td>C</td><td>192~223</td><td>/24</td><td>소규모</td></tr><tr><td>D</td><td>224~239</td><td>-</td><td>멀티캐스트</td></tr><tr><td>E</td><td>240~255</td><td>-</td><td>실험</td></tr>
+        </tbody></table>
+        <div class="two-col">
+          <div class="note-card"><h4>사설 IP</h4><ul><li>10.0.0.0/8</li><li>172.16.0.0 ~ 172.31.255.255</li><li>192.168.0.0/16</li></ul></div>
+          <div class="note-card"><h4>특수 IP</h4><ul><li>127.0.0.0/8: Loopback</li><li>169.254.0.0/16: APIPA</li><li>0.0.0.0: 미지정/기본</li><li>255.255.255.255: 제한 브로드캐스트</li></ul></div>
+        </div>
+        <h3>무조건 외울 CIDR 표</h3>
+        <table class="number-table"><thead><tr><th>Prefix</th><th>마스크</th><th>블록</th><th>사용 호스트</th></tr></thead><tbody>
+          <tr><td>/24</td><td>255.255.255.0</td><td>256</td><td>254</td></tr><tr><td>/25</td><td>255.255.255.128</td><td>128</td><td>126</td></tr><tr><td>/26</td><td>255.255.255.192</td><td>64</td><td>62</td></tr><tr><td>/27</td><td>255.255.255.224</td><td>32</td><td>30</td></tr><tr><td>/28</td><td>255.255.255.240</td><td>16</td><td>14</td></tr><tr><td>/29</td><td>255.255.255.248</td><td>8</td><td>6</td></tr><tr><td>/30</td><td>255.255.255.252</td><td>4</td><td>2</td></tr>
+        </tbody></table>
+        <div class="worked-example"><b>예: 201.100.5.68/28</b><p>/28의 블록 크기는 16 → 구간은 0,16,32,48,<mark>64</mark>,80… → 68은 64~79 구간 → 네트워크 201.100.5.64, 브로드캐스트 .79, 사용 가능 .65~.78</p></div>
+        <h3>IPv4 헤더와 IPv6</h3>
+        <ul class="key-list">
+          <li><b>IPv4</b>: 32비트, 헤더 가변 20~60바이트, Header Checksum 존재, 라우터도 단편화 가능</li>
+          <li><b>TTL</b>: 라우터를 지날 때마다 1 감소. 0이면 폐기하고 ICMP Time Exceeded 전송</li>
+          <li><b>IPv6</b>: 128비트, 16진수 8그룹, 기본 헤더 40바이트, 브로드캐스트 없음</li>
+          <li>IPv6는 송신 호스트만 단편화하며 <b>Fragment 확장 헤더</b>를 사용. Header Checksum 없음</li>
+          <li><b>::1</b> Loopback, <b>FE80::/10</b> Link-local, <b>FF00::/8</b> Multicast</li>
+          <li>전환 기술: Dual Stack, Tunneling, Translation(NAT64 등)</li>
+        </ul>
+      </section>
+
+      <section class="summary-section high-yield" id="protocols">
+        <div class="section-kicker">03 · TCP/IP</div><h2>프로토콜·포트·DNS</h2>
+        <h3>포트 번호 암기표</h3>
+        <div class="port-grid">
+          <div><b>20/21</b><span>FTP 데이터/제어</span></div><div><b>22</b><span>SSH, SFTP</span></div><div><b>23</b><span>Telnet</span></div><div><b>25</b><span>SMTP</span></div><div><b>53</b><span>DNS</span></div><div><b>67/68</b><span>DHCP 서버/클라이언트</span></div><div><b>69</b><span>TFTP</span></div><div><b>80</b><span>HTTP</span></div><div><b>110</b><span>POP3</span></div><div><b>123</b><span>NTP</span></div><div><b>143</b><span>IMAP</span></div><div><b>161/162</b><span>SNMP/Trap</span></div><div><b>443</b><span>HTTPS</span></div><div><b>445</b><span>SMB</span></div><div><b>3389</b><span>RDP</span></div>
+        </div>
+        <div class="exam-trap"><b>기출 함정</b> DNS는 UDP 53을 주로 쓰지만 영역 전송이나 큰 응답은 TCP도 사용합니다. FTP는 TCP, TFTP는 UDP입니다.</div>
+        <h3>핵심 프로토콜</h3>
+        <table><thead><tr><th>프로토콜</th><th>정답 키워드</th></tr></thead><tbody>
+          <tr><td>ARP / RARP</td><td>ARP: IP → MAC, RARP: MAC → IP(현재는 DHCP 사용)</td></tr><tr><td>ICMP</td><td>IP 오류 보고·진단, ping(Echo), traceroute(Time Exceeded). 데이터 전송용 아님</td></tr><tr><td>IGMP</td><td>IPv4 멀티캐스트 그룹 가입·탈퇴 관리</td></tr><tr><td>DHCP</td><td>DORA: Discover → Offer → Request → Ack, IP·마스크·Gateway·DNS 자동 할당</td></tr><tr><td>SNMP</td><td>Manager, Agent, MIB. Get/Set은 161, 비동기 Trap은 162</td></tr><tr><td>FTP</td><td>Active: 서버가 데이터 연결, Passive: 클라이언트가 서버의 임의 포트로 연결</td></tr><tr><td>NAT / PAT</td><td>NAT는 사설↔공인 변환, PAT는 포트까지 이용해 하나의 공인 IP를 다수가 공유</td></tr>
+        </tbody></table>
+        <h3>DNS 레코드</h3>
+        <table><thead><tr><th>레코드</th><th>의미</th><th>레코드</th><th>의미</th></tr></thead><tbody>
+          <tr><td>A</td><td>이름 → IPv4</td><td>AAAA</td><td>이름 → IPv6</td></tr><tr><td>PTR</td><td>IP → 이름(역방향)</td><td>CNAME</td><td>별칭 → 실제 이름</td></tr><tr><td>MX</td><td>메일 서버</td><td>NS</td><td>권한 있는 네임서버</td></tr><tr><td>SOA</td><td>영역 권한·일련번호·갱신 값</td><td>SRV</td><td>서비스 위치·포트</td></tr><tr><td>TXT</td><td>문자 정보, SPF 등</td><td>TTL</td><td>캐시에 유지할 시간</td></tr>
+        </tbody></table>
+        <h3>HTTP 상태 코드</h3><p><b>2xx 성공</b>: 200 OK · 201 Created / <b>3xx 이동</b>: 301 영구, 302 임시, 304 캐시 / <b>4xx 클라이언트</b>: 400, 401 인증 필요, 403 금지, 404 없음 / <b>5xx 서버</b>: 500 내부 오류, 503 이용 불가</p>
+      </section>
+
+      <section class="summary-section" id="routing">
+        <div class="section-kicker">04 · TCP/IP</div><h2>라우팅·교환·네트워크 장비</h2>
+        <table><thead><tr><th>프로토콜</th><th>방식 / 알고리즘</th><th>핵심 특징</th></tr></thead><tbody>
+          <tr><td><b>RIP</b></td><td>거리 벡터 / Bellman-Ford</td><td>Hop Count, 최대 15홉, 30초 갱신, 소규모</td></tr><tr><td><b>OSPF</b></td><td>링크 상태 / Dijkstra SPF</td><td>Cost, 빠른 수렴, Area, 대규모, IP Protocol 89</td></tr><tr><td><b>BGP</b></td><td>경로 벡터</td><td>AS 간 EGP, TCP 179, 인터넷 사업자 간 라우팅</td></tr>
+        </tbody></table>
+        <ul class="key-list"><li><b>정적 라우팅</b>: 관리자가 직접, 트래픽 적음·장애 대응 수동</li><li><b>동적 라우팅</b>: 변화 자동 반영, 프로토콜 트래픽·자원 필요</li><li><b>Longest Prefix Match</b>: 목적지와 가장 길게 일치하는 경로 선택</li><li><b>Default Route</b>: 0.0.0.0/0, 다른 경로가 없을 때 사용</li></ul>
+        <h3>장비와 충돌·브로드캐스트 도메인</h3>
+        <table><thead><tr><th>장비</th><th>판단 기준</th><th>도메인</th></tr></thead><tbody><tr><td>Hub</td><td>모든 포트로 반복 전송</td><td>충돌·브로드캐스트 모두 1개</td></tr><tr><td>L2 Switch</td><td>MAC Table로 전달</td><td>포트마다 충돌 분리, 브로드캐스트는 동일 VLAN</td></tr><tr><td>Router/L3</td><td>IP와 Routing Table</td><td>브로드캐스트 도메인 분리</td></tr><tr><td>Gateway</td><td>서로 다른 프로토콜 변환</td><td>4~7계층까지 가능</td></tr><tr><td>Repeater</td><td>감쇠된 신호 재생</td><td>물리 계층</td></tr></tbody></table>
+        <div class="exam-trap"><b>스위치 동작</b> 출발지 MAC은 학습하고, 목적지 MAC을 테이블에서 검색합니다. 목적지를 모르면 해당 포트를 제외한 모든 포트로 Flooding합니다.</div>
+      </section>
+
+      <section class="summary-section" id="general">
+        <div class="section-kicker">05 · 네트워크 일반</div><h2>전송·오류 제어·토폴로지</h2>
+        <h3>전송 방식</h3>
+        <div class="three-col"><div class="note-card"><h4>단방향</h4><p>한 방향만. 방송, 키보드→컴퓨터</p></div><div class="note-card"><h4>반이중</h4><p>양방향이지만 동시 불가. 무전기</p></div><div class="note-card"><h4>전이중</h4><p>양방향 동시. 전화</p></div></div>
+        <ul class="key-list">
+          <li><b>동기식</b>: 문자 사이 휴지 없음, 블록 단위, 효율 높음 / <b>비동기식</b>: Start·Stop bit, 문자 단위</li>
+          <li><b>회선 교환</b>: 전용 경로, 일정 지연, 설정 시간 필요 / <b>패킷 교환</b>: 회선 공유, 저장 후 전달, 지연 변동</li>
+          <li><b>다중화</b>: FDM 주파수, TDM 시간, WDM 광 파장, CDM 코드로 채널 분리</li>
+          <li><b>감쇠</b>: 거리가 멀수록 세기 감소 / <b>왜곡</b>: 주파수별 전달 차이 / <b>잡음</b>: 원치 않는 신호</li>
+        </ul>
+        <h3>오류 검출과 ARQ</h3>
+        <table><thead><tr><th>방식</th><th>핵심</th></tr></thead><tbody><tr><td>Parity</td><td>간단한 1비트 오류 검출, 정정 불가</td></tr><tr><td>CRC</td><td>다항식 나눗셈, 집단 오류 검출에 강함</td></tr><tr><td>Hamming</td><td>오류 위치를 찾아 1비트 정정 가능</td></tr><tr><td>Stop-and-Wait ARQ</td><td>한 프레임 전송 후 ACK 대기, 단순하지만 비효율</td></tr><tr><td>Go-Back-N ARQ</td><td>오류 프레임부터 이후 전부 재전송</td></tr><tr><td>Selective Repeat ARQ</td><td>오류 난 프레임만 재전송, 버퍼 필요</td></tr><tr><td>Adaptive ARQ</td><td>회선 상태에 따라 프레임 길이를 동적으로 변경</td></tr></tbody></table>
+        <h3>토폴로지</h3>
+        <table><thead><tr><th>형태</th><th>장점</th><th>단점</th></tr></thead><tbody><tr><td>Star</td><td>증설·장애 발견·중앙 관리 쉬움</td><td>중앙 장비 고장 시 전체 영향</td></tr><tr><td>Bus</td><td>저렴, 케이블 적음</td><td>충돌, 종단저항 필요, 주 케이블 고장</td></tr><tr><td>Ring</td><td>충돌 적고 순서 예측</td><td>노드/링 고장이 전체 영향, 증설 어려움</td></tr><tr><td>Mesh</td><td>신뢰성·우회 경로 우수</td><td>비용·배선 복잡, 완전 연결선 n(n-1)/2</td></tr><tr><td>Tree</td><td>계층적 확장·관리</td><td>상위 노드 의존</td></tr></tbody></table>
+      </section>
+
+      <section class="summary-section" id="wireless">
+        <div class="section-kicker">06 · 네트워크 일반</div><h2>Ethernet·무선·케이블·보안</h2>
+        <h3>IEEE 802 핵심</h3>
+        <div class="standard-grid"><div><b>802.3</b><span>Ethernet, CSMA/CD</span></div><div><b>802.11</b><span>WLAN, CSMA/CA</span></div><div><b>802.15</b><span>WPAN, Bluetooth</span></div><div><b>802.1Q</b><span>VLAN Tagging</span></div><div><b>802.1X</b><span>포트 기반 인증</span></div><div><b>802.16</b><span>WiMAX</span></div></div>
+        <ul class="key-list"><li><b>CSMA/CD</b>: 전송 전 감지 → 충돌 감지 → Jam 신호 → Binary Exponential Backoff. 전이중 Switch 환경에서는 충돌 없음</li><li><b>CSMA/CA</b>: 무선은 충돌 감지가 어려워 IFS, Random Backoff, ACK, 선택적 RTS/CTS로 회피</li><li><b>MAC 주소</b>: 48비트(6바이트), 앞 24비트 OUI 제조사, 뒤 24비트 장치 식별</li><li><b>VLAN</b>: 물리 스위치를 논리적 브로드캐스트 도메인으로 분리. VLAN 간 통신은 L3 필요</li></ul>
+        <h3>Wi-Fi</h3>
+        <table><thead><tr><th>규격</th><th>주파수</th><th>이론상 특징</th></tr></thead><tbody><tr><td>802.11a</td><td>5GHz</td><td>54Mbps</td></tr><tr><td>802.11b</td><td>2.4GHz</td><td>11Mbps</td></tr><tr><td>802.11g</td><td>2.4GHz</td><td>54Mbps</td></tr><tr><td>802.11n (Wi-Fi 4)</td><td>2.4/5GHz</td><td>MIMO, 최대 600Mbps</td></tr><tr><td>802.11ac (Wi-Fi 5)</td><td>5GHz</td><td>MU-MIMO, 기가비트급</td></tr><tr><td>802.11ax (Wi-Fi 6)</td><td>2.4/5GHz</td><td>OFDMA, 고밀도 효율</td></tr></tbody></table>
+        <h3>케이블</h3>
+        <ul class="key-list"><li><b>UTP</b>: 저렴·설치 쉬움·전자기 간섭 영향. RJ-45. 이더넷 최대 구간 보통 100m</li><li><b>동축</b>: 중심 도체·절연체·차폐·외피. UTP보다 차폐 우수</li><li><b>광섬유</b>: Core·Cladding, 고속·장거리·EMI 무관·도청 어려움. 비싸고 접속 어려움</li><li><b>Single Mode</b>: 코어 좁음·장거리·레이저 / <b>Multi Mode</b>: 코어 넓음·단거리·LED</li><li><b>Straight</b>: 과거 다른 장비(PC-Switch) / <b>Crossover</b>: 같은 장비. 현재 Auto MDI-X가 자동 처리</li></ul>
+        <h3>RAID</h3>
+        <table><thead><tr><th>Level</th><th>방식</th><th>핵심</th></tr></thead><tbody><tr><td>0</td><td>Striping</td><td>빠름, 용량 100%, 장애 대비 없음</td></tr><tr><td>1</td><td>Mirroring</td><td>동일 복제, 안정성 높음, 용량 50%</td></tr><tr><td>5</td><td>분산 Parity</td><td>최소 3개, 1개 장애 허용</td></tr><tr><td>6</td><td>이중 Parity</td><td>최소 4개, 2개 장애 허용</td></tr><tr><td>10</td><td>1+0</td><td>Mirror 후 Stripe, 성능·안정성, 최소 4개</td></tr></tbody></table>
+        <h3>보안 용어</h3>
+        <div class="two-col"><div class="note-card"><h4>탐지·차단</h4><p><b>Firewall</b> 규칙 기반 필터링<br><b>IDS</b> 침입 탐지·경고<br><b>IPS</b> 탐지 후 능동 차단<br><b>WAF</b> 웹 공격 방어</p></div><div class="note-card"><h4>접속·암호화</h4><p><b>VPN</b> 공중망에 암호화 터널<br><b>IPSec</b> AH 인증·무결성, ESP 암호화 포함<br><b>SSH</b> 안전한 원격 접속<br><b>WPA2 AES / WPA3</b> 무선 보안</p></div></div>
+      </section>
+
+      <section class="summary-section" id="windows">
+        <div class="section-kicker">07 · NOS</div><h2>Windows Server</h2>
+        <h3>Active Directory</h3>
+        <ul class="key-list"><li><b>Domain</b>: 공통 DB·정책·인증을 공유하는 관리 단위</li><li><b>OU</b>: 한 도메인 안에서 부서별로 객체를 묶고 GPO·관리 권한을 위임하는 단위</li><li><b>Tree</b>: 연속된 DNS 이름의 도메인 집합 / <b>Forest</b>: 하나 이상의 Tree, AD 최상위 경계</li><li><b>Trust</b>: 서로 다른 도메인의 사용자 인증과 자원 접근을 연결</li><li><b>Global Catalog</b>: Forest 전체 객체의 일부 속성을 보관해 검색·로그온 지원</li><li><b>GPO</b>: 사용자·컴퓨터 설정을 Site/Domain/OU에 일괄 적용</li></ul>
+        <h3>DNS·DHCP·IIS</h3>
+        <table><thead><tr><th>역할</th><th>기출 포인트</th></tr></thead><tbody><tr><td>DNS</td><td>정방향 이름→IP, 역방향 IP→이름. Primary 수정 가능, Secondary 읽기 전용 복제. Stub은 NS·SOA·Glue만 보유</td></tr><tr><td>DHCP</td><td>Scope는 할당 범위, Exclusion은 제외, Reservation은 MAC에 특정 IP 고정, Lease는 임대 시간. 서버 인증 필요</td></tr><tr><td>IIS</td><td>Windows 웹·FTP 서버. 관리 실행 <code>inetmgr</code>, 기본 HTTP 80/HTTPS 443</td></tr><tr><td>Hyper-V</td><td>Type 1 하이퍼바이저 기반 가상화, 가상 Switch 제공, Checkpoint 지원</td></tr><tr><td>BitLocker</td><td>볼륨 전체 암호화, TPM과 함께 사용 가능</td></tr></tbody></table>
+        <h3>Windows 명령어</h3>
+        <div class="command-list"><div><code>ipconfig /all</code><span>IP·MAC·DHCP·DNS 등 상세 설정</span></div><div><code>ipconfig /release</code><span>DHCP 주소 반납</span></div><div><code>ipconfig /renew</code><span>DHCP 주소 갱신</span></div><div><code>ipconfig /flushdns</code><span>DNS 캐시 삭제</span></div><div><code>ping -t 주소</code><span>중단할 때까지 지속 Ping</span></div><div><code>tracert</code><span>목적지까지 경유 Router 추적</span></div><div><code>pathping</code><span>경로 추적 + 구간별 손실 통계</span></div><div><code>nslookup</code><span>DNS 질의</span></div><div><code>netstat -ano</code><span>연결·포트·PID 표시</span></div><div><code>route print</code><span>Routing Table 출력</span></div><div><code>arp -a</code><span>ARP Cache 표시</span></div><div><code>hostname</code><span>컴퓨터 이름 표시</span></div></div>
+        <h3>관리 도구와 로그</h3><ul class="key-list"><li><b>Event Viewer</b>: Application, Security, Setup, System, Forwarded Events</li><li><b>Performance Monitor</b>: Counter와 Data Collector Set으로 성능 수집</li><li><b>Resource Monitor</b>: CPU·Memory·Disk·Network 실시간 사용량</li><li><b>Shutdown Event Tracker</b>: 종료·재부팅 이유 기록</li><li><b>SMB</b>: Windows 파일·프린터 공유, TCP 445</li></ul>
+      </section>
+
+      <section class="summary-section high-yield" id="linux">
+        <div class="section-kicker">08 · NOS</div><h2>Linux 핵심 명령어와 설정 파일</h2>
+        <p class="lead">Linux는 명령어의 목적과 옵션을 묻는 문제가 반복됩니다. 직접 입력하는 모양으로 외우세요.</p>
+        <h3>파일·디렉터리·검색</h3>
+        <div class="command-list"><div><code>pwd</code><span>현재 경로</span></div><div><code>ls -al</code><span>숨김 포함 상세 목록</span></div><div><code>cp -r</code><span>디렉터리 재귀 복사</span></div><div><code>rm -rf</code><span>재귀 강제 삭제</span></div><div><code>mkdir -p</code><span>상위 경로까지 생성</span></div><div><code>find / -name '*.conf'</code><span>이름으로 검색</span></div><div><code>grep -i 'text' file</code><span>대소문자 무시 문자열 검색</span></div><div><code>more / less</code><span>페이지 단위 보기</span></div><div><code>head / tail -f</code><span>앞/뒤, 로그 실시간 확인</span></div><div><code>ln / ln -s</code><span>Hard / Symbolic Link</span></div></div>
+        <h3>권한·소유권·특수 권한</h3>
+        <div class="memory-box"><b>r = 4 · w = 2 · x = 1</b><span>소유자(User) · 그룹(Group) · 기타(Other) 순서</span></div>
+        <ul class="key-list"><li><code>chmod 755 file</code>: rwx r-x r-x / <code>chmod 644</code>: rw- r-- r--</li><li><code>chmod a-w file</code>: 모든 사용자의 쓰기 권한 제거 / <code>chmod o+r file</code>: 기타에 읽기 추가</li><li><code>chown user:group file</code>: 소유자·그룹 변경 / <code>chgrp group file</code>: 그룹 변경</li><li><b>SetUID 4000</b>: 실행 시 소유자 권한 / <b>SetGID 2000</b>: 그룹 권한 / <b>Sticky 1000</b>: 디렉터리에서 자기 파일만 삭제</li><li><code>lsattr</code> 속성 확인, <code>chattr +i</code> 변경·삭제 불가(immutable)</li><li>일반 파일 <code>-</code>, 디렉터리 <code>d</code>, Symbolic Link <code>l</code></li></ul>
+        <h3>프로세스·서비스·시스템</h3>
+        <div class="command-list"><div><code>ps -ef</code><span>전체 프로세스 스냅샷</span></div><div><code>top</code><span>프로세스·자원 실시간</span></div><div><code>kill -9 PID</code><span>프로세스 강제 종료</span></div><div><code>jobs / bg / fg</code><span>Shell 작업 관리</span></div><div><code>nohup 명령 &amp;</code><span>로그아웃 후에도 백그라운드 실행</span></div><div><code>systemctl status 서비스</code><span>systemd 서비스 상태</span></div><div><code>free -m</code><span>Memory·Swap 사용량</span></div><div><code>df -h / du -sh</code><span>File System / Directory 용량</span></div><div><code>mount</code><span>File System 연결·확인</span></div><div><code>uname -a</code><span>Kernel·시스템 정보</span></div></div>
+        <h3>네트워크·계정</h3>
+        <div class="command-list"><div><code>ip addr</code><span>Interface IP</span></div><div><code>ip route</code><span>Routing Table</span></div><div><code>ss -lntup</code><span>Listening Port·Process</span></div><div><code>netstat -an</code><span>모든 연결·Listening Port</span></div><div><code>dig / nslookup</code><span>DNS 질의</span></div><div><code>useradd / userdel</code><span>사용자 생성·삭제</span></div><div><code>passwd</code><span>비밀번호 변경</span></div><div><code>chage -W 10 user</code><span>만료 10일 전 경고</span></div><div><code>who / w</code><span>로그인 사용자</span></div><div><code>last / lastb</code><span>성공 / 실패 로그인 이력</span></div></div>
+        <h3>중요 디렉터리·파일</h3>
+        <table><thead><tr><th>경로</th><th>내용</th><th>경로</th><th>내용</th></tr></thead><tbody><tr><td>/etc</td><td>시스템 설정</td><td>/var</td><td>Log·Spool 등 가변 자료</td></tr><tr><td>/home</td><td>일반 사용자 Home</td><td>/root</td><td>root Home</td></tr><tr><td>/proc</td><td>Process·Kernel 가상 FS</td><td>/dev</td><td>장치 파일</td></tr><tr><td>/etc/passwd</td><td>계정 기본 정보</td><td>/etc/shadow</td><td>암호 Hash·정책</td></tr><tr><td>/etc/group</td><td>그룹 정보</td><td>/etc/resolv.conf</td><td>DNS Server</td></tr><tr><td>/etc/hosts</td><td>정적 이름-IP</td><td>/etc/fstab</td><td>부팅 시 Mount</td></tr></tbody></table>
+        <h3>Cron·VI·압축</h3>
+        <div class="memory-box"><b>분 시 일 월 요일 명령</b><span><code>0 10 * * 1 /etc/check.sh</code> = 매주 월요일 10:00</span></div>
+        <ul class="key-list"><li><code>crontab -l</code> 목록, <code>-e</code> 편집, <code>-r</code> 전체 삭제</li><li>VI: <code>i</code> 입력, <code>Esc</code> 명령, <code>:w</code> 저장, <code>:q</code> 종료, <code>:wq</code> 저장 종료, <code>:q!</code> 강제 종료</li><li>치환: <code>:%s/old/new/g</code> 전체 문서의 old를 new로 모두 변경</li><li><code>tar cvf a.tar dir</code> 묶기, <code>tar xvf</code> 풀기, gzip 포함은 <code>czvf / xzvf</code></li></ul>
+        <h3>Apache·BIND</h3>
+        <table><thead><tr><th>항목</th><th>정답 키워드</th></tr></thead><tbody><tr><td>Apache 설정</td><td><code>httpd.conf</code>, 포트는 <code>Listen</code>, 요청 대기시간은 <code>Timeout</code>, 기본 문서는 <code>DirectoryIndex</code></td></tr><tr><td>BIND 설정</td><td><code>/etc/named.conf</code>, Zone 파일은 보통 <code>/var/named</code>, Package·Service 이름 named</td></tr><tr><td>SOA</td><td>Serial 변경 번호, Refresh 갱신 주기, Retry 재시도, Expire 만료, Minimum/Negative TTL</td></tr><tr><td>Shell</td><td>사용자 명령을 해석해 Kernel에 전달. bash, sh, csh, ksh</td></tr><tr><td>Swap</td><td>Memory 부족 시 Disk를 가상 Memory로 사용. RAM보다 느림</td></tr><tr><td>Boot Loader</td><td>GRUB, 여러 OS Multi Boot 지원</td></tr></tbody></table>
+      </section>
+
+      <section class="summary-section final-sheet" id="last">
+        <div class="section-kicker">09 · LAST CHECK</div><h2>시험장 들어가기 전 마지막 암기장</h2>
+        <div class="last-grid">
+          <div><b>계층</b><p>암호·압축=6<br>신뢰·흐름=4<br>Routing=3<br>MAC·Frame=2</p></div>
+          <div><b>주소</b><p>MAC 48bit<br>IPv4 32bit<br>IPv6 128bit<br>Port 16bit</p></div>
+          <div><b>서브넷</b><p>/25 126<br>/26 62<br>/27 30<br>/28 14<br>/29 6<br>/30 2</p></div>
+          <div><b>Routing</b><p>RIP=15 Hop<br>OSPF=SPF<br>BGP=AS 간<br>Default=0/0</p></div>
+          <div><b>Mail</b><p>SMTP 25<br>POP3 110<br>IMAP 143<br>HTTPS 443</p></div>
+          <div><b>관리</b><p>DNS 53<br>DHCP 67/68<br>SNMP 161/162<br>SSH 22</p></div>
+          <div><b>RAID</b><p>0=Striping<br>1=Mirroring<br>5=분산 Parity<br>6=이중 Parity</p></div>
+          <div><b>Linux</b><p>권한 4·2·1<br>설정=/etc<br>Log=/var<br>Process=/proc</p></div>
+        </div>
+        <div class="final-cta"><div><b>읽었으면 바로 점검하세요.</b><span>틀린 문제는 해당 단원으로 돌아와 한 번 더 확인하면 됩니다.</span></div><a class="btn" href="quiz.html?mode=round">회차별 모의시험</a></div>
+      </section>
+    </main>
+    <footer class="site-footer">이 요약은 기출 핵심을 압축한 학습 자료입니다. 실제 시험의 모든 변형 문제와 점수를 보장하지는 않습니다.</footer>
   </div>
-
-  <div class="toc">
-    <a href="#osi">OSI 7계층</a>
-    <a href="#tcpip">TCP/IP 기초</a>
-    <a href="#ipaddr">IP주소·서브네팅</a>
-    <a href="#routing">라우팅</a>
-    <a href="#devices">네트워크 장비</a>
-    <a href="#apps">응용계층 프로토콜/포트</a>
-    <a href="#wireless">LAN·케이블·무선랜</a>
-    <a href="#security">네트워크 보안</a>
-    <a href="#winserver">윈도우 서버(NOS)</a>
-    <a href="#linux">리눅스(NOS)</a>
-  </div>
-
-  <section class="summary-section" id="osi">
-    <h2>1. OSI 7계층</h2>
-    <table>
-      <tr><th>계층</th><th>이름</th><th>핵심 역할</th><th>대표 장비/프로토콜</th></tr>
-      <tr><td>7</td><td>응용 계층</td><td>사용자와 직접 상호작용하는 응용 서비스 제공</td><td>HTTP, FTP, DNS, SMTP, Telnet</td></tr>
-      <tr><td>6</td><td>표현 계층</td><td>데이터 형식 변환, 암호화·압축</td><td>JPEG, SSL/TLS(암호화)</td></tr>
-      <tr><td>5</td><td>세션 계층</td><td>통신 세션 연결·유지·종료 관리</td><td>NetBIOS, RPC</td></tr>
-      <tr><td>4</td><td>전송 계층</td><td>종단 간 신뢰성 있는 데이터 전송, 흐름/혼잡 제어</td><td>TCP, UDP</td></tr>
-      <tr><td>3</td><td>네트워크 계층</td><td>논리 주소(IP) 기반 경로 설정(라우팅)</td><td>IP, ICMP, ARP, 라우터</td></tr>
-      <tr><td>2</td><td>데이터링크 계층</td><td>물리 주소(MAC) 기반 프레임 전송, 오류 검출</td><td>이더넷, MAC, 스위치, 브리지</td></tr>
-      <tr><td>1</td><td>물리 계층</td><td>비트를 전기적 신호로 변환하여 전송</td><td>케이블, 허브, 리피터, 커넥터</td></tr>
-    </table>
-    <div class="tip">💡 암기 팁: <b>물-데-네-전-세-표-응</b> (아래→위) 또는 각 계층의 PDU(프레임/패킷/세그먼트)를 계층별로 구분해 기억하세요.
-      <br>PDU: 1계층=비트, 2계층=프레임, 3계층=패킷, 4계층=세그먼트(TCP)/데이터그램(UDP)</div>
-  </section>
-
-  <section class="summary-section" id="tcpip">
-    <h2>2. TCP/IP 기초</h2>
-    <h3>TCP vs UDP</h3>
-    <table>
-      <tr><th>구분</th><th>TCP</th><th>UDP</th></tr>
-      <tr><td>연결 방식</td><td>연결지향형 (3-way handshake)</td><td>비연결형</td></tr>
-      <tr><td>신뢰성</td><td>높음 (재전송, 순서제어)</td><td>낮음 (신뢰성 보장 안함)</td></tr>
-      <tr><td>흐름/혼잡 제어</td><td>있음</td><td>없음</td></tr>
-      <tr><td>속도</td><td>상대적으로 느림</td><td>빠름</td></tr>
-      <tr><td>사용 예</td><td>웹(HTTP), 메일, 파일전송</td><td>DNS 질의, 스트리밍, VoIP</td></tr>
-    </table>
-    <h3>3-way handshake</h3>
-    <p><code>SYN</code> → <code>SYN+ACK</code> → <code>ACK</code> 순서로 연결을 설정하며, 연결 종료 시에는 4-way handshake(<code>FIN → ACK → FIN → ACK</code>)를 사용합니다.</p>
-  </section>
-
-  <section class="summary-section" id="ipaddr">
-    <h2>3. IP주소 체계와 서브네팅</h2>
-    <h3>클래스별 IP 주소</h3>
-    <table>
-      <tr><th>클래스</th><th>첫 옥텟 범위</th><th>기본 서브넷마스크</th><th>용도</th></tr>
-      <tr><td>A</td><td>1 ~ 126</td><td>255.0.0.0 (/8)</td><td>대규모 네트워크</td></tr>
-      <tr><td>B</td><td>128 ~ 191</td><td>255.255.0.0 (/16)</td><td>중규모 네트워크</td></tr>
-      <tr><td>C</td><td>192 ~ 223</td><td>255.255.255.0 (/24)</td><td>소규모 네트워크</td></tr>
-      <tr><td>D</td><td>224 ~ 239</td><td>-</td><td>멀티캐스트</td></tr>
-      <tr><td>E</td><td>240 ~ 255</td><td>-</td><td>연구/실험용</td></tr>
-    </table>
-    <h3>서브넷 마스크 빠른 계산표 (/24 기준 분할)</h3>
-    <table>
-      <tr><th>프리픽스</th><th>서브넷마스크</th><th>호스트 비트</th><th>사용 가능 호스트 수</th></tr>
-      <tr><td>/24</td><td>255.255.255.0</td><td>8</td><td>254</td></tr>
-      <tr><td>/25</td><td>255.255.255.128</td><td>7</td><td>126</td></tr>
-      <tr><td>/26</td><td>255.255.255.192</td><td>6</td><td>62</td></tr>
-      <tr><td>/27</td><td>255.255.255.224</td><td>5</td><td>30</td></tr>
-      <tr><td>/28</td><td>255.255.255.240</td><td>4</td><td>14</td></tr>
-      <tr><td>/29</td><td>255.255.255.248</td><td>3</td><td>6</td></tr>
-      <tr><td>/30</td><td>255.255.255.252</td><td>2</td><td>2</td></tr>
-    </table>
-    <div class="tip">💡 공식: 사용 가능 호스트 수 = 2<sup>호스트비트수</sup> − 2 (네트워크 주소, 브로드캐스트 주소 제외)</div>
-    <h3>사설 IP 대역 (Private IP)</h3>
-    <ul>
-      <li>클래스 A: 10.0.0.0 ~ 10.255.255.255</li>
-      <li>클래스 B: 172.16.0.0 ~ 172.31.255.255</li>
-      <li>클래스 C: 192.168.0.0 ~ 192.168.255.255</li>
-    </ul>
-  </section>
-
-  <section class="summary-section" id="routing">
-    <h2>4. 라우팅 프로토콜</h2>
-    <table>
-      <tr><th>구분</th><th>대표 프로토콜</th><th>특징</th></tr>
-      <tr><td>거리벡터 방식</td><td>RIP</td><td>홉 카운트 기반, 최대 15홉, 소규모 네트워크에 적합</td></tr>
-      <tr><td>링크상태 방식</td><td>OSPF</td><td>최단경로우선(SPF) 알고리즘, 대규모 네트워크에 적합, 수렴 속도 빠름</td></tr>
-      <tr><td>하이브리드/EGP</td><td>BGP</td><td>ISP 등 서로 다른 AS(자율시스템) 간 라우팅에 사용</td></tr>
-    </table>
-    <p>정적 라우팅(Static)은 관리자가 직접 경로를 설정, 동적 라우팅(Dynamic)은 프로토콜이 자동으로 최적 경로를 계산합니다.</p>
-  </section>
-
-  <section class="summary-section" id="devices">
-    <h2>5. 네트워크 장비 (OSI 계층별)</h2>
-    <table>
-      <tr><th>장비</th><th>동작 계층</th><th>설명</th></tr>
-      <tr><td>리피터 / 허브</td><td>1계층</td><td>신호 증폭·중계, 충돌 도메인 공유</td></tr>
-      <tr><td>브리지 / L2 스위치</td><td>2계층</td><td>MAC 주소 기반 프레임 전달, 충돌 도메인 분리</td></tr>
-      <tr><td>라우터 / L3 스위치</td><td>3계층</td><td>IP 기반 경로 선택, 서로 다른 네트워크 연결, 브로드캐스트 도메인 분리</td></tr>
-      <tr><td>게이트웨이</td><td>4~7계층</td><td>서로 다른 프로토콜 체계를 변환하여 연결</td></tr>
-      <tr><td>로드밸런서 / 방화벽</td><td>4~7계층</td><td>트래픽 분산 및 보안 정책 적용</td></tr>
-    </table>
-  </section>
-
-  <section class="summary-section" id="apps">
-    <h2>6. 응용계층 프로토콜과 포트 번호</h2>
-    <table>
-      <tr><th>포트</th><th>프로토콜</th><th>용도</th></tr>
-      <tr><td>20 / 21</td><td>FTP</td><td>파일 전송 (데이터/제어)</td></tr>
-      <tr><td>22</td><td>SSH</td><td>원격 접속(암호화)</td></tr>
-      <tr><td>23</td><td>Telnet</td><td>원격 접속(평문)</td></tr>
-      <tr><td>25</td><td>SMTP</td><td>메일 발송</td></tr>
-      <tr><td>53</td><td>DNS</td><td>도메인 이름 ↔ IP 주소 변환</td></tr>
-      <tr><td>67 / 68</td><td>DHCP</td><td>IP 주소 자동 할당</td></tr>
-      <tr><td>80</td><td>HTTP</td><td>웹 서비스</td></tr>
-      <tr><td>110</td><td>POP3</td><td>메일 수신</td></tr>
-      <tr><td>143</td><td>IMAP</td><td>메일 수신(서버 보관)</td></tr>
-      <tr><td>443</td><td>HTTPS</td><td>암호화된 웹 서비스</td></tr>
-      <tr><td>161</td><td>SNMP</td><td>네트워크 장비 관리</td></tr>
-    </table>
-  </section>
-
-  <section class="summary-section" id="wireless">
-    <h2>7. LAN·케이블·무선랜</h2>
-    <ul>
-      <li><b>UTP 케이블 카테고리</b>: Cat5(100Mbps), Cat5e(1Gbps), Cat6(1~10Gbps), Cat6a/Cat7(10Gbps 이상)</li>
-      <li><b>다이렉트 케이블</b>: 서로 다른 장비 연결(PC-스위치) / <b>크로스 케이블</b>: 같은 종류 장비 연결(PC-PC, 스위치-스위치)</li>
-      <li><b>광케이블</b>: 단일모드(장거리), 다중모드(단거리), 전자기 간섭 없음, 고속 전송</li>
-      <li><b>무선랜 표준(IEEE 802.11)</b>: a/b/g/n/ac/ax 순으로 발전, 주파수 대역 2.4GHz·5GHz</li>
-      <li><b>CSMA/CD</b>: 유선랜(이더넷)의 충돌 감지 방식 / <b>CSMA/CA</b>: 무선랜의 충돌 회피 방식</li>
-    </ul>
-  </section>
-
-  <section class="summary-section" id="security">
-    <h2>8. 네트워크 보안</h2>
-    <ul>
-      <li><b>방화벽(Firewall)</b>: 정해진 규칙에 따라 패킷을 허용/차단, 내부망과 외부망 경계에 위치</li>
-      <li><b>IDS</b>(침입탐지시스템): 공격을 탐지하고 알림만 수행 / <b>IPS</b>(침입방지시스템): 탐지 후 자동 차단까지 수행</li>
-      <li><b>VPN</b>: 공중망을 통해 암호화된 사설 터널을 구성하여 안전하게 통신</li>
-      <li><b>DoS/DDoS</b>: 서비스 거부 공격으로 다수의 트래픽을 발생시켜 정상 서비스를 방해</li>
-      <li><b>NAT</b>: 사설 IP ↔ 공인 IP를 변환하여 내부 네트워크를 외부로부터 은닉, IP 주소 절약</li>
-    </ul>
-  </section>
-
-  <section class="summary-section" id="winserver">
-    <h2>9. 윈도우 서버 (NOS)</h2>
-    <ul>
-      <li><b>Active Directory(AD)</b>: 사용자·컴퓨터·그룹 등을 중앙에서 관리하는 디렉터리 서비스</li>
-      <li><b>DNS 서버 역할</b>: 도메인 이름을 IP 주소로 변환, AD와 통합되어 도메인 컨트롤러 위치 확인에도 사용</li>
-      <li><b>DHCP 서버 역할</b>: 클라이언트에게 IP 주소, 게이트웨이, DNS 등을 자동 할당(임대)</li>
-      <li><b>NTFS 권한</b>: 파일/폴더 단위의 세밀한 접근 제어(ACL), 암호화(EFS), 압축 지원</li>
-      <li><b>그룹 정책(GPO)</b>: 도메인 내 사용자·컴퓨터에 정책을 일괄 적용</li>
-    </ul>
-  </section>
-
-  <section class="summary-section" id="linux">
-    <h2>10. 리눅스 (NOS)</h2>
-    <h3>자주 나오는 명령어</h3>
-    <table>
-      <tr><th>명령어</th><th>설명</th></tr>
-      <tr><td><code>ls -l</code></td><td>파일 목록을 상세 정보와 함께 출력</td></tr>
-      <tr><td><code>pwd</code></td><td>현재 작업 디렉토리 경로 출력</td></tr>
-      <tr><td><code>chmod</code></td><td>파일/디렉토리 권한 변경 (예: chmod 755)</td></tr>
-      <tr><td><code>chown</code></td><td>파일/디렉토리 소유자·그룹 변경</td></tr>
-      <tr><td><code>ps -ef</code></td><td>현재 실행 중인 전체 프로세스 목록 확인</td></tr>
-      <tr><td><code>ifconfig / ip addr</code></td><td>네트워크 인터페이스 정보 확인·설정</td></tr>
-      <tr><td><code>netstat -an</code></td><td>네트워크 연결 상태·포트 확인</td></tr>
-      <tr><td><code>kill</code></td><td>프로세스 종료 (PID 지정)</td></tr>
-    </table>
-    <h3>파일 권한 표기</h3>
-    <p><code>rwxr-xr--</code> 형태로 소유자(owner)/그룹(group)/기타(other) 순서로 읽기(r)·쓰기(w)·실행(x) 권한을 나타내며, 숫자로는 r=4, w=2, x=1을 더해 표현합니다. (예: rwx=7, r-x=5, r--=4)</p>
-  </section>
-
-  <div class="tip" style="margin-top:24px;">
-    📌 이 요약노트는 계속 보강됩니다. 실제 기출문제가 추가되면 빈출 개념을 반영하여 내용을 업데이트할 예정입니다.
-  </div>
-
-  <footer class="site-footer">
-    네트워크관리사 2급 기출문제 학습 사이트 · 개인 학습용
-  </footer>
-</div>
+</body>
+</html>

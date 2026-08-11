@@ -1,42 +1,65 @@
-<title>문제 풀기 · 네트워크관리사 2급</title>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="css/style.css" />
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="네트워크관리사 2급 기출문제 풀이" />
+  <title>문제 풀기 · 네트워크관리사 2급</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="logo">N</span><span>네트워크관리사 2급</span></a>
+      <nav class="top-nav" aria-label="주요 메뉴">
+        <a href="index.html">홈</a>
+        <a href="summary.html">요약노트</a>
+        <a href="quiz.html?mode=wrong">오답노트</a>
+      </nav>
+    </header>
 
-<div class="wrap">
-  <header class="site-header">
-    <div class="brand"><span class="logo">🌐</span> 네트워크관리사 2급</div>
-    <nav class="top-nav">
-      <a href="index.html">홈</a>
-      <a href="summary.html">요약노트</a>
-      <a href="quiz.html?mode=wrong">오답노트</a>
-    </nav>
-  </header>
+    <main>
+      <div class="hero quiz-hero">
+        <div>
+          <span class="eyebrow">PRACTICE</span>
+          <h1 id="modeTitle">문제 풀기</h1>
+          <p id="modeDesc"></p>
+        </div>
+        <div id="timerCard" class="timer-card" hidden aria-live="polite">
+          <span>남은 시간</span>
+          <strong id="timerText">50:00</strong>
+        </div>
+      </div>
 
-  <div class="hero">
-    <h1 id="modeTitle">문제 풀기</h1>
-    <p id="modeDesc"></p>
+      <div id="roundControls" class="round-controls" hidden>
+        <label for="roundSelect">응시할 회차</label>
+        <select id="roundSelect" class="round-select"></select>
+        <button id="startRoundBtn" class="btn" type="button">시험 시작</button>
+        <span class="round-note">50문제 · 50분 · 제출 후 채점</span>
+      </div>
+
+      <div id="toolbar" class="quiz-toolbar" hidden>
+        <div class="progress-bar" aria-hidden="true"><div id="progressBar"></div></div>
+        <div id="progressText" class="toolbar-label"></div>
+        <div id="scoreText" class="toolbar-score"></div>
+      </div>
+
+      <div id="examNavigator" class="exam-navigator" hidden>
+        <div class="exam-navigator-head">
+          <span>답안 현황</span>
+          <span id="answerCount">0 / 50 답변</span>
+        </div>
+        <div id="questionMap" class="question-map"></div>
+      </div>
+
+      <div id="quizArea"></div>
+      <div id="resultArea" hidden></div>
+      <div id="emptyArea" hidden></div>
+    </main>
+
+    <footer class="site-footer">네트워크관리사 2급 기출문제 학습 · 진행 상황은 이 브라우저에 저장됩니다.</footer>
   </div>
-
-  <div id="roundControls" style="display:none; gap:10px; align-items:center; margin-bottom:16px;">
-    <select id="roundSelect" class="round-select"></select>
-    <button id="startRoundBtn" class="btn" type="button">이 회차 풀기</button>
-  </div>
-
-  <div id="toolbar" class="quiz-toolbar" style="display:none;">
-    <div class="progress-bar"><div id="progressBar"></div></div>
-    <div id="progressText" style="font-size:0.82rem; color:var(--text-muted); min-width:56px;"></div>
-    <div id="scoreText" style="font-size:0.82rem; font-weight:700; color:var(--primary-dark);"></div>
-  </div>
-
-  <div id="quizArea"></div>
-  <div id="resultArea" style="display:none;"></div>
-  <div id="emptyArea" style="display:none;"></div>
-
-  <footer class="site-footer">
-    네트워크관리사 2급 기출문제 학습 사이트 · 개인 학습용
-  </footer>
-</div>
-
-<script src="js/data.js"></script>
-<script src="js/quiz.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/quiz.js"></script>
+</body>
+</html>

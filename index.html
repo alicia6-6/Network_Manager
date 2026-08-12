@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="네트워크관리사 2급 기출문제 모의시험과 핵심 요약" />
   <title>네트워크관리사 2급 기출문제</title>
-  <link rel="stylesheet" href="css/style.css?v=20260811-2" />
+  <link rel="stylesheet" href="css/style.css?v=20260812-1" />
 </head>
 <body>
   <div class="wrap">
@@ -43,6 +43,7 @@
         <div class="stat-card"><div class="num" id="statRounds">-</div><div class="label">등록 회차</div></div>
         <div class="stat-card"><div class="num" id="statFreq">-</div><div class="label">빈출 문제</div></div>
         <div class="stat-card"><div class="num" id="statWrong">-</div><div class="label">나의 오답</div></div>
+        <div class="stat-card"><div class="num" id="statExam">-</div><div class="label">모의고사 응시</div></div>
       </div>
 
       <section class="block">
@@ -73,6 +74,7 @@
         document.getElementById("statFreq").textContent = getFrequentQuestions(qs, 2).length;
       } catch (error) { console.error(error); }
       document.getElementById("statWrong").textContent = getWrongQuestions().length;
+      document.getElementById("statExam").textContent = getExamAttempts().length;
     })();
   </script>
 </body>

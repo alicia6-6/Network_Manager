@@ -7,7 +7,7 @@ const els = Object.fromEntries([
   "toolbar", "roundControls", "roundSelect", "startRoundBtn", "progressBar",
   "progressText", "scoreText", "modeTitle", "modeDesc", "quizArea",
   "resultArea", "emptyArea", "timerCard", "timerText", "examNavigator",
-  "questionMap", "answerCount"
+  "questionMap", "answerCount", "roundHistory"
 ].map((id) => [id, document.getElementById(id)]));
 
 const MODE_INFO = {
@@ -39,6 +39,8 @@ async function init() {
     if (ROUND) els.roundSelect.value = ROUND;
     els.roundControls.hidden = false;
     els.startRoundBtn.addEventListener("click", startRoundSession);
+    els.roundSelect.addEventListener("change", renderRoundHistory);
+    renderRoundHistory();
     if (ROUND) startRoundSession();
     return;
   }
@@ -71,6 +73,18 @@ function startRoundSession() {
     updateTimer();
     if (state.remaining <= 0) submitExam(true);
   }, 1000);
+}
+
+function renderRoundHistory() {
+  const round = els.roundSelect.value;
+  const attempts = getExamAttempts(round).slice(0, 5);
+  if (!attempts.length) { els.roundHistory.hidden = true; els.roundHistory.innerHTML = ""; return; }
+  els.roundHistory.hidden = false;
+  els.roundHistory.innerHTML = `<span class="round-history-label">이 회차 응시 기록</span><div class="round-history-list">${attempts.map((a) => {
+    const date = new Date(a.submittedAt);
+    const dateText = Number.isNaN(date.getTime()) ? "" : `${date.getMonth() + 1}/${date.getDate()}`;
+    return `<span class="round-history-item">${a.score}점<small>${dateText}</small></span>`;
+  }).join("")}</div>`;
 }
 
 function beginSequentialSession() {
@@ -120,20 +134,21 @@ function renderQuestionCard(q, opts = {}) {
       <div class="quiz-actions">
         <div class="action-group">
           <a class="btn secondary" href="index.html">나가기</a>
-          ${MODE === "random" ? `<button class="btn ai-share-trigger" id="shareBtn" type="button">AI에게 질문</button>` : ""}
+          ${MODE === "random" ? `<button class="btn ai-share-trigger" id="shareBtn-main" type="button">AI에게 질문</button>` : ""}
         </div>
         <div class="action-group">
           ${state.exam && state.index > 0 ? `<button class="btn ghost" id="prevBtn" type="button">이전</button>` : ""}
           ${state.exam ? `<button class="btn ghost" id="nextBtn" type="button">${state.index === state.queue.length - 1 ? "처음으로" : "다음"}</button><button class="btn submit-btn" id="submitBtn" type="button">답안 제출</button>` : `<button class="btn" id="nextBtn" type="button" ${state.currentAnswered ? "" : "disabled"}>다음 문제</button>`}
         </div>
       </div>
-      ${MODE === "random" ? `<div class="ai-share-menu" id="aiShareMenu" hidden>
-        <div><strong>어디에 질문할까요?</strong><span>문제와 보기가 복사되고 새 창이 열립니다.</span></div>
+      ${MODE === "random" ? `<div class="ai-share-menu" id="aiShareMenu-main" hidden>
+        <div><strong>어디에 질문할까요?</strong><span>문제와 보기 내용이 복사되고 새 창이 열립니다.</span></div>
         <div class="ai-share-links">
-          <a id="chatgptLink" class="ai-link chatgpt" href="#" target="_blank" rel="noopener noreferrer"><b>ChatGPT</b><small>OpenAI</small></a>
-          <a id="geminiLink" class="ai-link gemini" href="#" target="_blank" rel="noopener noreferrer"><b>Gemini</b><small>Google</small></a>
+          <a id="chatgptLink-main" class="ai-link chatgpt" href="#" target="_blank" rel="noopener noreferrer"><b>ChatGPT</b><small>OpenAI</small></a>
+          <a id="geminiLink-main" class="ai-link gemini" href="#" target="_blank" rel="noopener noreferrer"><b>Gemini</b><small>Google</small></a>
+          <a id="claudeLink-main" class="ai-link claude" href="#" target="_blank" rel="noopener noreferrer"><b>Claude</b><small>Anthropic</small></a>
         </div>
-        <p id="shareStatus" aria-live="polite"></p>
+        <p id="shareStatus-main" aria-live="polite"></p>
       </div>` : ""}
     </article>`;
 
@@ -141,7 +156,7 @@ function renderQuestionCard(q, opts = {}) {
   document.getElementById("prevBtn")?.addEventListener("click", () => goToQuestion(state.index - 1));
   document.getElementById("nextBtn")?.addEventListener("click", () => state.exam ? goToQuestion((state.index + 1) % state.queue.length) : goNext());
   document.getElementById("submitBtn")?.addEventListener("click", () => submitExam(false));
-  if (MODE === "random") setupAiShare(q);
+  if (MODE === "random") setupAiWidget(q, "main", () => state.lastChoice);
 }
 
 function renderQuestionMaterial(q) {
@@ -151,22 +166,39 @@ function renderQuestionMaterial(q) {
   return text + original;
 }
 
-function buildAiPrompt(q) {
+function buildAiPrompt(q, chosenIdx) {
   const choices = q.choices.map((choice, index) => `${index + 1}. ${choice}`).join("\n");
-  const selected = state.lastChoice ? `\n내가 선택한 답: ${state.lastChoice}번` : "";
+  const selected = chosenIdx ? `\n내가 선택한 답: ${chosenIdx}번` : "";
   const image = q.image ? `\n참고 이미지: ${new URL(q.image, location.href).href}` : q.imageText ? `\n문제 자료:\n${q.imageText}` : "";
   return `네트워크관리사 2급 문제를 풀고 있어. 아래 문제의 정답과 각 보기가 맞거나 틀린 이유를 초보자도 이해할 수 있게 설명해 줘.\n\n문제: ${q.question}${image}\n\n보기:\n${choices}${selected}`;
 }
 
-function setupAiShare(q) {
-  const trigger = document.getElementById("shareBtn");
-  const menu = document.getElementById("aiShareMenu");
-  const chatgpt = document.getElementById("chatgptLink");
-  const gemini = document.getElementById("geminiLink");
+function renderAiWidget(idSuffix) {
+  return `<button class="btn ai-share-trigger" id="shareBtn-${idSuffix}" type="button">AI에게 질문</button>
+    <div class="ai-share-menu" id="aiShareMenu-${idSuffix}" hidden>
+      <div><strong>어디에 질문할까요?</strong><span>문제와 보기 내용이 복사되고 새 창이 열립니다.</span></div>
+      <div class="ai-share-links">
+        <a id="chatgptLink-${idSuffix}" class="ai-link chatgpt" href="#" target="_blank" rel="noopener noreferrer"><b>ChatGPT</b><small>OpenAI</small></a>
+        <a id="geminiLink-${idSuffix}" class="ai-link gemini" href="#" target="_blank" rel="noopener noreferrer"><b>Gemini</b><small>Google</small></a>
+        <a id="claudeLink-${idSuffix}" class="ai-link claude" href="#" target="_blank" rel="noopener noreferrer"><b>Claude</b><small>Anthropic</small></a>
+      </div>
+      <p id="shareStatus-${idSuffix}" aria-live="polite"></p>
+    </div>`;
+}
+
+function setupAiWidget(q, idSuffix, getChosen) {
+  const trigger = document.getElementById(`shareBtn-${idSuffix}`);
+  const menu = document.getElementById(`aiShareMenu-${idSuffix}`);
+  const chatgpt = document.getElementById(`chatgptLink-${idSuffix}`);
+  const gemini = document.getElementById(`geminiLink-${idSuffix}`);
+  const claude = document.getElementById(`claudeLink-${idSuffix}`);
+  const status = document.getElementById(`shareStatus-${idSuffix}`);
+  if (!trigger) return;
   const refreshLinks = () => {
-    const encoded = encodeURIComponent(buildAiPrompt(q));
+    const encoded = encodeURIComponent(buildAiPrompt(q, getChosen()));
     chatgpt.href = `https://chatgpt.com/?q=${encoded}`;
     gemini.href = `https://gemini.google.com/app?text=${encoded}`;
+    claude.href = `https://claude.ai/new?q=${encoded}`;
   };
   refreshLinks();
   trigger.addEventListener("click", () => {
@@ -174,12 +206,12 @@ function setupAiShare(q) {
     menu.hidden = !menu.hidden;
     trigger.setAttribute("aria-expanded", String(!menu.hidden));
   });
-  [chatgpt, gemini].forEach((link) => link.addEventListener("click", async () => {
+  [chatgpt, gemini, claude].forEach((link) => link.addEventListener("click", async () => {
     try {
-      await navigator.clipboard.writeText(buildAiPrompt(q));
-      document.getElementById("shareStatus").textContent = "질문을 복사했습니다. 입력창이 비어 있으면 붙여넣어 주세요.";
+      await navigator.clipboard.writeText(buildAiPrompt(q, getChosen()));
+      status.textContent = "질문 내용을 복사했습니다. 입력창이 비어 있으면 붙여넣어 주세요.";
     } catch {
-      document.getElementById("shareStatus").textContent = "새 창에서 문제와 보기를 붙여넣어 질문해 주세요.";
+      status.textContent = "새 창에서 문제와 보기를 붙여넣어 질문해 주세요.";
     }
   }));
 }
@@ -232,6 +264,17 @@ function submitExam(autoSubmitted) {
     return sum + (right ? 1 : 0);
   }, 0);
   state.answered = Object.keys(state.answers).length;
+  if (state.exam) {
+    saveExamAttempt({
+      round: ROUND,
+      score: Math.round((state.correct / state.queue.length) * 100),
+      correct: state.correct,
+      total: state.queue.length,
+      answered: state.answered,
+      submittedAt: new Date().toISOString(),
+      autoSubmitted: Boolean(autoSubmitted),
+    });
+  }
   renderResult(autoSubmitted);
 }
 
@@ -260,11 +303,13 @@ function renderResult(autoSubmitted = false) {
         ${renderQuestionMaterial(q)}
         <ol class="review-choices">${choices}</ol>
         <div class="review-explanation"><b>해설</b><p>${escapeHtml(q.explanation || "해설이 등록되지 않았습니다.")}</p></div>
+        <div class="review-ai">${renderAiWidget(`rev${i}`)}</div>
       </div>
     </details>`;
   }).join("") : "";
   els.resultArea.innerHTML = `<section class="result-card"><span class="eyebrow">RESULT</span><h2>${autoSubmitted ? "시간이 종료되어 자동 제출됐습니다" : "채점이 완료됐습니다"}</h2><div class="score">${state.exam ? `${examScore}<small> / 100점</small>` : `${state.correct}<small> / ${total}문제</small>`}</div><div class="result-rate">${state.correct}문제 정답 · 정답률 ${rate}% · ${state.answered}문제 응답</div><div class="result-actions"><button class="btn secondary" id="retryBtn" type="button">다시 풀기</button><a class="btn" href="index.html">홈으로</a></div></section>${reviewRows ? `<section class="review-list"><div class="review-heading"><div><span class="eyebrow">ANSWER REVIEW</span><h2>전체 문제 다시 보기</h2></div><div class="review-filters"><button class="active" type="button" data-filter="all">전체</button><button type="button" data-filter="wrong">오답</button><button type="button" data-filter="correct">정답</button><button type="button" data-filter="unanswered">미응답</button></div></div>${reviewRows}</section>` : ""}`;
-  document.getElementById("retryBtn").addEventListener("click", () => MODE === "round" ? (els.roundControls.hidden = false, els.resultArea.hidden = true, els.toolbar.hidden = true) : location.reload());
+  document.getElementById("retryBtn").addEventListener("click", () => MODE === "round" ? (els.roundControls.hidden = false, els.resultArea.hidden = true, els.toolbar.hidden = true, renderRoundHistory()) : location.reload());
+  if (state.exam) state.queue.forEach((q, i) => setupAiWidget(q, `rev${i}`, () => state.answers[q.id]));
   document.querySelectorAll(".review-filters button").forEach((button) => button.addEventListener("click", () => {
     document.querySelectorAll(".review-filters button").forEach((item) => item.classList.toggle("active", item === button));
     const filter = button.dataset.filter;

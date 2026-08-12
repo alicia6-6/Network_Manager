@@ -1,6 +1,7 @@
 // 문제 데이터 로딩 및 공통 유틸리티
 const DATA_URL = "data/questions.json";
 const WRONG_NOTE_KEY = "nm2_wrong_note_v1";
+const EXAM_HISTORY_KEY = "nm2_exam_history_v1";
 
 let _cache = null;
 
@@ -97,4 +98,24 @@ function getWrongQuestions() {
 
 function clearWrongNote() {
   saveWrongNote({});
+}
+
+// ---- 모의고사 응시 기록 (localStorage) ----
+function loadExamHistory() {
+  try {
+    return JSON.parse(localStorage.getItem(EXAM_HISTORY_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function saveExamAttempt(entry) {
+  const history = loadExamHistory();
+  history.unshift(entry);
+  localStorage.setItem(EXAM_HISTORY_KEY, JSON.stringify(history.slice(0, 200)));
+}
+
+function getExamAttempts(round) {
+  const history = loadExamHistory();
+  return round ? history.filter((e) => e.round === round) : history;
 }

@@ -2,6 +2,8 @@
 
 정적 HTML/CSS/JS로 만든 기출문제 학습 사이트입니다. 빌드 과정 없이 GitHub Pages에 그대로 올려서 사용할 수 있습니다.
 
+🔗 **사이트 바로가기**: https://alicia6-6.github.io/Network_Manager/index.html
+
 ## 기능
 
 - **회차별 모의시험** (`quiz.html?mode=round`) — 회차를 골라 50분 타이머 + 문제 이동 맵으로 실전처럼 응시, 제출 후 점수·정답률·오답 리뷰 제공
@@ -77,3 +79,5 @@ python -m http.server 8000
 3. 잠시 후 `https://<사용자명>.github.io/<저장소명>/` 에서 접속 가능
 
 별도 빌드 스텝이 없으므로 push만 하면 바로 반영됩니다.
+
+현재 배포 주소: https://alicia6-6.github.io/Network_Manager/index.html

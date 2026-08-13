@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="네트워크관리사 2급 기출 핵심 요약노트" />
   <title>기출 핵심 요약노트 · 네트워크관리사 2급</title>
-  <link rel="stylesheet" href="css/style.css?v=20260813-1" />
+  <link rel="stylesheet" href="css/style.css?v=20260813-2" />
 </head>
 <body>
   <div class="wrap summary-wrap">
@@ -64,6 +64,7 @@
         </div>
         <h3>TCP와 UDP</h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b>택배로 비유하면 TCP는 <b>등기 우편</b>입니다. 상대방이 받았는지 확인하고, 순서대로, 빠진 것 없이 보내지만 그만큼 절차가 많아 느립니다. UDP는 <b>일반 우편</b>입니다. 확인 절차 없이 빠르게 보내지만 중간에 없어져도 알 수 없습니다. 그래서 파일 전송처럼 정확성이 중요하면 TCP, 실시간 영상 통화처럼 속도가 중요하고 한두 장면 끊겨도 괜찮으면 UDP를 씁니다.</div>
+        <figure class="study-visual"><img src="data/images/summary/tcp-handshake.png" alt="클라이언트와 서버 사이에서 TCP 연결 시 SYN, SYN+ACK, ACK를 주고받고 종료 시 FIN, ACK, FIN, ACK를 주고받는 순서도" loading="lazy" /><figcaption><b>TCP 연결과 종료 흐름</b><span>화살표 방향을 따라가면 연결은 세 번, 종료는 양쪽이 각각 닫기 때문에 네 번 확인하는 이유를 볼 수 있습니다.</span></figcaption></figure>
         <table><thead><tr><th>TCP</th><th>UDP</th></tr></thead><tbody><tr><td>연결형, 신뢰성, 순서·재전송·흐름 제어, 헤더 20바이트 이상</td><td>비연결형, 빠름, 보장 없음, 헤더 8바이트</td></tr><tr><td>HTTP(S), FTP, SSH, SMTP, POP3, IMAP</td><td>DHCP, TFTP, SNMP, 스트리밍</td></tr></tbody></table>
         <ul class="key-list">
           <li><b>3-way handshake</b>: TCP가 통신을 시작하기 전 나누는 세 번의 확인 대화입니다. "연결해도 될까?"(SYN) → "그래, 나도 준비됐어"(SYN+ACK) → "좋아, 시작하자"(ACK) 순서로 서로 준비가 됐는지 확인한 뒤에야 실제 데이터를 주고받습니다.</li>
@@ -92,6 +93,7 @@
           <tr><td>/24</td><td>255.255.255.0</td><td>256</td><td>254</td></tr><tr><td>/25</td><td>255.255.255.128</td><td>128</td><td>126</td></tr><tr><td>/26</td><td>255.255.255.192</td><td>64</td><td>62</td></tr><tr><td>/27</td><td>255.255.255.224</td><td>32</td><td>30</td></tr><tr><td>/28</td><td>255.255.255.240</td><td>16</td><td>14</td></tr><tr><td>/29</td><td>255.255.255.248</td><td>8</td><td>6</td></tr><tr><td>/30</td><td>255.255.255.252</td><td>4</td><td>2</td></tr>
         </tbody></table>
         <div class="worked-example"><b>예: 201.100.5.68/28</b><p>/28의 블록 크기는 16 → 구간은 0,16,32,48,<mark>64</mark>,80… → 68은 64~79 구간 → 네트워크 201.100.5.64, 브로드캐스트 .79, 사용 가능 .65~.78</p></div>
+        <figure class="study-visual"><img src="data/images/summary/subnetting-example.png" alt="201.100.5.68 슬래시 28 주소가 블록 크기 16인 64부터 79까지의 서브넷에 속하며 네트워크 주소는 64, 사용 가능 주소는 65부터 78, 브로드캐스트 주소는 79임을 보여주는 그림" loading="lazy" /><figcaption><b>/28 서브네팅을 눈으로 계산하기</b><span>68이 어느 16칸짜리 블록에 들어가는지 찾은 뒤, 블록의 처음과 끝을 네트워크·브로드캐스트 주소로 제외합니다.</span></figcaption></figure>
         <h3>IPv4 헤더와 IPv6<sup><a href="#fn22" id="fnref22" class="fnref">[22]</a></sup></h3>
         <ul class="key-list">
           <li><b>IPv4</b>: 32비트, 헤더 가변 20~60바이트, Header Checksum 존재, 라우터도 단편화 가능</li>
@@ -189,6 +191,7 @@
         <h3>VLAN·Trunk·PoE와 고속 전달<sup><a href="#fn30" id="fnref30" class="fnref">[30]</a></sup></h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b><b>VLAN</b>은 스위치 한 대를 실제로 쪼개지 않고도 부서별로 서로 다른 방처럼 나누는 기술입니다. 같은 VLAN끼리는 L2에서 통신하지만 다른 VLAN으로 가려면 Router나 L3 Switch가 필요합니다. 여러 VLAN의 데이터를 스위치 사이 케이블 하나로 나를 때는 프레임에 VLAN 번호표를 붙이는 <b>Trunk(802.1Q)</b>를 씁니다.</div>
         <ul class="key-list"><li><b>Access 포트</b>: 보통 PC 한 대가 연결되며 한 VLAN의 Untagged 프레임을 처리</li><li><b>Trunk/Tagged 포트</b>: 여러 VLAN의 프레임을 태그로 구별해 한 링크로 전달</li><li><b>VTP</b>: Cisco 스위치 사이에서 VLAN 정보를 전파·동기화</li><li><b>PoE</b>: Ethernet 케이블 하나로 데이터와 전원을 함께 공급. 천장 AP·IP 전화·CCTV처럼 콘센트가 먼 장비에 유용</li><li><b>MPLS</b>: 목적지 IP를 매번 길게 조회하는 대신 짧은 Label로 빠르게 전달하고, 경로·품질 정책을 적용하기 쉽게 만든 기술</li></ul>
+        <figure class="study-visual"><img src="data/images/summary/vlan-trunk-poe.png" alt="영업팀 VLAN 10과 인사팀 VLAN 20이 Access 포트로 스위치에 연결되고 두 VLAN이 하나의 802.1Q Trunk를 공유하며 L3 스위치를 거쳐 VLAN 간 통신하는 구조와 PoE로 무선 AP에 데이터와 전원을 공급하는 그림" loading="lazy" /><figcaption><b>VLAN·Trunk·L3·PoE의 관계</b><span>PC는 한 VLAN의 Access 포트에 붙고, 여러 VLAN은 Trunk 한 가닥을 공유합니다. 서로 다른 VLAN의 통신은 L3 장비를 통과하며, PoE 선은 AP에 데이터와 전원을 함께 보냅니다.</span></figcaption></figure>
         <h3>DAS·NAS·SAN<sup><a href="#fn31" id="fnref31" class="fnref">[31]</a></sup></h3>
         <table><thead><tr><th>방식</th><th>연결 모습</th><th>비유</th></tr></thead><tbody><tr><td>DAS</td><td>서버에 디스크를 직접 연결</td><td>내 책상 서랍</td></tr><tr><td>NAS</td><td>일반 IP 네트워크에서 파일 단위 공유(NFS·SMB)</td><td>공용 파일 보관함</td></tr><tr><td>SAN</td><td>전용 고속망에서 서버에 블록 장치처럼 제공</td><td>멀리 있지만 내 디스크처럼 보이는 창고</td></tr></tbody></table>
         <h3>정보보안의 3요소(CIA)<sup><a href="#fn32" id="fnref32" class="fnref">[32]</a></sup></h3>

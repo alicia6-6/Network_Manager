@@ -36,7 +36,7 @@
       </nav>
 
       <section class="summary-section high-yield" id="osi">
-        <div class="section-kicker">01 · TCP/IP</div><h2>OSI 7계층과 TCP/IP</h2>
+        <div class="section-kicker">01 · TCP/IP</div><h2>OSI 7계층과 TCP/IP<sup><a href="#fn21" id="fnref21" class="fnref">[21]</a></sup></h2>
         <p class="lead">계층 문제는 <b>역할·장비·PDU·주소</b>를 한 묶음으로 외우면 대부분 해결됩니다.</p>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b>OSI 7계층은 "편지 한 통이 나에게서 상대방에게 도착하기까지의 과정"을 7단계로 쪼개놓은 것입니다. 내가 쓴 내용(응용 계층)을 봉투에 넣고(표현), 보낼 준비를 하고(세션), 등기로 보낼지 일반으로 보낼지 정하고(전송), 어느 우체국을 거쳐 갈지 정하고(네트워크), 실제 트럭에 실어(데이터링크), 도로를 달리는(물리) 것과 같은 흐름입니다. 컴퓨터도 데이터를 보낼 때 이 7단계를 순서대로 거치며, 시험에서는 "이 역할은 몇 계층인가?"를 자주 묻습니다.</div>
         <div class="memory-box"><b>응표세전네데물</b><span>응용 → 표현 → 세션 → 전송 → 네트워크 → 데이터링크 → 물리</span></div>
@@ -92,7 +92,7 @@
           <tr><td>/24</td><td>255.255.255.0</td><td>256</td><td>254</td></tr><tr><td>/25</td><td>255.255.255.128</td><td>128</td><td>126</td></tr><tr><td>/26</td><td>255.255.255.192</td><td>64</td><td>62</td></tr><tr><td>/27</td><td>255.255.255.224</td><td>32</td><td>30</td></tr><tr><td>/28</td><td>255.255.255.240</td><td>16</td><td>14</td></tr><tr><td>/29</td><td>255.255.255.248</td><td>8</td><td>6</td></tr><tr><td>/30</td><td>255.255.255.252</td><td>4</td><td>2</td></tr>
         </tbody></table>
         <div class="worked-example"><b>예: 201.100.5.68/28</b><p>/28의 블록 크기는 16 → 구간은 0,16,32,48,<mark>64</mark>,80… → 68은 64~79 구간 → 네트워크 201.100.5.64, 브로드캐스트 .79, 사용 가능 .65~.78</p></div>
-        <h3>IPv4 헤더와 IPv6</h3>
+        <h3>IPv4 헤더와 IPv6<sup><a href="#fn22" id="fnref22" class="fnref">[22]</a></sup></h3>
         <ul class="key-list">
           <li><b>IPv4</b>: 32비트, 헤더 가변 20~60바이트, Header Checksum 존재, 라우터도 단편화 가능</li>
           <li><b>TTL(Time To Live)</b>: 패킷이 라우터를 하나 지날 때마다 값이 1씩 줄어드는 "수명"입니다. 0이 되면 그 라우터가 패킷을 버리고 ICMP Time Exceeded 메시지를 보냅니다. 잘못된 경로 설정으로 패킷이 라우터 사이를 무한히 도는 것을 막아주는 안전장치입니다.</li>
@@ -102,7 +102,7 @@
           <li><b>::1</b> Loopback, <b>FE80::/10</b> Link-local, <b>FF00::/8</b> Multicast</li>
           <li>전환 기술: Dual Stack(두 방식을 동시에 사용), Tunneling(IPv6 패킷을 IPv4 안에 감싸서 전달), Translation(NAT64처럼 두 방식을 서로 변환)</li>
         </ul>
-        <h3>IPv6 이웃 탐색과 자동 주소 설정</h3>
+        <h3>IPv6 이웃 탐색과 자동 주소 설정<sup><a href="#fn23" id="fnref23" class="fnref">[23]</a></sup></h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b>IPv4에서는 새로 온 컴퓨터가 주변 장비의 MAC 주소를 알아내려고 ARP 방송을 합니다. IPv6는 방송 대신 <b>ICMPv6의 이웃 탐색(NDP)</b>을 씁니다. 새 입주자가 단지 전체에 소리치는 대신 필요한 이웃이 모인 단체방에 물어보는 셈이라 불필요한 트래픽이 줄어듭니다.</div>
         <ul class="key-list"><li><b>NS / NA</b>: Neighbor Solicitation은 “이 IPv6 주소의 주인이 누구냐”고 묻고, Neighbor Advertisement는 “내가 그 주인이다”라고 답합니다. IPv4의 ARP 역할과 도달 가능 여부 확인을 함께 담당합니다.</li><li><b>RS / RA</b>: 호스트가 Router Solicitation으로 라우터 정보를 요청하면, 라우터가 Router Advertisement로 Prefix·기본 경로 등의 정보를 알려줍니다.</li><li><b>SLAAC</b>: RA로 받은 Prefix와 자신의 Interface ID를 합쳐 DHCP 서버 없이 스스로 주소를 만드는 방식입니다. 만든 주소가 이미 사용 중인지 DAD(Duplicate Address Detection)로 확인합니다.</li><li><b>Hop Limit</b>: IPv4의 TTL과 같은 역할입니다. 라우터를 지날 때마다 1씩 줄며, 0이면 폐기됩니다. 이름은 달라도 “무한 순환 방지용 수명”이라는 원리는 같습니다.</li></ul>
         <div class="exam-trap"><b>기출 함정</b> IPv6에는 Broadcast가 없습니다. 한 장비는 Unicast, 그룹은 Multicast, 같은 주소를 가진 여러 장비 중 가까운 하나는 Anycast로 전달합니다.</div>
@@ -116,11 +116,11 @@
           <div><b>20/21</b><span>FTP 데이터/제어</span></div><div><b>22</b><span>SSH, SFTP</span></div><div><b>23</b><span>Telnet</span></div><div><b>25</b><span>SMTP</span></div><div><b>53</b><span>DNS</span></div><div><b>67/68</b><span>DHCP 서버/클라이언트</span></div><div><b>69</b><span>TFTP</span></div><div><b>80</b><span>HTTP</span></div><div><b>110</b><span>POP3</span></div><div><b>123</b><span>NTP</span></div><div><b>143</b><span>IMAP</span></div><div><b>161/162</b><span>SNMP/Trap</span></div><div><b>443</b><span>HTTPS</span></div><div><b>445</b><span>SMB</span></div><div><b>3389</b><span>RDP</span></div>
         </div>
         <div class="exam-trap"><b>기출 함정</b> DNS는 UDP 53을 주로 쓰지만 영역 전송이나 큰 응답은 TCP도 사용합니다. FTP는 TCP, TFTP는 UDP입니다.</div>
-        <h3>핵심 프로토콜</h3>
+        <h3>핵심 프로토콜<sup><a href="#fn24" id="fnref24" class="fnref">[24]</a></sup></h3>
         <table><thead><tr><th>프로토콜</th><th>정답 키워드</th></tr></thead><tbody>
           <tr><td>ARP / RARP</td><td>ARP: IP → MAC, RARP: MAC → IP(현재는 DHCP 사용)</td></tr><tr><td>ICMP</td><td>IP 오류 보고·진단, ping(Echo), traceroute(Time Exceeded). 데이터 전송용 아님</td></tr><tr><td>IGMP</td><td>IPv4 멀티캐스트 그룹 가입·탈퇴 관리</td></tr><tr><td>DHCP</td><td>DORA: Discover → Offer → Request → Ack, IP·마스크·Gateway·DNS 자동 할당</td></tr><tr><td>SNMP</td><td>Manager, Agent, MIB<sup><a href="#fn3" id="fnref3" class="fnref">[3]</a></sup>. Get/Set은 161, 비동기 Trap은 162</td></tr><tr><td>FTP</td><td>Active: 서버가 데이터 연결, Passive: 클라이언트가 서버의 임의 포트로 연결</td></tr><tr><td>NAT / PAT</td><td>NAT는 사설↔공인 변환, PAT는 포트까지 이용해 하나의 공인 IP를 다수가 공유</td></tr>
         </tbody></table>
-        <h3>DNS 레코드</h3>
+        <h3>DNS 레코드<sup><a href="#fn25" id="fnref25" class="fnref">[25]</a></sup></h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b>DNS는 "이름과 전화번호부"입니다. 사람은 <code>www.icqa.or.kr</code>처럼 외우기 쉬운 이름을 쓰고, 컴퓨터는 <code>210.103.175.224</code>처럼 숫자 주소(IP)로 통신하기 때문에, 둘을 연결해주는 장부가 필요합니다. 이 장부의 각 줄(레코드)마다 어떤 정보를 담는지가 다릅니다.</div>
         <table><thead><tr><th>레코드</th><th>의미</th><th>레코드</th><th>의미</th></tr></thead><tbody>
           <tr><td>A</td><td>이름 → IPv4</td><td>AAAA</td><td>이름 → IPv6</td></tr><tr><td>PTR</td><td>IP → 이름(역방향)</td><td>CNAME</td><td>별칭 → 실제 이름</td></tr><tr><td>MX</td><td>메일 서버</td><td>NS</td><td>권한 있는 네임서버</td></tr><tr><td>SOA</td><td>영역 권한·일련번호·갱신 값</td><td>SRV</td><td>서비스 위치·포트</td></tr><tr><td>TXT</td><td>문자 정보, SPF 등</td><td>TTL</td><td>캐시에 유지할 시간</td></tr>
@@ -133,7 +133,7 @@
       </section>
 
       <section class="summary-section" id="routing">
-        <div class="section-kicker">04 · TCP/IP</div><h2>라우팅·교환·네트워크 장비</h2>
+        <div class="section-kicker">04 · TCP/IP</div><h2>라우팅·교환·네트워크 장비<sup><a href="#fn26" id="fnref26" class="fnref">[26]</a></sup></h2>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b><b>라우팅</b>은 내비게이션과 같습니다. 목적지(IP 주소)까지 가는 여러 길 중에서 가장 나은 길을 골라 알려주는 것이 라우터의 역할입니다. RIP·OSPF·BGP는 그 "길을 찾는 방법(알고리즘)"이 서로 다른 라우팅 프로토콜입니다 — 홉(거쳐가는 라우터 수)만 세는 단순한 방법(RIP)도 있고, 회선 속도까지 고려하는 정교한 방법(OSPF)도 있습니다.</div>
         <table><thead><tr><th>프로토콜</th><th>방식 / 알고리즘</th><th>핵심 특징</th></tr></thead><tbody>
           <tr><td><b>RIP</b></td><td>거리 벡터 / Bellman-Ford<sup><a href="#fn4" id="fnref4" class="fnref">[4]</a></sup></td><td>Hop Count, 최대 15홉, 30초 갱신, 소규모</td></tr><tr><td><b>OSPF</b></td><td>링크 상태 / Dijkstra<sup><a href="#fn5" id="fnref5" class="fnref">[5]</a></sup> SPF</td><td>Cost, 빠른 수렴, Area, 대규모, IP Protocol 89</td></tr><tr><td><b>BGP</b></td><td>경로 벡터</td><td>AS<sup><a href="#fn6" id="fnref6" class="fnref">[6]</a></sup> 간 EGP<sup><a href="#fn7" id="fnref7" class="fnref">[7]</a></sup>, TCP 179, 인터넷 사업자 간 라우팅</td></tr>
@@ -167,10 +167,10 @@
         <table><thead><tr><th>형태</th><th>장점</th><th>단점</th></tr></thead><tbody><tr><td>Star</td><td>증설·장애 발견·중앙 관리 쉬움</td><td>중앙 장비 고장 시 전체 영향</td></tr><tr><td>Bus</td><td>저렴, 케이블 적음</td><td>충돌, 종단저항 필요, 주 케이블 고장</td></tr><tr><td>Ring</td><td>충돌 적고 순서 예측</td><td>노드/링 고장이 전체 영향, 증설 어려움</td></tr><tr><td>Mesh</td><td>신뢰성·우회 경로 우수</td><td>비용·배선 복잡, 완전 연결선 n(n-1)/2</td></tr><tr><td>Tree</td><td>계층적 확장·관리</td><td>상위 노드 의존</td></tr></tbody></table>
         <h3>프로토콜의 3요소와 캡슐화</h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b>대화를 하려면 어떤 말을 쓸지(<b>구문</b>), 그 말이 무슨 뜻인지(<b>의미</b>), 언제 어느 속도로 말할지(<b>타이밍</b>)를 약속해야 합니다. 네트워크 프로토콜도 똑같습니다. 데이터를 아래 계층으로 보낼 때 각 계층이 자기 업무용 표지인 헤더를 붙이는 것이 <b>캡슐화</b>이고, 받는 쪽에서 반대로 하나씩 벗기는 것이 역캡슐화입니다.</div>
-        <h3>교환 방식과 다중화</h3>
+        <h3>교환 방식과 다중화<sup><a href="#fn27" id="fnref27" class="fnref">[27]</a></sup></h3>
         <table><thead><tr><th>구분</th><th>동작 원리</th><th>쉽게 구별하기</th></tr></thead><tbody><tr><td>회선 교환</td><td>통신 전에 전용 경로를 확보</td><td>통화 중 길을 독점하는 전화</td></tr><tr><td>데이터그램</td><td>패킷마다 독립적으로 경로 선택</td><td>각 소포가 다른 길로 갈 수 있음</td></tr><tr><td>가상회선</td><td>먼저 논리 경로를 정하고 같은 경로로 전송</td><td>선로는 공유하지만 지정 노선을 따름</td></tr><tr><td>FDM / WDM</td><td>주파수 / 빛의 파장을 나눠 동시 전송</td><td>한 도로에 여러 차선</td></tr><tr><td>TDM</td><td>시간 슬롯을 차례로 배정</td><td>차례마다 발언권을 줌; 보낼 것이 없어도 고정 슬롯이면 낭비</td></tr></tbody></table>
         <h3>전송 손상</h3><ul class="key-list"><li><b>감쇠</b>: 거리가 멀수록 신호 세기가 약해짐. Repeater·증폭기로 보완</li><li><b>지연 왜곡</b>: 신호의 주파수 성분마다 도착 시간이 달라 원래 모양이 흐트러짐. 위상 왜곡이라고도 부릅니다.</li><li><b>잡음</b>: 외부 전기 신호가 섞임. 꼬임선은 두 선을 꼬아 간섭을 줄이고, 광섬유는 전자기 간섭에 강합니다.</li></ul>
-        <h3>PPP와 HDLC</h3>
+        <h3>PPP와 HDLC<sup><a href="#fn28" id="fnref28" class="fnref">[28]</a></sup></h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b>두 장비를 일대일 선로로 연결해 데이터를 보낼 때도 “프레임을 어떻게 포장하고 연결 상태를 어떻게 확인할지” 약속이 필요합니다. <b>HDLC</b>는 비트 중심의 동기식 데이터링크 프로토콜이고, <b>PPP</b>는 서로 다른 회사 장비도 함께 쓰기 쉽도록 만든 표준 Point-to-Point 프로토콜입니다.</div>
         <ul class="key-list"><li><b>PPP</b>: LCP로 링크를 설정·시험·종료하고, NCP로 IP 같은 네트워크 계층 프로토콜을 구성합니다. PAP 또는 CHAP 인증도 지원합니다.</li><li><b>PAP</b>: ID와 비밀번호를 그대로 보내는 단순 2단계 인증이라 도청에 약함</li><li><b>CHAP</b>: 서버가 보낸 Challenge에 비밀번호 Hash를 섞어 응답하는 3단계 인증. 비밀번호 자체를 선로에 보내지 않고 주기적으로 재인증할 수 있어 PAP보다 안전</li></ul>
       </section>
@@ -184,14 +184,14 @@
         <table><thead><tr><th>규격</th><th>주파수</th><th>이론상 특징</th></tr></thead><tbody><tr><td>802.11a</td><td>5GHz</td><td>54Mbps</td></tr><tr><td>802.11b</td><td>2.4GHz</td><td>11Mbps</td></tr><tr><td>802.11g</td><td>2.4GHz</td><td>54Mbps</td></tr><tr><td>802.11n (Wi-Fi 4)</td><td>2.4/5GHz</td><td>MIMO, 최대 600Mbps</td></tr><tr><td>802.11ac (Wi-Fi 5)</td><td>5GHz</td><td>MU-MIMO<sup><a href="#fn12" id="fnref12" class="fnref">[12]</a></sup>, 기가비트급</td></tr><tr><td>802.11ax (Wi-Fi 6)</td><td>2.4/5GHz</td><td>OFDMA<sup><a href="#fn13" id="fnref13" class="fnref">[13]</a></sup>, 고밀도 효율</td></tr></tbody></table>
         <h3>케이블</h3>
         <ul class="key-list"><li><b>UTP</b>: 저렴·설치 쉬움·전자기 간섭 영향. RJ-45. 이더넷 최대 구간 보통 100m</li><li><b>동축</b>: 중심 도체·절연체·차폐·외피. UTP보다 차폐 우수</li><li><b>광섬유</b>: Core·Cladding, 고속·장거리·EMI 무관·도청 어려움. 비싸고 접속 어려움</li><li><b>Single Mode</b>: 코어 좁음·장거리·레이저 / <b>Multi Mode</b>: 코어 넓음·단거리·LED</li><li><b>Straight</b>: 과거 다른 장비(PC-Switch) / <b>Crossover</b>: 같은 장비. 현재 Auto MDI-X가 자동 처리</li></ul>
-        <h3>RAID</h3>
+        <h3>RAID<sup><a href="#fn29" id="fnref29" class="fnref">[29]</a></sup></h3>
         <table><thead><tr><th>Level</th><th>방식</th><th>핵심</th></tr></thead><tbody><tr><td>0</td><td>Striping</td><td>빠름, 용량 100%, 장애 대비 없음</td></tr><tr><td>1</td><td>Mirroring</td><td>동일 복제, 안정성 높음, 용량 50%</td></tr><tr><td>5</td><td>분산 Parity</td><td>최소 3개, 1개 장애 허용</td></tr><tr><td>6</td><td>이중 Parity</td><td>최소 4개, 2개 장애 허용</td></tr><tr><td>10</td><td>1+0</td><td>Mirror 후 Stripe, 성능·안정성, 최소 4개</td></tr></tbody></table>
-        <h3>VLAN·Trunk·PoE와 고속 전달</h3>
+        <h3>VLAN·Trunk·PoE와 고속 전달<sup><a href="#fn30" id="fnref30" class="fnref">[30]</a></sup></h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b><b>VLAN</b>은 스위치 한 대를 실제로 쪼개지 않고도 부서별로 서로 다른 방처럼 나누는 기술입니다. 같은 VLAN끼리는 L2에서 통신하지만 다른 VLAN으로 가려면 Router나 L3 Switch가 필요합니다. 여러 VLAN의 데이터를 스위치 사이 케이블 하나로 나를 때는 프레임에 VLAN 번호표를 붙이는 <b>Trunk(802.1Q)</b>를 씁니다.</div>
         <ul class="key-list"><li><b>Access 포트</b>: 보통 PC 한 대가 연결되며 한 VLAN의 Untagged 프레임을 처리</li><li><b>Trunk/Tagged 포트</b>: 여러 VLAN의 프레임을 태그로 구별해 한 링크로 전달</li><li><b>VTP</b>: Cisco 스위치 사이에서 VLAN 정보를 전파·동기화</li><li><b>PoE</b>: Ethernet 케이블 하나로 데이터와 전원을 함께 공급. 천장 AP·IP 전화·CCTV처럼 콘센트가 먼 장비에 유용</li><li><b>MPLS</b>: 목적지 IP를 매번 길게 조회하는 대신 짧은 Label로 빠르게 전달하고, 경로·품질 정책을 적용하기 쉽게 만든 기술</li></ul>
-        <h3>DAS·NAS·SAN</h3>
+        <h3>DAS·NAS·SAN<sup><a href="#fn31" id="fnref31" class="fnref">[31]</a></sup></h3>
         <table><thead><tr><th>방식</th><th>연결 모습</th><th>비유</th></tr></thead><tbody><tr><td>DAS</td><td>서버에 디스크를 직접 연결</td><td>내 책상 서랍</td></tr><tr><td>NAS</td><td>일반 IP 네트워크에서 파일 단위 공유(NFS·SMB)</td><td>공용 파일 보관함</td></tr><tr><td>SAN</td><td>전용 고속망에서 서버에 블록 장치처럼 제공</td><td>멀리 있지만 내 디스크처럼 보이는 창고</td></tr></tbody></table>
-        <h3>정보보안의 3요소(CIA)</h3>
+        <h3>정보보안의 3요소(CIA)<sup><a href="#fn32" id="fnref32" class="fnref">[32]</a></sup></h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b>보안이라는 큰 목표는 결국 세 가지를 지키는 일입니다. <b>기밀성</b>은 허락된 사람만 보게 하는 것(자물쇠), <b>무결성</b>은 중간에 몰래 바뀌지 않았음을 보장하는 것(봉인 스티커), <b>가용성</b>은 필요할 때 정상적으로 서비스를 쓸 수 있는 것(문이 항상 열려 있음)입니다. 대부분의 보안 기술은 이 셋 중 하나 이상을 지키기 위한 수단입니다.</div>
         <div class="three-col"><div class="note-card"><h4>기밀성 (Confidentiality)</h4><p>허가되지 않은 사람은 내용을 못 보게 함. 암호화가 대표 수단</p></div><div class="note-card"><h4>무결성 (Integrity)</h4><p>전송·저장 중 데이터가 변조되지 않았음을 보장. 해시·CRC로 확인</p></div><div class="note-card"><h4>가용성 (Availability)</h4><p>필요할 때 서비스를 정상적으로 쓸 수 있음. DDoS는 이걸 깨뜨리는 공격</p></div></div>
         <h3>암호화와 인증서</h3>
@@ -201,17 +201,17 @@
           <li><b>공개키(비대칭키) 암호화</b>: 공개키로 잠그고 개인키로만 열 수 있음. 키 배포는 안전하지만 속도가 느려, 실제로는 처음 연결할 때만 공개키로 대칭키를 안전하게 교환하고 이후 통신은 대칭키로 처리(HTTPS 방식)</li>
           <li><b>인증서(PKI)</b>: 공인된 인증기관(CA)이 "이 공개키의 주인이 맞다"고 서명해준 전자 신분증. 웹사이트의 HTTPS 자물쇠 표시가 바로 이 인증서를 확인한 결과</li>
         </ul>
-        <h3>방화벽·프록시·탐지 장비</h3>
+        <h3>방화벽·프록시·탐지 장비<sup><a href="#fn33" id="fnref33" class="fnref">[33]</a></sup></h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b><b>방화벽</b>은 건물 정문의 경비원처럼 "정해진 규칙에 맞는 사람(트래픽)만 통과"시킵니다. <b>프록시</b>는 내부 사용자를 대신해 바깥과 통신해주는 대리인으로, 내부 IP를 감추거나 자주 찾는 페이지를 캐시해 속도를 높이는 데도 쓰입니다. IDS·IPS는 CCTV와 경비원의 차이와 비슷합니다 — IDS는 수상한 움직임을 "탐지하고 알리기만" 하고, IPS는 그 자리에서 "직접 막습니다".</div>
         <div class="two-col"><div class="note-card"><h4>탐지·차단</h4><p><b>Firewall</b> 규칙 기반 필터링(패킷 필터링형 → 상태 기반형 → 애플리케이션 계층까지 보는 방화벽 순으로 발전)<br><b>IDS</b> 침입 탐지·경고만 수행(수동적)<br><b>IPS</b> 탐지 후 트래픽 차단까지 수행(능동적)<br><b>WAF</b> 웹 애플리케이션 공격(SQL Injection<sup><a href="#fn14" id="fnref14" class="fnref">[14]</a></sup> 등) 방어</p></div><div class="note-card"><h4>접속·암호화</h4><p><b>Proxy</b> 내부↔외부 사이 대리 통신, 캐싱·IP 은닉<br><b>VPN</b> 공중망 위에 암호화된 가상 터널을 만들어 사설망처럼 사용<br><b>IPSec</b> AH<sup><a href="#fn15" id="fnref15" class="fnref">[15]</a></sup> 인증·무결성, ESP<sup><a href="#fn16" id="fnref16" class="fnref">[16]</a></sup> 암호화 포함<br><b>SSH</b> 안전한 원격 접속<br><b>WPA2 AES / WPA3</b> 무선 보안</p></div></div>
         <div class="exam-trap"><b>기출 함정</b> DDoS(분산 서비스 거부 공격)는 여러 대의 좀비 PC로 트래픽을 폭주시켜 서버를 마비시키는, <b>가용성</b>을 깨뜨리는 공격입니다. 데이터를 훔치거나 몰래 바꾸는 공격이 아니라는 점에서 기밀성·무결성 공격과 구분해서 물어봅니다.</div>
-        <h3>NAC와 웹 공격 구분</h3>
+        <h3>NAC와 웹 공격 구분<sup><a href="#fn34" id="fnref34" class="fnref">[34]</a></sup></h3>
         <ul class="key-list"><li><b>NAC(Network Access Control)</b>: 사용자·장비가 회사 네트워크에 들어오기 전에 신원과 보안 상태를 검사하고, 기준을 통과한 장비만 접속시키는 출입 통제입니다. 감염되거나 보안 패치가 안 된 PC는 격리할 수 있습니다.</li><li><b>XSS</b>: 공격자가 게시글 등에 악성 Script를 심어, 그 글을 보는 다른 사용자의 Browser에서 실행되게 하는 공격입니다. 방어의 핵심은 출력 인코딩과 입력 검증입니다.</li><li><b>SQL Injection</b>: 입력 칸에 SQL 조각을 넣어 Database 질의를 바꾸는 공격입니다. XSS가 사용자 Browser를 노린다면 SQL Injection은 서버 뒤 Database를 노린다는 차이가 있습니다.</li></ul>
       </section>
 
       <section class="summary-section" id="windows">
         <div class="section-kicker">07 · NOS</div><h2>Windows Server</h2>
-        <h3>Active Directory</h3>
+        <h3>Active Directory<sup><a href="#fn35" id="fnref35" class="fnref">[35]</a></sup></h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b>Active Directory(AD)는 회사의 "직원 명부 + 출입증 시스템"과 같습니다. 직원 한 명 한 명, 컴퓨터 한 대 한 대가 계정(객체)으로 등록되어 있고, 한 번 로그인(인증)하면 회사 안의 여러 서비스에 그 출입증으로 접근할 수 있습니다. <b>Domain</b>은 이 명부를 공유하는 하나의 회사 단위, <b>OU</b>는 그 안의 부서(인사팀, 개발팀)처럼 객체를 묶어 규칙을 다르게 적용하는 단위라고 생각하면 됩니다.</div>
         <ul class="key-list"><li><b>Domain</b>: 공통 DB·정책·인증을 공유하는 관리 단위</li><li><b>OU(조직 구성 단위)</b>: 한 도메인 안에서 부서별로 객체를 묶고 GPO·관리 권한을 위임하는 단위</li><li><b>Tree</b>: 연속된 DNS 이름의 도메인 집합(예: a.com과 그 하위 b.a.com) / <b>Forest</b>: 하나 이상의 Tree를 모은 것으로, AD 전체의 가장 바깥 경계</li><li><b>Trust(신뢰 관계)</b>: 서로 다른 도메인끼리 "이 도메인의 사용자를 우리 도메인 자원에도 접근하게 해주겠다"고 맺는 관계</li><li><b>Global Catalog</b>: Forest 전체 객체의 일부 정보를 모아둔 통합 검색 색인으로, 로그온·검색 속도를 높여줌</li><li><b>GPO(그룹 정책 개체)</b>: "바탕화면 배경을 통일한다", "USB를 못 쓰게 한다" 같은 설정을 Site/Domain/OU 단위로 한꺼번에 적용하는 정책 묶음</li></ul>
         <h3>DNS·DHCP·IIS</h3>
@@ -219,7 +219,7 @@
         <h3>Windows 명령어</h3>
         <div class="command-list"><div><code>ipconfig /all</code><span>IP·MAC·DHCP·DNS 등 상세 설정</span></div><div><code>ipconfig /release</code><span>DHCP 주소 반납</span></div><div><code>ipconfig /renew</code><span>DHCP 주소 갱신</span></div><div><code>ipconfig /flushdns</code><span>DNS 캐시 삭제</span></div><div><code>ping -t 주소</code><span>중단할 때까지 지속 Ping</span></div><div><code>tracert</code><span>목적지까지 경유 Router 추적</span></div><div><code>pathping</code><span>경로 추적 + 구간별 손실 통계</span></div><div><code>nslookup</code><span>DNS 질의</span></div><div><code>netstat -ano</code><span>연결·포트·PID 표시</span></div><div><code>route print</code><span>Routing Table 출력</span></div><div><code>arp -a</code><span>ARP Cache 표시</span></div><div><code>hostname</code><span>컴퓨터 이름 표시</span></div></div>
         <h3>관리 도구와 로그</h3><ul class="key-list"><li><b>Event Viewer</b>: Application, Security, Setup, System, Forwarded Events</li><li><b>Performance Monitor</b>: Counter와 Data Collector Set으로 성능 수집</li><li><b>Resource Monitor</b>: CPU·Memory·Disk·Network 실시간 사용량</li><li><b>Shutdown Event Tracker</b>: 종료·재부팅 이유 기록</li><li><b>SMB</b>: Windows 파일·프린터 공유, TCP 445</li></ul>
-        <h3>PowerShell·파일시스템·서버 기능</h3>
+        <h3>PowerShell·파일시스템·서버 기능<sup><a href="#fn36" id="fnref36" class="fnref">[36]</a></sup></h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b>명령 프롬프트가 한 줄씩 명령을 실행하는 전통적인 도구라면, <b>PowerShell</b>은 서버 관리 작업을 부품처럼 연결하고 반복 자동화할 수 있는 관리 언어입니다. 기존 DOS 명령도 대부분 사용할 수 있고, 텍스트가 아니라 구조화된 객체를 파이프로 넘긴다는 점이 핵심입니다.</div>
         <ul class="key-list"><li><b>NTFS</b>: 권한(ACL), 압축, EFS 암호화, 디스크 할당량을 지원하는 일반 Windows 파일시스템</li><li><b>ReFS</b>: 대용량·무결성·손상 복구에 초점을 둔 서버용 파일시스템. NTFS의 모든 기능과 완전 호환되는 것은 아닙니다.</li><li><b>FAT32</b>: 호환성은 좋지만 단일 파일 크기 4GB 제한, 세밀한 권한·EFS 기능이 없음</li><li><b>DNS Round Robin</b>: 같은 이름에 여러 IP를 등록하고 응답 순서를 돌려 간단히 부하를 분산. 서버 상태를 정교하게 판단하는 전용 Load Balancer와는 다릅니다.</li><li><b>WAP(Web Application Proxy)</b>: 외부 사용자가 내부 웹 애플리케이션에 접근하도록 대신 게시하는 역방향 프록시. 원격 PC 전체를 사내망에 붙이는 VPN과 구분합니다.</li></ul>
         <h3>백업 전략</h3>
@@ -250,9 +250,9 @@
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b>Cron은 리눅스의 "알람·예약 실행" 기능입니다. "몇 분, 몇 시, 며칠, 몇 월, 무슨 요일에" 이 명령을 실행하라고 다섯 칸에 나눠 적고, 값을 정하지 않은 칸은 별표(*)로 "아무 때나(매번)"라는 뜻을 나타냅니다.</div>
         <div class="memory-box"><b>분 시 일 월 요일 명령</b><span><code>0 10 * * 1 /etc/check.sh</code> = 매주 월요일 10:00</span></div>
         <ul class="key-list"><li><code>crontab -l</code> 목록, <code>-e</code> 편집, <code>-r</code> 전체 삭제</li><li>VI: <code>i</code> 입력, <code>Esc</code> 명령, <code>:w</code> 저장, <code>:q</code> 종료, <code>:wq</code> 저장 종료, <code>:q!</code> 강제 종료</li><li>치환: <code>:%s/old/new/g</code> 전체 문서의 old를 new로 모두 변경</li><li><code>tar cvf a.tar dir</code> 묶기, <code>tar xvf</code> 풀기, gzip 포함은 <code>czvf / xzvf</code></li></ul>
-        <h3>Apache·BIND</h3>
+        <h3>Apache·BIND<sup><a href="#fn38" id="fnref38" class="fnref">[38]</a></sup></h3>
         <table><thead><tr><th>항목</th><th>정답 키워드</th></tr></thead><tbody><tr><td>Apache 설정</td><td><code>httpd.conf</code>, 포트는 <code>Listen</code>, 요청 대기시간은 <code>Timeout</code>, 기본 문서는 <code>DirectoryIndex</code></td></tr><tr><td>BIND 설정</td><td><code>/etc/named.conf</code>, Zone 파일은 보통 <code>/var/named</code>, Package·Service 이름 named</td></tr><tr><td>SOA</td><td>Serial 변경 번호, Refresh 갱신 주기, Retry 재시도, Expire 만료, Minimum/Negative TTL</td></tr><tr><td>Shell</td><td>사용자 명령을 해석해 Kernel에 전달. bash, sh, csh, ksh</td></tr><tr><td>Swap</td><td>Memory 부족 시 Disk를 가상 Memory로 사용. RAM보다 느림</td></tr><tr><td>Boot Loader</td><td>GRUB<sup><a href="#fn19" id="fnref19" class="fnref">[19]</a></sup>, 여러 OS Multi Boot 지원</td></tr></tbody></table>
-        <h3>디스크·파일시스템과 Shell 실전</h3>
+        <h3>디스크·파일시스템과 Shell 실전<sup><a href="#fn37" id="fnref37" class="fnref">[37]</a></sup></h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b>새 디스크를 책장으로 보면 <code>fdisk</code>는 칸막이를 나누고, <code>mkfs</code>는 각 칸에 책을 꽂을 규칙을 만들며, <code>mount</code>는 그 책장을 내가 쓰는 방의 특정 위치에 연결합니다. <code>fsck</code>는 책의 색인과 실제 위치가 맞는지 검사하고 고치는 작업입니다.</div>
         <div class="command-list"><div><code>fdisk -l</code><span>디스크·파티션 확인/편집</span></div><div><code>mkfs</code><span>파티션에 파일시스템 생성</span></div><div><code>fsck</code><span>파일시스템 오류 검사·복구</span></div><div><code>LVM</code><span>여러 디스크 공간을 묶어 논리 볼륨을 유연하게 확장</span></div><div><code>nice / renice</code><span>프로세스 우선순위 조정; nice 값이 클수록 우선순위는 낮음</span></div><div><code>history</code><span>이전에 실행한 명령 확인</span></div><div><code>명령 &gt; file</code><span>출력을 새 파일로 저장(덮어쓰기)</span></div><div><code>명령 &gt;&gt; file</code><span>기존 파일 끝에 출력 추가</span></div></div>
         <ul class="key-list"><li><b>Runlevel</b>: 0 종료, 1 단일 사용자, 3 다중 사용자 텍스트, 5 다중 사용자 GUI, 6 재부팅. 따라서 <code>init 6</code>은 종료가 아니라 재부팅입니다.</li><li><b>find -exec</b>: 찾은 각 파일에 삭제·권한 변경 같은 후속 명령을 실행합니다.</li><li><b>Apache KeepAliveTimeout</b>: 지속 연결에서 다음 요청을 기다리는 시간. <b>LimitRequestBody</b>: 클라이언트 요청 본문의 최대 크기 제한</li><li><b>/var/log/dmesg</b>: 부팅 때 커널이 인식한 CPU·Memory·Disk·장치 메시지를 확인하는 로그</li></ul>
@@ -261,7 +261,7 @@
       <section class="summary-section" id="cloud">
         <div class="section-kicker">09 · 최신 기술</div><h2>클라우드·가상화·최신 네트워크 기술</h2>
         <p class="lead">최근 회차일수록 서버를 직접 사서 설치하는 대신 "빌려 쓰는" 개념의 문제 비중이 늘고 있습니다.</p>
-        <h3>클라우드 서비스 모델</h3>
+        <h3>클라우드 서비스 모델<sup><a href="#fn39" id="fnref39" class="fnref">[39]</a></sup></h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b>클라우드는 "서버·저장공간·소프트웨어를 사지 않고 필요한 만큼 빌려 쓰는 것"입니다. 집을 예로 들면, <b>IaaS</b>는 빈 땅과 골조만 빌리고 인테리어는 내가 다 하는 것(서버 하드웨어만 빌리고 OS·프로그램은 직접 설치), <b>PaaS</b>는 완공된 집을 빌려 가구만 들이는 것(OS·실행 환경은 준비되어 있고 내 프로그램만 올림), <b>SaaS</b>는 풀옵션 호텔에 묵는 것(프로그램까지 완성되어 있어 로그인만 하면 바로 사용, 예: 웹메일)에 비유할 수 있습니다.</div>
         <table><thead><tr><th>모델</th><th>내가 직접 관리하는 범위</th><th>예시</th></tr></thead><tbody>
           <tr><td><b>IaaS</b><br><small>Infrastructure</small></td><td>OS, 런타임, 애플리케이션까지 전부 직접 설치·관리</td><td>가상 서버(VM), 스토리지 임대</td></tr>
@@ -276,7 +276,7 @@
           <li><b>컨테이너(예: Docker)</b>: 가상 머신보다 더 가볍게, OS 커널을 공유하면서 애플리케이션 실행 환경만 격리하는 방식. 생성·시작 속도가 훨씬 빠름</li>
           <li><b>Snapshot(스냅샷)</b>: 특정 시점의 가상 머신 상태를 통째로 저장해두는 기능. 문제가 생기면 그 시점으로 즉시 되돌릴 수 있음</li>
         </ul>
-        <h3>SDN·NFV·IoT</h3>
+        <h3>SDN·NFV·IoT<sup><a href="#fn40" id="fnref40" class="fnref">[40]</a></sup></h3>
         <div class="plain-box"><b class="pb-label">쉽게 말하면</b>예전에는 라우터·방화벽 같은 네트워크 장비가 각각 전용 하드웨어였습니다. <b>SDN</b>은 "어디로 보낼지 결정하는 두뇌(제어부)"를 장비에서 떼어내 소프트웨어로 중앙에서 관리하는 방식이고, <b>NFV</b>는 방화벽·로드밸런서 같은 장비의 "기능 자체"를 전용 하드웨어 없이 일반 서버 위 소프트웨어로 가상화해서 돌리는 것입니다. 둘 다 "전용 장비에 의존하지 말고 소프트웨어로 유연하게"라는 같은 흐름 안에 있습니다.</div>
         <ul class="key-list">
           <li><b>SDN(Software Defined Networking)</b>: 트래픽을 어디로 보낼지 결정하는 제어 기능(Control Plane)을 장비에서 분리해 중앙 컨트롤러가 관리. 네트워크 구성을 소프트웨어로 유연하게 바꿀 수 있음</li>
@@ -326,6 +326,26 @@
           <li id="fn18">TPM(Trusted Platform Module): 암호화 키를 안전하게 저장·관리하는 보안 전용 칩입니다. 컴퓨터 메인보드에 내장되어 BitLocker 같은 디스크 암호화 기능과 함께 쓰입니다. <a href="#fnref18" class="fnback">↩</a></li>
           <li id="fn19">GRUB(GRand Unified Bootloader): 컴퓨터를 켰을 때 가장 먼저 실행되어 어떤 운영체제를 부팅할지 선택·시작해주는 리눅스의 대표적인 부트로더 프로그램입니다. <a href="#fnref19" class="fnback">↩</a></li>
           <li id="fn20">BLE(Bluetooth Low Energy): 배터리를 적게 소모하도록 만들어진 저전력 블루투스 규격입니다. 스마트워치, 센서처럼 오래 켜둬야 하는 IoT 기기에 많이 쓰입니다. <a href="#fnref20" class="fnback">↩</a></li>
+          <li id="fn21"><b>OSI / TCP/IP / PDU</b>: OSI는 <i>Open Systems Interconnection</i>, 즉 서로 다른 회사의 장비도 통신하게 만든 계층별 표준 모형입니다. TCP/IP는 실제 인터넷 통신의 중심이 되는 프로토콜 묶음입니다. PDU(<i>Protocol Data Unit</i>)는 “각 계층이 다루는 데이터 덩어리의 이름”으로, Segment → Packet → Frame → Bit처럼 계층에 따라 이름이 달라집니다. <a href="#fnref21" class="fnback">↩</a></li>
+          <li id="fn22"><b>IP / TTL / MTU / CIDR</b>: IP는 <i>Internet Protocol</i>로 목적지 주소를 붙여 패킷을 전달하는 규칙입니다. TTL(<i>Time To Live</i>)은 패킷의 남은 수명, MTU(<i>Maximum Transmission Unit</i>)는 한 번에 실을 수 있는 최대 크기입니다. CIDR(<i>Classless Inter-Domain Routing</i>)은 주소를 A·B·C Class에 고정하지 않고 <code>/24</code>처럼 Prefix 길이로 필요한 만큼 나누는 방식입니다. <a href="#fnref22" class="fnback">↩</a></li>
+          <li id="fn23"><b>NDP / NS·NA / RS·RA / SLAAC / DAD</b>: 모두 IPv6의 이웃 확인·주소 설정 용어입니다. NDP(<i>Neighbor Discovery Protocol</i>)가 전체 체계이고, NS/NA는 이웃에게 질문/응답, RS/RA는 Router에게 질문/응답하는 메시지입니다. SLAAC(<i>Stateless Address Autoconfiguration</i>)은 서버 없이 스스로 주소를 만드는 기능, DAD(<i>Duplicate Address Detection</i>)는 그 주소가 중복인지 검사하는 기능입니다. <a href="#fnref23" class="fnback">↩</a></li>
+          <li id="fn24"><b>ARP / RARP / ICMP / IGMP / DHCP / SNMP / NAT·PAT</b>: ARP는 IP→MAC, RARP는 MAC→IP 변환입니다. ICMP는 오류·진단, IGMP는 Multicast 가입 관리, DHCP는 IP 자동 임대, SNMP는 장비 상태 관리에 씁니다. NAT는 사설·공인 IP를 바꾸고, PAT는 Port 번호까지 이용해 공인 IP 하나를 여러 장비가 나눠 쓰게 합니다. <a href="#fnref24" class="fnback">↩</a></li>
+          <li id="fn25"><b>DNS와 Record</b>: DNS(<i>Domain Name System</i>)는 도메인 이름을 IP로 찾는 분산 전화번호부입니다. A/AAAA는 이름→IPv4/IPv6, PTR은 IP→이름, CNAME은 별명, MX는 Mail Server, NS는 Name Server, SOA는 Zone의 원본·갱신 정보, TXT는 문자 정책 정보를 담습니다. Record는 이 전화번호부의 한 줄짜리 항목이라는 뜻입니다. <a href="#fnref25" class="fnback">↩</a></li>
+          <li id="fn26"><b>RIP / OSPF / BGP / STP / HA</b>: RIP(<i>Routing Information Protocol</i>)는 거친 Router 수로 길을 고릅니다. OSPF(<i>Open Shortest Path First</i>)는 회선 Cost로 내부 최단 길을 계산하고, BGP(<i>Border Gateway Protocol</i>)는 통신사 같은 큰 조직 사이의 길을 정합니다. STP는 Switch Loop 방지, HA(<i>High Availability</i>)는 장애에도 서비스를 계속하기 위한 이중화입니다. <a href="#fnref26" class="fnback">↩</a></li>
+          <li id="fn27"><b>FDM / TDM / WDM</b>: 한 전송로를 여러 통신이 나눠 쓰는 다중화 방식입니다. FDM(<i>Frequency Division Multiplexing</i>)은 주파수 대역을, TDM(<i>Time Division Multiplexing</i>)은 사용 시간을, WDM(<i>Wavelength Division Multiplexing</i>)은 광섬유 안의 빛 파장을 나눕니다. 각각 라디오 채널, 돌아가며 쓰는 회의 마이크, 여러 색의 빛에 비유할 수 있습니다. <a href="#fnref27" class="fnback">↩</a></li>
+          <li id="fn28"><b>PPP / HDLC / LCP·NCP / PAP·CHAP</b>: PPP(<i>Point-to-Point Protocol</i>)와 HDLC(<i>High-level Data Link Control</i>)는 두 지점 연결에서 Frame을 주고받는 규칙입니다. PPP의 LCP는 물리 Link 설정, NCP는 IP 같은 Network Protocol 설정을 맡습니다. PAP는 비밀번호를 단순 전송하고, CHAP는 Challenge와 Hash 응답을 써 더 안전합니다. <a href="#fnref28" class="fnback">↩</a></li>
+          <li id="fn29"><b>RAID</b>: <i>Redundant Array of Independent Disks</i>, 여러 Disk를 하나처럼 묶는 기술입니다. Striping은 데이터를 나눠 써서 빠르게 하고, Mirroring은 똑같이 복제하며, Parity는 장애 때 데이터를 계산해 복구할 정보를 함께 저장합니다. RAID는 Backup 그 자체가 아니므로 별도 백업도 필요합니다. <a href="#fnref29" class="fnback">↩</a></li>
+          <li id="fn30"><b>VLAN / VTP / PoE / MPLS</b>: VLAN(<i>Virtual LAN</i>)은 물리 Switch를 논리 그룹으로 나눕니다. VTP(<i>VLAN Trunking Protocol</i>)는 Cisco Switch끼리 VLAN 정보를 공유하고, PoE(<i>Power over Ethernet</i>)는 LAN Cable로 전원까지 공급합니다. MPLS(<i>Multiprotocol Label Switching</i>)는 IP 대신 짧은 Label을 보고 빠르게 전달하는 통신망 기술입니다. <a href="#fnref30" class="fnback">↩</a></li>
+          <li id="fn31"><b>DAS / NAS / SAN</b>: DAS(<i>Direct Attached Storage</i>)는 Server에 직접 붙인 저장장치입니다. NAS(<i>Network Attached Storage</i>)는 일반 Network에서 File 단위로 공유하고, SAN(<i>Storage Area Network</i>)은 전용 고속망에서 저장공간을 Disk Block 단위로 제공합니다. NAS는 공용 폴더, SAN은 원격지에 있는 내 Disk에 가깝습니다. <a href="#fnref31" class="fnback">↩</a></li>
+          <li id="fn32"><b>CIA / Hash / PKI / CA</b>: CIA는 보안의 세 목표인 Confidentiality(기밀성), Integrity(무결성), Availability(가용성)의 머리글자입니다. Hash는 입력의 지문 같은 고정 길이 값을 만들어 변조를 확인합니다. PKI(<i>Public Key Infrastructure</i>)는 공개키 인증 체계, CA(<i>Certificate Authority</i>)는 인증서를 발급해 공개키의 주인을 보증하는 기관입니다. <a href="#fnref32" class="fnback">↩</a></li>
+          <li id="fn33"><b>IDS / IPS / WAF / VPN / SSH / WPA</b>: IDS는 <i>Intrusion Detection System</i>이라 침입을 발견해 알리고, IPS는 <i>Intrusion Prevention System</i>이라 발견 후 차단합니다. WAF는 Web Application 전용 Firewall입니다. VPN은 공중망 속 암호화 Tunnel, SSH는 안전한 원격 Shell, WPA는 Wi-Fi 접속을 보호하는 보안 규격입니다. <a href="#fnref33" class="fnback">↩</a></li>
+          <li id="fn34"><b>NAC / XSS / SQL Injection</b>: NAC(<i>Network Access Control</i>)는 Network에 들어올 사람과 장비를 검사하는 출입 관리입니다. XSS(<i>Cross-Site Scripting</i>)는 다른 사용자의 Browser에서 악성 Script를 실행시키는 공격이고, SQL Injection은 Database 명령을 입력값에 끼워 넣는 공격입니다. XSS의 X는 CSS와 이름이 겹치는 것을 피하려고 Cross를 X로 쓴 것입니다. <a href="#fnref34" class="fnback">↩</a></li>
+          <li id="fn35"><b>AD / OU / GPO / Domain·Tree·Forest</b>: AD(<i>Active Directory</i>)는 Windows 회사망의 계정·Computer·정책 장부입니다. OU(<i>Organizational Unit</i>)는 그 안의 부서별 묶음, GPO(<i>Group Policy Object</i>)는 일괄 적용할 설정 묶음입니다. Domain은 기본 관리 구역, Tree는 이어진 이름의 Domain 묶음, Forest는 하나 이상의 Tree를 포함하는 AD의 가장 큰 경계입니다. <a href="#fnref35" class="fnback">↩</a></li>
+          <li id="fn36"><b>NTFS / ReFS / EFS / WAP</b>: NTFS는 권한·압축·암호화·Quota를 지원하는 Windows 기본 File System입니다. ReFS(<i>Resilient File System</i>)는 대용량과 손상 복구를 강화했고, EFS(<i>Encrypting File System</i>)는 NTFS의 파일·폴더 암호화 기능입니다. WAP(<i>Web Application Proxy</i>)는 외부 요청을 받아 내부 Web Server에 대신 전달하는 역방향 Proxy입니다. <a href="#fnref36" class="fnback">↩</a></li>
+          <li id="fn37"><b>LVM / Shell / Redirect</b>: LVM(<i>Logical Volume Manager</i>)은 여러 물리 Disk 공간을 논리적으로 묶어 크기를 유연하게 조절합니다. Shell은 사용자의 명령을 해석해 OS Kernel에 전달하는 창구입니다. Redirect는 명령의 입력·출력 방향을 바꾸는 기능으로, <code>&gt;</code>는 덮어쓰기, <code>&gt;&gt;</code>는 이어쓰기, <code>|</code>는 앞 명령의 출력을 다음 명령의 입력으로 전달합니다. <a href="#fnref37" class="fnback">↩</a></li>
+          <li id="fn38"><b>Apache / BIND / SOA</b>: Apache는 대표적인 Web Server Software입니다. BIND(<i>Berkeley Internet Name Domain</i>)는 Linux·Unix에서 널리 쓰는 DNS Server Software입니다. SOA(<i>Start of Authority</i>)는 DNS Zone의 원본 Server와 Serial·Refresh·Retry·Expire 같은 동기화 기준을 기록합니다. Zone은 한 관리자가 책임지는 Domain Record 범위입니다. <a href="#fnref38" class="fnback">↩</a></li>
+          <li id="fn39"><b>IaaS / PaaS / SaaS</b>: 공통의 <i>aaS</i>는 <i>as a Service</i>, 즉 “제품을 사는 대신 서비스로 빌려 쓴다”는 뜻입니다. IaaS는 Infrastructure(서버·Network), PaaS는 Platform(OS·실행 환경), SaaS는 Software(완성된 프로그램)까지 제공자가 맡습니다. 뒤로 갈수록 사용자는 편하지만 직접 설정할 범위는 줄어듭니다. <a href="#fnref39" class="fnback">↩</a></li>
+          <li id="fn40"><b>SDN / NFV / IoT</b>: SDN(<i>Software Defined Networking</i>)은 Network 장비의 판단 기능을 Software Controller로 분리해 중앙 관리합니다. NFV(<i>Network Functions Virtualization</i>)는 Firewall·Load Balancer 같은 장비 기능을 범용 Server의 Software로 구현합니다. IoT(<i>Internet of Things</i>)는 Sensor·가전 등 사물이 Internet에 연결되는 환경입니다. SDN은 “제어 방식”, NFV는 “장비 기능의 가상화”에 초점이 있습니다. <a href="#fnref40" class="fnback">↩</a></li>
         </ol>
       </section>
     </main>

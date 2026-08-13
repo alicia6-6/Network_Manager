@@ -765,9 +765,20 @@ section.block { margin: 0 0 76px; }
 .last-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 9px; }.last-grid > div { padding: 17px; border-radius: 12px; background: var(--surface-2); }.last-grid b { color: var(--primary); }.last-grid p { margin: 8px 0 0; color: var(--text-muted); font-size: .82rem; }.final-cta { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 20px; margin-top: 22px; border-radius: 13px; color: #fff; background: #17213a; }.final-cta div { display: flex; flex-direction: column; }.final-cta span { color: #b8c2dc; font-size: .78rem; }
 
 @media (max-width: 760px) {
-  .summary-hero { grid-template-columns: 1fr; padding: 50px 0 30px; }.summary-score-card { display: none; }.summary-notice { align-items: flex-start; flex-direction: column; gap: 4px; }.summary-toc { position: static; }.summary-section { padding: 25px 19px; }.compare-grid,.last-grid { grid-template-columns: repeat(2,1fr); }.formula-grid,.three-col { grid-template-columns: 1fr; }.two-col { grid-template-columns: 1fr; }.port-grid { grid-template-columns: repeat(3,1fr); }.standard-grid { grid-template-columns: repeat(2,1fr); }.command-list { grid-template-columns: 1fr; }.memory-box,.final-cta { align-items: flex-start; flex-direction: column; }.memory-box span { text-align: left; }.fnref { cursor: pointer; }
+  .summary-hero { grid-template-columns: 1fr; padding: 50px 0 30px; }.summary-score-card { display: none; }.summary-notice { align-items: flex-start; flex-direction: column; gap: 4px; }.summary-toc { position: static; }.summary-section { min-width: 0; padding: 25px 19px; }.compare-grid,.last-grid { grid-template-columns: repeat(2,1fr); }.formula-grid,.three-col { grid-template-columns: 1fr; }.two-col { grid-template-columns: 1fr; }.port-grid { grid-template-columns: repeat(3,1fr); }.standard-grid { grid-template-columns: repeat(2,1fr); }.command-list { grid-template-columns: 1fr; }.memory-box,.final-cta { align-items: flex-start; flex-direction: column; }.memory-box span { text-align: left; }.fnref { cursor: pointer; }
+  .summary-section table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  .summary-section th,
+  .summary-section td { min-width: 7rem; }
 }
 
 @media (prefers-color-scheme: dark) {
+  .menu-card.featured,
+  .summary-banner { background: var(--surface); }
   .summary-toc { background: rgba(24,28,40,.9); }.summary-notice,.worked-example { background: var(--primary-soft); border-color: var(--border); }.exam-trap { background: #352a18; }.plain-box { background: rgba(90,124,255,.12); }.footnote-popover { border-color: var(--border); }.footnote-popover::before { border-color: var(--border); }
 }

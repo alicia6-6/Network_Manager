@@ -1,4 +1,16 @@
 (() => {
+  document.querySelectorAll(".summary-section table").forEach((table) => {
+    if (table.parentElement?.classList.contains("table-scroll")) return;
+
+    const scroller = document.createElement("div");
+    scroller.className = "table-scroll";
+    scroller.setAttribute("role", "region");
+    scroller.setAttribute("aria-label", "표 가로 스크롤");
+    scroller.tabIndex = 0;
+    table.before(scroller);
+    scroller.appendChild(table);
+  });
+
   const refs = [...document.querySelectorAll(".fnref")];
   if (!refs.length) return;
 

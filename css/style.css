@@ -779,3 +779,31 @@ section.block { margin: 0 0 76px; }
   .study-visual { box-shadow: none; }
   .summary-toc { background: rgba(24,28,40,.9); }.summary-notice,.worked-example { background: var(--primary-soft); border-color: var(--border); }.exam-trap { background: #352a18; }.plain-box { background: rgba(90,124,255,.12); }.footnote-popover { border-color: var(--border); }.footnote-popover::before { border-color: var(--border); }
 }
+
+/* 실기 기출문제 페이지 */
+.practical-round-bar { margin-bottom: 26px; }
+.practical-round-nav { display: flex; gap: 8px; }
+.practical-round-nav .btn { padding: 8px 12px; font-size: .82rem; }
+
+.practical-section { margin-bottom: 34px; }
+.practical-section-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.practical-section-head h2 { margin: 0; font-size: 1.15rem; letter-spacing: -.01em; }
+.practical-section-head span { font-size: .8rem; color: var(--text-muted); }
+
+.practical-grid { display: flex; flex-direction: column; gap: 14px; }
+
+.practical-card .q-text { margin-bottom: 0; font-size: 1rem; font-weight: 500; }
+.practical-card.practice-only { border-style: dashed; }
+.practical-given { margin-bottom: 10px; font-size: .86rem; color: var(--text-muted); }
+.practical-given code { background: var(--surface-2); padding: 2px 7px; border-radius: 6px; color: var(--text); font-weight: 700; }
+.practical-explain { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: .86rem; color: var(--text-muted); line-height: 1.65; }
+
+.pill.no-answer { background: var(--surface-2); color: var(--text-muted); }
+.pill.answer { background: var(--success-soft); color: var(--success); }
+.empty-note { color: var(--text-muted); font-size: .86rem; }
+
+@media (max-width: 760px) {
+  .practical-round-bar.round-controls { align-items: stretch; flex-direction: column; }
+  .practical-round-nav { width: 100%; }
+  .practical-round-nav .btn { flex: 1; }
+}

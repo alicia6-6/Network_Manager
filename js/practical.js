@@ -24,14 +24,66 @@
     return `<div class="q-text">${nl2br(escapeHtml(text))}</div>`;
   }
 
-  function answerBlock(answer, explanation) {
-    let html = `<div class="explain-box show"><div class="head ok">✓ 정답</div>`;
+  function answerBlock(answer, explanation, revealed = true) {
+    let html = `<div class="explain-box${revealed ? " show" : ""}"><div class="head ok">✓ 정답</div>`;
     html += `<div class="q-text" style="margin:0 0 10px;font-size:1rem;">${nl2br(escapeHtml(answer))}</div>`;
     if (explanation) {
       html += `<div class="practical-explain">${nl2br(escapeHtml(explanation))}</div>`;
     }
     html += `</div>`;
     return html;
+  }
+
+  // Parses "라벨 : 값" lines (used by IP/서브넷 answers) into {label, value} pairs.
+  function parseLabelValueLines(answerStr) {
+    return String(answerStr || "")
+      .split("\n")
+      .map((line) => {
+        const idx = line.indexOf(":");
+        if (idx === -1) return { label: "", value: line.trim() };
+        return { label: line.slice(0, idx).trim(), value: line.slice(idx + 1).trim() };
+      })
+      .filter((item) => item.value);
+  }
+
+  // Splits a 단답형 answer into acceptable alternative phrasings (comma / "또는" separated).
+  function parseAlternatives(answerStr) {
+    return String(answerStr || "")
+      .split(/,|또는/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+  }
+
+  function normalizeStrict(str) {
+    return String(str || "").trim().toLowerCase().replace(/\s+/g, "");
+  }
+
+  function normalizeFree(str) {
+    return String(str || "")
+      .toLowerCase()
+      .replace(/\(.*?\)/g, "")
+      .replace(/[\s:.\-]/g, "");
+  }
+
+  function isFreeAnswerCorrect(userInput, answerStr) {
+    const userNorm = normalizeFree(userInput);
+    if (!userNorm) return false;
+    return parseAlternatives(answerStr).some((alt) => {
+      const altNorm = normalizeFree(alt);
+      return altNorm && (userNorm === altNorm || userNorm.includes(altNorm) || altNorm.includes(userNorm));
+    });
+  }
+
+  function answerCheckBlock(fieldsHtml) {
+    return `
+      <div class="answer-check">
+        <div class="answer-fields">${fieldsHtml}</div>
+        <div class="answer-actions">
+          <button type="button" class="btn check-btn">정답 확인</button>
+          <button type="button" class="btn ghost reveal-btn">정답 보기</button>
+        </div>
+        <div class="check-summary"></div>
+      </div>`;
   }
 
   function topologyBlock(topology) {
@@ -41,16 +93,24 @@
 
   function ipCard(ip) {
     if (!ip) return "";
+    const fields = parseLabelValueLines(ip.answer);
+    const fieldsHtml = fields.map((f, i) => `
+      <div class="answer-field">
+        <label for="ipf-${ip.number}-${i}">${escapeHtml(f.label || `값 ${i + 1}`)}</label>
+        <input type="text" id="ipf-${ip.number}-${i}" class="answer-input" data-expected="${escapeHtml(f.value)}" autocomplete="off" spellcheck="false" placeholder="정답 입력">
+        <span class="field-mark"></span>
+      </div>`).join("");
     return `
       <div class="practical-card q-card">
         <div class="q-meta">
           <span class="pill">${ip.number}번</span>
           <span class="pill">IP/서브넷</span>
-          <span class="pill answer">정답 포함</span>
+          <span class="pill answer">정답 확인 가능</span>
         </div>
         <div class="practical-given"><b>제시된 네트워크:</b> <code>${escapeHtml(ip.given || "")}</code></div>
         ${textBlock(ip.prompt || "")}
-        ${answerBlock(ip.answer, ip.explanation)}
+        ${answerCheckBlock(fieldsHtml)}
+        ${answerBlock(ip.answer, ip.explanation, false)}
       </div>`;
   }
 
@@ -67,15 +127,26 @@
   }
 
   function writtenCard(item) {
+    const isShortAnswer = (item.type || "단답형") === "단답형";
+    const answerArea = isShortAnswer
+      ? `
+        ${answerCheckBlock(`
+          <div class="answer-field wide">
+            <input type="text" class="answer-input" data-full-answer="${escapeHtml(item.answer || "")}" autocomplete="off" spellcheck="false" placeholder="정답 입력">
+            <span class="field-mark"></span>
+          </div>`)}
+        ${answerBlock(item.answer, item.explanation, false)}`
+      : answerBlock(item.answer, item.explanation, true);
+
     return `
       <div class="practical-card q-card">
         <div class="q-meta">
           <span class="pill">${item.number}번</span>
           <span class="pill">${escapeHtml(item.type || "단답형")}</span>
-          <span class="pill answer">정답 포함</span>
+          <span class="pill answer">${isShortAnswer ? "정답 확인 가능" : "정답 포함"}</span>
         </div>
         ${textBlock(item.prompt || "")}
-        ${answerBlock(item.answer, item.explanation)}
+        ${answerArea}
       </div>`;
   }
 
@@ -135,6 +206,64 @@
 
     area.innerHTML = parts.join("");
   }
+
+  function handleCheck(btn) {
+    const wrap = btn.closest(".answer-check");
+    const card = btn.closest(".practical-card");
+    const inputs = Array.from(wrap.querySelectorAll(".answer-input"));
+    let allCorrect = true;
+    let answered = false;
+
+    inputs.forEach((input) => {
+      const mark = input.parentElement.querySelector(".field-mark");
+      const hasValue = input.value.trim() !== "";
+      if (hasValue) answered = true;
+      const ok = hasValue && ("expected" in input.dataset
+        ? normalizeStrict(input.value) === normalizeStrict(input.dataset.expected)
+        : isFreeAnswerCorrect(input.value, input.dataset.fullAnswer || ""));
+      input.classList.toggle("correct", ok);
+      input.classList.toggle("wrong", !ok);
+      if (mark) mark.textContent = ok ? "✓" : "✗";
+      if (!ok) allCorrect = false;
+    });
+
+    const summary = wrap.querySelector(".check-summary");
+    summary.textContent = !answered
+      ? "정답을 입력해 주세요."
+      : allCorrect ? "✓ 정답입니다!" : "✗ 오답이 있습니다. 아래 정답을 확인하세요.";
+    summary.className = `check-summary show ${!answered ? "" : allCorrect ? "ok" : "no"}`;
+
+    if (answered) {
+      const explainBox = card.querySelector(".explain-box");
+      if (explainBox) explainBox.classList.add("show");
+    }
+  }
+
+  function handleReveal(btn) {
+    const wrap = btn.closest(".answer-check");
+    const card = btn.closest(".practical-card");
+    const explainBox = card.querySelector(".explain-box");
+    if (explainBox) explainBox.classList.add("show");
+    const summary = wrap.querySelector(".check-summary");
+    summary.className = "check-summary";
+    summary.textContent = "";
+  }
+
+  area.addEventListener("click", (e) => {
+    const checkBtn = e.target.closest(".check-btn");
+    if (checkBtn) { handleCheck(checkBtn); return; }
+    const revealBtn = e.target.closest(".reveal-btn");
+    if (revealBtn) { handleReveal(revealBtn); return; }
+  });
+
+  area.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && e.target.classList.contains("answer-input")) {
+      e.preventDefault();
+      const wrap = e.target.closest(".answer-check");
+      const btn = wrap && wrap.querySelector(".check-btn");
+      if (btn) handleCheck(btn);
+    }
+  });
 
   function roundNumber(round) {
     const match = /^(\d+)/.exec(round.round || "");

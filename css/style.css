@@ -800,6 +800,37 @@ section.block { margin: 0 0 76px; }
 
 .pill.no-answer { background: var(--surface-2); color: var(--text-muted); }
 .pill.answer { background: var(--success-soft); color: var(--success); }
+
+.answer-check { margin-top: 14px; }
+.answer-fields { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.answer-field { display: flex; align-items: center; gap: 8px; }
+.answer-field label { flex: 0 0 130px; font-size: .82rem; color: var(--text-muted); font-weight: 600; }
+.answer-field.wide { flex: 1; }
+.answer-input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 12px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: .9rem;
+  font-family: inherit;
+}
+.answer-input:focus { outline: none; border-color: var(--primary); }
+.answer-input.correct { border-color: var(--success); background: var(--success-soft); }
+.answer-input.wrong { border-color: var(--danger); background: var(--danger-soft); }
+.field-mark { width: 18px; flex: none; font-weight: 800; text-align: center; }
+.answer-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.check-summary { margin-top: 10px; font-weight: 700; font-size: .88rem; display: none; }
+.check-summary.show { display: block; }
+.check-summary.ok { color: var(--success); }
+.check-summary.no { color: var(--danger); }
+
+@media (max-width: 640px) {
+  .answer-field { flex-wrap: wrap; }
+  .answer-field label { flex: 0 0 100%; }
+}
 .empty-note { color: var(--text-muted); font-size: .86rem; }
 
 @media (max-width: 760px) {

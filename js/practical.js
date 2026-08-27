@@ -80,7 +80,7 @@
     if (!userNorm) return false;
     return parseAlternatives(answerStr).some((alt) => {
       const altNorm = normalizeFree(alt);
-      return altNorm && (userNorm === altNorm || userNorm.includes(altNorm) || altNorm.includes(userNorm));
+      return altNorm && userNorm === altNorm;
     });
   }
 

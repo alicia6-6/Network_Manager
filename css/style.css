@@ -842,6 +842,31 @@ section.block { margin: 0 0 76px; }
 .check-summary.ok { color: var(--success); }
 .check-summary.no { color: var(--danger); }
 
+.choice-check { margin-top: 14px; }
+.choice-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.choice-opt {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: .88rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+.choice-opt .opt-label { flex: none; font-weight: 800; color: var(--text-muted); }
+.choice-opt.selected { border-color: var(--primary); background: var(--primary-soft); }
+.choice-opt.selected .opt-label { color: var(--primary-dark); }
+.choice-opt.correct { border-color: var(--success); background: var(--success-soft); }
+.choice-opt.correct .opt-label { color: var(--success); }
+.choice-opt.wrong { border-color: var(--danger); background: var(--danger-soft); }
+.choice-opt.wrong .opt-label { color: var(--danger); }
+
 @media (max-width: 640px) {
   .answer-field { flex-wrap: wrap; }
   .answer-field label { flex: 0 0 100%; }

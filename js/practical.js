@@ -84,12 +84,56 @@
     });
   }
 
+  // Pulls "보기N>텍스트" / "①텍스트" choice lines out of a 선택형 prompt, leaving the question stem.
+  function parseChoiceLines(prompt) {
+    const lines = String(prompt || "").split("\n");
+    const choices = [];
+    const stemLines = [];
+    lines.forEach((line) => {
+      const trimmed = line.trim();
+      const m1 = /^(보기\d+)\s*[>:.]?\s*(.*)$/.exec(trimmed);
+      const m2 = /^([①②③④⑤⑥⑦⑧⑨⑩])\s*(.*)$/.exec(trimmed);
+      if (m1) choices.push({ label: m1[1], text: m1[2].trim() });
+      else if (m2) choices.push({ label: m2[1], text: m2[2].trim() });
+      else stemLines.push(line);
+    });
+    return { stem: stemLines.join("\n").trim(), choices };
+  }
+
+  // Reads the leading comma-separated choice labels off a 선택형 answer (before the parenthetical gloss).
+  function parseChoiceAnswerLabels(answerStr) {
+    const parts = String(answerStr || "").split(",").map((s) => s.trim());
+    const labels = [];
+    for (const part of parts) {
+      const m = /^(보기\d+|[①②③④⑤⑥⑦⑧⑨⑩])/.exec(part);
+      if (m) labels.push(m[1]);
+      else break;
+    }
+    return labels;
+  }
+
   function answerCheckBlock(fieldsHtml) {
     return `
       <div class="answer-check">
         <div class="answer-fields">${fieldsHtml}</div>
         <div class="answer-actions">
           <button type="button" class="btn check-btn">정답 확인</button>
+          <button type="button" class="btn ghost reveal-btn">정답 보기</button>
+        </div>
+        <div class="check-summary"></div>
+      </div>`;
+  }
+
+  function choiceCheckBlock(choices, answerStr) {
+    const optionsHtml = choices.map((c) => `
+      <button type="button" class="choice-opt" data-label="${escapeHtml(c.label)}">
+        <span class="opt-label">${escapeHtml(c.label)}</span><span class="opt-text">${escapeHtml(c.text)}</span>
+      </button>`).join("");
+    return `
+      <div class="choice-check" data-answer="${escapeHtml(answerStr || "")}">
+        <div class="choice-options">${optionsHtml}</div>
+        <div class="answer-actions">
+          <button type="button" class="btn check-choice-btn">정답 확인</button>
           <button type="button" class="btn ghost reveal-btn">정답 보기</button>
         </div>
         <div class="check-summary"></div>
@@ -141,27 +185,43 @@
       </div>`;
   }
 
+  function shortAnswerArea(item) {
+    return `
+      ${answerCheckBlock(`
+        <div class="answer-field wide">
+          <input type="text" class="answer-input" data-full-answer="${escapeHtml(item.answer || "")}" autocomplete="off" spellcheck="false" placeholder="정답 입력">
+          <span class="field-mark"></span>
+        </div>`)}
+      ${answerBlock(item.answer, item.explanation, false)}`;
+  }
+
   function writtenCard(item, roundLabel) {
-    const isShortAnswer = (item.type || "단답형") === "단답형";
-    const answerArea = isShortAnswer
-      ? `
-        ${answerCheckBlock(`
-          <div class="answer-field wide">
-            <input type="text" class="answer-input" data-full-answer="${escapeHtml(item.answer || "")}" autocomplete="off" spellcheck="false" placeholder="정답 입력">
-            <span class="field-mark"></span>
-          </div>`)}
-        ${answerBlock(item.answer, item.explanation, false)}`
-      : answerBlock(item.answer, item.explanation, true);
+    const type = item.type || "단답형";
+    const isShortAnswer = type === "단답형";
+    const choiceData = type === "선택형" ? parseChoiceLines(item.prompt) : null;
+    const isChoice = Boolean(choiceData && choiceData.choices.length >= 2);
+    const checkable = isShortAnswer || isChoice || (type === "선택형" && !isChoice);
+
+    let promptText = item.prompt || "";
+    let answerArea;
+    if (isChoice) {
+      promptText = choiceData.stem;
+      answerArea = `${choiceCheckBlock(choiceData.choices, item.answer)}${answerBlock(item.answer, item.explanation, false)}`;
+    } else if (isShortAnswer || type === "선택형") {
+      answerArea = shortAnswerArea(item);
+    } else {
+      answerArea = answerBlock(item.answer, item.explanation, true);
+    }
 
     return `
       <div class="practical-card q-card">
         <div class="q-meta">
           ${roundPill(roundLabel)}
           <span class="pill">${item.number}번</span>
-          <span class="pill">${escapeHtml(item.type || "단답형")}</span>
-          <span class="pill answer">${isShortAnswer ? "정답 확인 가능" : "정답 포함"}</span>
+          <span class="pill">${escapeHtml(type)}</span>
+          <span class="pill answer">${checkable ? "정답 확인 가능" : "정답 포함"}</span>
         </div>
-        ${textBlock(item.prompt || "")}
+        ${textBlock(promptText)}
         ${answerArea}
       </div>`;
   }
@@ -313,18 +373,12 @@
     if (answered) {
       const explainBox = card.querySelector(".explain-box");
       if (explainBox) explainBox.classList.add("show");
-    }
-
-    if (answered && mode === "random" && !card.dataset.scored) {
-      card.dataset.scored = "1";
-      randomStats.asked += 1;
-      if (allCorrect) randomStats.correct += 1;
-      updateRandomScore();
+      markScored(card, allCorrect);
     }
   }
 
   function handleReveal(btn) {
-    const wrap = btn.closest(".answer-check");
+    const wrap = btn.closest(".answer-check, .choice-check");
     const card = btn.closest(".practical-card");
     const explainBox = card.querySelector(".explain-box");
     if (explainBox) explainBox.classList.add("show");
@@ -333,7 +387,55 @@
     summary.textContent = "";
   }
 
+  function markScored(card, isCorrect) {
+    if (mode !== "random" || card.dataset.scored) return;
+    card.dataset.scored = "1";
+    randomStats.asked += 1;
+    if (isCorrect) randomStats.correct += 1;
+    updateRandomScore();
+  }
+
+  function handleChoiceCheck(btn) {
+    const wrap = btn.closest(".choice-check");
+    const card = btn.closest(".practical-card");
+    const options = Array.from(wrap.querySelectorAll(".choice-opt"));
+    const selected = options.filter((opt) => opt.classList.contains("selected")).map((opt) => opt.dataset.label);
+    const correctLabels = new Set(parseChoiceAnswerLabels(wrap.dataset.answer));
+    const selectedSet = new Set(selected);
+    const isCorrect = selectedSet.size === correctLabels.size && selected.every((l) => correctLabels.has(l));
+
+    options.forEach((opt) => {
+      opt.classList.remove("correct", "wrong");
+      if (correctLabels.has(opt.dataset.label)) opt.classList.add("correct");
+      else if (opt.classList.contains("selected")) opt.classList.add("wrong");
+    });
+
+    const summary = wrap.querySelector(".check-summary");
+    summary.textContent = !selected.length
+      ? "보기를 선택해 주세요."
+      : isCorrect ? "✓ 정답입니다!" : "✗ 오답입니다. 초록색이 정답입니다.";
+    summary.className = `check-summary show ${!selected.length ? "" : isCorrect ? "ok" : "no"}`;
+
+    if (selected.length) {
+      const explainBox = card.querySelector(".explain-box");
+      if (explainBox) explainBox.classList.add("show");
+      markScored(card, isCorrect);
+    }
+  }
+
   area.addEventListener("click", (e) => {
+    const opt = e.target.closest(".choice-opt");
+    if (opt) {
+      opt.classList.toggle("selected");
+      const wrap = opt.closest(".choice-check");
+      wrap.querySelectorAll(".choice-opt").forEach((o) => o.classList.remove("correct", "wrong"));
+      const summary = wrap.querySelector(".check-summary");
+      summary.className = "check-summary";
+      summary.textContent = "";
+      return;
+    }
+    const checkChoiceBtn = e.target.closest(".check-choice-btn");
+    if (checkChoiceBtn) { handleChoiceCheck(checkChoiceBtn); return; }
     const checkBtn = e.target.closest(".check-btn");
     if (checkBtn) { handleCheck(checkBtn); return; }
     const revealBtn = e.target.closest(".reveal-btn");

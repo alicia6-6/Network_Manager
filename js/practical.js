@@ -7,8 +7,18 @@
   const nextBtn = document.getElementById("nextRoundBtn");
   const area = document.getElementById("practicalArea");
   const emptyEl = document.getElementById("practicalEmpty");
+  const modeRoundBtn = document.getElementById("modeRoundBtn");
+  const modeRandomBtn = document.getElementById("modeRandomBtn");
+  const roundBar = document.getElementById("roundBar");
+  const randomBar = document.getElementById("randomBar");
+  const randomScoreEl = document.getElementById("randomScore");
+  const nextRandomBtn = document.getElementById("nextRandomBtn");
 
   let rounds = [];
+  let pool = [];
+  let mode = "round";
+  let currentRandomEntry = null;
+  const randomStats = { asked: 0, correct: 0 };
 
   function escapeHtml(str) {
     return String(str ?? "").replace(/[&<>"']/g, (ch) => ({
@@ -91,7 +101,11 @@
     return `<div class="plain-box"><b class="pb-label">구성도</b>${nl2br(escapeHtml(topology))}</div>`;
   }
 
-  function ipCard(ip) {
+  function roundPill(roundLabel) {
+    return roundLabel ? `<span class="pill round-pill">${escapeHtml(roundLabel)}</span>` : "";
+  }
+
+  function ipCard(ip, roundLabel) {
     if (!ip) return "";
     const fields = parseLabelValueLines(ip.answer);
     const fieldsHtml = fields.map((f, i) => `
@@ -103,6 +117,7 @@
     return `
       <div class="practical-card q-card">
         <div class="q-meta">
+          ${roundPill(roundLabel)}
           <span class="pill">${ip.number}번</span>
           <span class="pill">IP/서브넷</span>
           <span class="pill answer">정답 확인 가능</span>
@@ -126,7 +141,7 @@
       </div>`;
   }
 
-  function writtenCard(item) {
+  function writtenCard(item, roundLabel) {
     const isShortAnswer = (item.type || "단답형") === "단답형";
     const answerArea = isShortAnswer
       ? `
@@ -141,6 +156,7 @@
     return `
       <div class="practical-card q-card">
         <div class="q-meta">
+          ${roundPill(roundLabel)}
           <span class="pill">${item.number}번</span>
           <span class="pill">${escapeHtml(item.type || "단답형")}</span>
           <span class="pill answer">${isShortAnswer ? "정답 확인 가능" : "정답 포함"}</span>
@@ -150,10 +166,11 @@
       </div>`;
   }
 
-  function routerCard(item) {
+  function routerCard(item, roundLabel) {
     return `
       <div class="practical-card q-card">
         <div class="q-meta">
+          ${roundPill(roundLabel)}
           <span class="pill">${item.number}번</span>
           <span class="pill">라우터</span>
           <span class="pill answer">정답 포함</span>
@@ -204,7 +221,67 @@
       routerItems || `<p class="empty-note">데이터 없음</p>`
     ));
 
+    area.dataset.mode = "round";
     area.innerHTML = parts.join("");
+  }
+
+  // Flat pool of answerable items (ip / written / router) across every round, for random mode.
+  // Practice-only items are excluded since they have no answer to check.
+  function buildPool(allRounds) {
+    const list = [];
+    allRounds.forEach((r) => {
+      if (r.ip) list.push({ kind: "ip", round: r.round, item: r.ip });
+      (r.written || []).forEach((w) => list.push({ kind: "written", round: r.round, item: w }));
+      (r.router || []).forEach((rt) => list.push({ kind: "router", round: r.round, item: rt }));
+    });
+    return list;
+  }
+
+  function pickRandomEntry() {
+    if (!pool.length) return null;
+    if (pool.length === 1) return pool[0];
+    let next = currentRandomEntry;
+    while (next === currentRandomEntry) {
+      next = pool[Math.floor(Math.random() * pool.length)];
+    }
+    return next;
+  }
+
+  function updateRandomScore() {
+    randomScoreEl.textContent = `정답 ${randomStats.correct} / 응답 ${randomStats.asked}`;
+  }
+
+  function renderRandomQuestion() {
+    currentRandomEntry = pickRandomEntry();
+    emptyEl.hidden = true;
+    if (!currentRandomEntry) {
+      area.innerHTML = "";
+      emptyEl.hidden = false;
+      return;
+    }
+    const { kind, round, item } = currentRandomEntry;
+    const cardHtml = kind === "ip" ? ipCard(item, round)
+      : kind === "written" ? writtenCard(item, round)
+      : routerCard(item, round);
+    area.dataset.mode = "random";
+    area.innerHTML = `<div class="practical-grid">${cardHtml}</div>`;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function setMode(newMode) {
+    mode = newMode === "random" ? "random" : "round";
+    modeRoundBtn.classList.toggle("active", mode === "round");
+    modeRandomBtn.classList.toggle("active", mode === "random");
+    roundBar.hidden = mode !== "round";
+    randomBar.hidden = mode !== "random";
+
+    if (mode === "random") {
+      try { history.replaceState(null, "", "?mode=random"); } catch (e) { /* ignore */ }
+      renderRandomQuestion();
+    } else {
+      const value = roundSelect.value || rounds[rounds.length - 1].round;
+      selectRoundByValue(value);
+    }
   }
 
   function handleCheck(btn) {
@@ -236,6 +313,13 @@
     if (answered) {
       const explainBox = card.querySelector(".explain-box");
       if (explainBox) explainBox.classList.add("show");
+    }
+
+    if (answered && mode === "random" && !card.dataset.scored) {
+      card.dataset.scored = "1";
+      randomStats.asked += 1;
+      if (allCorrect) randomStats.correct += 1;
+      updateRandomScore();
     }
   }
 
@@ -302,12 +386,15 @@
     }
 
     roundSelect.innerHTML = rounds.map((r) => `<option value="${escapeHtml(r.round)}">${escapeHtml(r.round)} (${escapeHtml(r.date || "")})</option>`).join("");
+    pool = buildPool(rounds);
+    updateRandomScore();
 
     const params = new URLSearchParams(location.search);
     const requested = params.get("round");
     const initial = rounds.find((r) => r.round === requested) ? requested : rounds[rounds.length - 1].round;
+    roundSelect.value = initial;
 
-    selectRoundByValue(initial);
+    setMode(params.get("mode") === "random" ? "random" : "round");
 
     roundSelect.addEventListener("change", () => selectRoundByValue(roundSelect.value));
     prevBtn.addEventListener("click", () => {
@@ -318,6 +405,9 @@
       const idx = rounds.findIndex((r) => r.round === roundSelect.value);
       if (idx >= 0 && idx < rounds.length - 1) selectRoundByValue(rounds[idx + 1].round);
     });
+    modeRoundBtn.addEventListener("click", () => setMode("round"));
+    modeRandomBtn.addEventListener("click", () => setMode("random"));
+    nextRandomBtn.addEventListener("click", renderRandomQuestion);
   }
 
   init();

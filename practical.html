@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="네트워크관리사 2급 실기 기출문제 (IP/서브넷, 단답형·선택형, 라우터 문제와 정답 해설)" />
   <title>실기 기출문제 · 네트워크관리사 2급</title>
-  <link rel="stylesheet" href="css/style.css?v=20260827-1" />
+  <link rel="stylesheet" href="css/style.css?v=20260827-2" />
 </head>
 <body>
   <div class="wrap">
@@ -26,11 +26,16 @@
         <div>
           <span class="eyebrow">PRACTICAL EXAM</span>
           <h1>실기 기출문제</h1>
-          <p>92회~109회 실기 기출의 IP/서브넷, 서술형·선택형, 라우터 문제를 정답과 함께 확인하고, 나머지 실습형(Windows Server) 문제는 회차별로 무엇이 나왔는지 확인할 수 있습니다.</p>
+          <p>92회~109회 실기 기출의 IP/서브넷, 서술형·선택형, 라우터 문제를 정답과 함께 확인하고, 나머지 실습형(Windows Server) 문제는 회차별로 무엇이 나왔는지 확인할 수 있습니다. 랜덤 문제 모드로 전환하면 전체 회차에서 한 문제씩 무작위로 풀어볼 수 있습니다.</p>
         </div>
       </div>
 
-      <div class="round-controls practical-round-bar">
+      <div class="mode-toggle" role="tablist" aria-label="실기 문제 보기 방식">
+        <button type="button" id="modeRoundBtn" class="mode-btn" data-mode="round">회차별 보기</button>
+        <button type="button" id="modeRandomBtn" class="mode-btn" data-mode="random">랜덤 문제</button>
+      </div>
+
+      <div id="roundBar" class="round-controls practical-round-bar">
         <label for="roundSelect">회차 선택</label>
         <select id="roundSelect" class="round-select"></select>
         <span id="roundDate" class="round-note"></span>
@@ -40,12 +45,17 @@
         </div>
       </div>
 
+      <div id="randomBar" class="round-controls practical-random-bar" hidden>
+        <span id="randomScore" class="round-note">정답 0 / 응답 0</span>
+        <button id="nextRandomBtn" class="btn" type="button">다음 문제 →</button>
+      </div>
+
       <div id="practicalArea"></div>
       <div id="practicalEmpty" class="empty-state" hidden><p>실기 기출문제 데이터를 불러오지 못했습니다.</p></div>
     </main>
 
     <footer class="site-footer">네트워크관리사 2급 기출문제 학습 · 실기 문제는 리모트코리아·네트워크관리사연구소 정답 해설을 참고해 정리했습니다.</footer>
   </div>
-  <script src="js/practical.js?v=20260827-1"></script>
+  <script src="js/practical.js?v=20260827-2"></script>
 </body>
 </html>

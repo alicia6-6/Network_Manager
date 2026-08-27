@@ -781,6 +781,21 @@ section.block { margin: 0 0 76px; }
 }
 
 /* 실기 기출문제 페이지 */
+.mode-toggle { display: flex; gap: 8px; margin-bottom: 14px; }
+.mode-btn {
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+.mode-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+.pill.round-pill { background: var(--primary-soft); color: var(--primary-dark); }
+
+.practical-random-bar { justify-content: space-between; }
 .practical-round-bar { margin-bottom: 26px; }
 .practical-round-nav { display: flex; gap: 8px; }
 .practical-round-nav .btn { padding: 8px 12px; font-size: .82rem; }
@@ -834,7 +849,8 @@ section.block { margin: 0 0 76px; }
 .empty-note { color: var(--text-muted); font-size: .86rem; }
 
 @media (max-width: 760px) {
-  .practical-round-bar.round-controls { align-items: stretch; flex-direction: column; }
+  .practical-round-bar.round-controls,
+  .practical-random-bar.round-controls { align-items: stretch; flex-direction: column; }
   .practical-round-nav { width: 100%; }
   .practical-round-nav .btn { flex: 1; }
 }

@@ -12,13 +12,25 @@
   const roundBar = document.getElementById("roundBar");
   const randomBar = document.getElementById("randomBar");
   const randomScoreEl = document.getElementById("randomScore");
+  const randomProgressEl = document.getElementById("randomProgress");
   const nextRandomBtn = document.getElementById("nextRandomBtn");
 
   let rounds = [];
   let pool = [];
   let mode = "round";
+  let randomQueue = [];
+  let randomIndex = 0;
   let currentRandomEntry = null;
   const randomStats = { asked: 0, correct: 0 };
+
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
 
   function escapeHtml(str) {
     return String(str ?? "").replace(/[&<>"']/g, (ch) => ({
@@ -62,6 +74,18 @@
       .split(/,|또는/)
       .map((s) => s.trim())
       .filter(Boolean);
+  }
+
+  // Splits a multi-blank 단답형 answer like "(A) 128 또는 128bit  (B) 애니 또는 애니캐스트"
+  // into separate {label, value} parts so each blank gets its own input field.
+  function parseLabeledAnswerParts(answerStr) {
+    const parts = String(answerStr || "").split(/\(([A-Z])\)\s*[:：]?\s*/);
+    const labeled = [];
+    for (let i = 1; i < parts.length; i += 2) {
+      const value = (parts[i + 1] || "").trim();
+      if (value) labeled.push({ label: parts[i], value });
+    }
+    return labeled;
   }
 
   function normalizeStrict(str) {
@@ -195,11 +219,26 @@
       ${answerBlock(item.answer, item.explanation, false)}`;
   }
 
+  // For 단답형 answers with multiple labeled blanks (A, B, ...), give each its own input.
+  function multiFieldAnswerArea(item, labeledParts) {
+    const fieldsHtml = labeledParts.map((part, i) => `
+      <div class="answer-field">
+        <label for="wf-${item.number}-${i}">${escapeHtml(part.label)}</label>
+        <input type="text" id="wf-${item.number}-${i}" class="answer-input" data-full-answer="${escapeHtml(part.value)}" autocomplete="off" spellcheck="false" placeholder="정답 입력">
+        <span class="field-mark"></span>
+      </div>`).join("");
+    return `
+      ${answerCheckBlock(fieldsHtml)}
+      ${answerBlock(item.answer, item.explanation, false)}`;
+  }
+
   function writtenCard(item, roundLabel) {
     const type = item.type || "단답형";
     const isShortAnswer = type === "단답형";
     const choiceData = type === "선택형" ? parseChoiceLines(item.prompt) : null;
     const isChoice = Boolean(choiceData && choiceData.choices.length >= 2);
+    const labeledParts = isShortAnswer ? parseLabeledAnswerParts(item.answer) : [];
+    const isMultiPart = labeledParts.length >= 2;
     const checkable = isShortAnswer || isChoice || (type === "선택형" && !isChoice);
 
     let promptText = item.prompt || "";
@@ -207,6 +246,8 @@
     if (isChoice) {
       promptText = choiceData.stem;
       answerArea = `${choiceCheckBlock(choiceData.choices, item.answer)}${answerBlock(item.answer, item.explanation, false)}`;
+    } else if (isMultiPart) {
+      answerArea = multiFieldAnswerArea(item, labeledParts);
     } else if (isShortAnswer || type === "선택형") {
       answerArea = shortAnswerArea(item);
     } else {
@@ -268,8 +309,8 @@
       practiceItems || `<p class="empty-note">데이터 없음</p>`
     ));
 
-    const writtenItems = (round.written || []).map(writtenCard).join("");
-    const routerItems = (round.router || []).map(routerCard).join("");
+    const writtenItems = (round.written || []).map((w) => writtenCard(w)).join("");
+    const routerItems = (round.router || []).map((rt) => routerCard(rt)).join("");
     parts.push(sectionHtml(
       "③ 단답형·선택형 문제",
       "정답·해설 포함",
@@ -285,47 +326,71 @@
     area.innerHTML = parts.join("");
   }
 
-  // Flat pool of answerable items (ip / written / router) across every round, for random mode.
-  // Practice-only items are excluded since they have no answer to check.
+  // Flat pool of answerable items (ip / written) across every round, for random mode.
+  // Practice-only items are excluded since they have no answer to check; router items are
+  // excluded from random mode by request (CLI topology problems don't fit the quick-drill flow).
   function buildPool(allRounds) {
     const list = [];
     allRounds.forEach((r) => {
       if (r.ip) list.push({ kind: "ip", round: r.round, item: r.ip });
       (r.written || []).forEach((w) => list.push({ kind: "written", round: r.round, item: w }));
-      (r.router || []).forEach((rt) => list.push({ kind: "router", round: r.round, item: rt }));
     });
     return list;
-  }
-
-  function pickRandomEntry() {
-    if (!pool.length) return null;
-    if (pool.length === 1) return pool[0];
-    let next = currentRandomEntry;
-    while (next === currentRandomEntry) {
-      next = pool[Math.floor(Math.random() * pool.length)];
-    }
-    return next;
   }
 
   function updateRandomScore() {
     randomScoreEl.textContent = `정답 ${randomStats.correct} / 응답 ${randomStats.asked}`;
   }
 
+  function updateRandomProgress() {
+    const shown = Math.min(randomIndex + 1, randomQueue.length);
+    randomProgressEl.textContent = randomQueue.length ? `${shown} / ${randomQueue.length}문제` : "";
+  }
+
+  // Shuffles the whole pool into a fresh no-repeat pass and resets the running score.
+  function buildRandomQueue() {
+    randomQueue = shuffle(pool);
+    randomIndex = 0;
+    randomStats.asked = 0;
+    randomStats.correct = 0;
+    updateRandomScore();
+  }
+
+  function renderRandomComplete() {
+    updateRandomProgress();
+    area.dataset.mode = "random";
+    area.innerHTML = `
+      <div class="practical-card q-card">
+        <div class="q-meta"><span class="pill answer">완료</span></div>
+        <div class="q-text">전체 ${randomQueue.length}문제를 모두 풀었습니다. 정답 ${randomStats.correct} / 응답 ${randomStats.asked}</div>
+      </div>`;
+    nextRandomBtn.textContent = "다시 섞어서 풀기 ↻";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   function renderRandomQuestion() {
-    currentRandomEntry = pickRandomEntry();
     emptyEl.hidden = true;
-    if (!currentRandomEntry) {
+    if (!randomQueue.length) {
       area.innerHTML = "";
       emptyEl.hidden = false;
       return;
     }
+    if (randomIndex >= randomQueue.length) return renderRandomComplete();
+
+    currentRandomEntry = randomQueue[randomIndex];
+    updateRandomProgress();
     const { kind, round, item } = currentRandomEntry;
-    const cardHtml = kind === "ip" ? ipCard(item, round)
-      : kind === "written" ? writtenCard(item, round)
-      : routerCard(item, round);
+    const cardHtml = kind === "ip" ? ipCard(item, round) : writtenCard(item, round);
     area.dataset.mode = "random";
     area.innerHTML = `<div class="practical-grid">${cardHtml}</div>`;
+    nextRandomBtn.textContent = "다음 문제 →";
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function advanceRandom() {
+    if (randomIndex >= randomQueue.length) buildRandomQueue();
+    else randomIndex += 1;
+    renderRandomQuestion();
   }
 
   function setMode(newMode) {
@@ -337,6 +402,7 @@
 
     if (mode === "random") {
       try { history.replaceState(null, "", "?mode=random"); } catch (e) { /* ignore */ }
+      if (!randomQueue.length) buildRandomQueue();
       renderRandomQuestion();
     } else {
       const value = roundSelect.value || rounds[rounds.length - 1].round;
@@ -489,7 +555,6 @@
 
     roundSelect.innerHTML = rounds.map((r) => `<option value="${escapeHtml(r.round)}">${escapeHtml(r.round)} (${escapeHtml(r.date || "")})</option>`).join("");
     pool = buildPool(rounds);
-    updateRandomScore();
 
     const params = new URLSearchParams(location.search);
     const requested = params.get("round");
@@ -509,7 +574,7 @@
     });
     modeRoundBtn.addEventListener("click", () => setMode("round"));
     modeRandomBtn.addEventListener("click", () => setMode("random"));
-    nextRandomBtn.addEventListener("click", renderRandomQuestion);
+    nextRandomBtn.addEventListener("click", advanceRandom);
   }
 
   init();

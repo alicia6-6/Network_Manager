@@ -64,10 +64,6 @@ function shuffle(arr) {
   return a;
 }
 
-function pickRandom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
 // ---- 오답노트 (localStorage) ----
 function loadWrongNote() {
   try {

@@ -11,7 +11,7 @@ const els = Object.fromEntries([
 ].map((id) => [id, document.getElementById(id)]));
 
 const MODE_INFO = {
-  random: { title: "랜덤 문제", desc: "전체 기출문제에서 한 문제씩 가볍게 학습합니다." },
+  random: { title: "랜덤 문제", desc: "전체 기출문제를 무작위로 섞어 중복 없이 처음부터 끝까지 풀어봅니다." },
   frequent: { title: "빈출문제", desc: "여러 회차에서 반복 출제된 핵심 문제를 모아 학습합니다." },
   round: { title: "회차별 모의시험", desc: "50분 동안 한 회차를 풀고, 제출한 뒤 점수와 해설을 확인하세요." },
   wrong: { title: "오답노트", desc: "이전에 틀린 문제를 다시 풀어 확실하게 복습합니다." },
@@ -46,7 +46,7 @@ async function init() {
   }
   if (MODE === "frequent") state.queue = shuffle(getFrequentQuestions(state.all, 2));
   else if (MODE === "wrong") state.queue = shuffle(getWrongQuestions());
-  else if (state.all.length) return startRandomMode();
+  else if (MODE === "random") state.queue = shuffle(state.all);
 
   if (!state.queue.length) return showEmpty(MODE === "wrong" ? "오답노트가 비어 있습니다." : "표시할 문제가 없습니다.");
   beginSequentialSession();
@@ -92,21 +92,6 @@ function beginSequentialSession() {
   els.toolbar.hidden = false; els.resultArea.hidden = true; els.emptyArea.hidden = true;
   els.quizArea.hidden = false;
   renderSequentialQuestion();
-}
-
-function startRandomMode() {
-  els.toolbar.hidden = false;
-  els.progressBar.parentElement.style.visibility = "hidden";
-  els.progressText.textContent = "자유 학습";
-  renderRandomQuestion();
-}
-
-function renderRandomQuestion() {
-  state.currentAnswered = false;
-  state.lastChoice = null;
-  state._current = pickRandom(state.all);
-  renderQuestionCard(state._current, { showFreq: false });
-  updateScoreText();
 }
 
 function renderSequentialQuestion() {
@@ -251,7 +236,7 @@ function renderQuestionMap() {
 }
 
 function goToQuestion(index) { state.index = index; renderSequentialQuestion(); if (state.exam) renderQuestionMap(); window.scrollTo({ top: 0, behavior: "smooth" }); }
-function goNext() { if (MODE === "random") return renderRandomQuestion(); state.index++; renderSequentialQuestion(); }
+function goNext() { state.index++; renderSequentialQuestion(); }
 
 function submitExam(autoSubmitted) {
   if (state.submitted) return;

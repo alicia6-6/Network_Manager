@@ -326,6 +326,28 @@
     area.innerHTML = parts.join("");
   }
 
+  function normalizeForDedupe(str) {
+    return String(str || "")
+      .replace(/\s+/g, "")
+      .replace(/[.,·、!?~\-()\[\]{}'":：]/g, "")
+      .toLowerCase();
+  }
+
+  // Some 실기 문제(선택형 다지선다, 일부 IP 템플릿 등)는 여러 회차에 그대로 재출제된다.
+  // 회차별 보기는 각 회차의 원본을 그대로 보여줘야 하므로 손대지 않고, 랜덤 모드 풀만
+  // 문제/정답 내용이 같은 항목을 한 번만 포함하도록 걸러낸다.
+  function dedupePoolItems(list) {
+    const seen = new Set();
+    const result = [];
+    list.forEach((entry) => {
+      const key = `${entry.kind}|${normalizeForDedupe(entry.item.prompt)}|${normalizeForDedupe(entry.item.answer)}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      result.push(entry);
+    });
+    return result;
+  }
+
   // Flat pool of answerable items (ip / written) across every round, for random mode.
   // Practice-only items are excluded since they have no answer to check; router items are
   // excluded from random mode by request (CLI topology problems don't fit the quick-drill flow).
@@ -335,7 +357,7 @@
       if (r.ip) list.push({ kind: "ip", round: r.round, item: r.ip });
       (r.written || []).forEach((w) => list.push({ kind: "written", round: r.round, item: w }));
     });
-    return list;
+    return dedupePoolItems(list);
   }
 
   function updateRandomScore() {

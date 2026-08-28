@@ -429,6 +429,8 @@
 
   function normalizeForDedupe(str) {
     return String(str || "")
+      .replace(/[！-～]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0)) // 전각 문자 -> 반각
+      .replace(/[‐-―−]/g, "-") // 다양한 대시/마이너스 -> 하이픈
       .replace(/\s+/g, "")
       .replace(/[.,·、!?~\-()\[\]{}'":：]/g, "")
       .toLowerCase();
@@ -449,6 +451,103 @@
     return result;
   }
 
+  function levenshteinDist(a, b) {
+    const m = a.length;
+    const n = b.length;
+    if (!m) return n;
+    if (!n) return m;
+    let prev = Array.from({ length: n + 1 }, (_, j) => j);
+    for (let i = 1; i <= m; i++) {
+      const curr = [i];
+      for (let j = 1; j <= n; j++) {
+        curr[j] = a[i - 1] === b[j - 1] ? prev[j - 1] : 1 + Math.min(prev[j - 1], prev[j], curr[j - 1]);
+      }
+      prev = curr;
+    }
+    return prev[n];
+  }
+
+  function textSim(a, b) {
+    const d = levenshteinDist(a, b);
+    const len = Math.max(a.length, b.length) || 1;
+    return 1 - d / len;
+  }
+
+  // 쉼표로 나열된 정답 대안들을 순서 무관 집합으로 비교한다(예: 동의어 나열 순서가
+  // 회차마다 다른 경우).
+  function altSet(str) {
+    return new Set(String(str || "").split(",").map((s) => normalizeForDedupe(s)).filter(Boolean));
+  }
+
+  function jaccard(setA, setB) {
+    const inter = [...setA].filter((x) => setB.has(x)).length;
+    const union = new Set([...setA, ...setB]).size || 1;
+    return inter / union;
+  }
+
+  function answerSimilarity(a, b) {
+    return Math.max(textSim(normalizeForDedupe(a), normalizeForDedupe(b)), jaccard(altSet(a), altSet(b)));
+  }
+
+  // 선택형(보기1/① 라벨) 답안은 회차마다 정답 개수·구성이 달라 유사도만으로 같은
+  // 문제인지 판단하기 위험하므로 유사문제 병합 대상에서 제외한다.
+  function isChoiceLabelAnswer(answerStr) {
+    return /^\s*(보기\d+|[①②③④⑤⑥⑦⑧⑨⑩])/.test(String(answerStr || ""));
+  }
+
+  function makeUnionFind(n) {
+    const parent = Array.from({ length: n }, (_, i) => i);
+    function find(x) {
+      while (parent[x] !== x) { parent[x] = parent[parent[x]]; x = parent[x]; }
+      return x;
+    }
+    function union(a, b) {
+      const ra = find(a);
+      const rb = find(b);
+      if (ra !== rb) parent[ra] = rb;
+    }
+    return { find, union };
+  }
+
+  const NEAR_DUP_ANSWER_THRESHOLD = 0.5;
+  const NEAR_DUP_PROMPT_THRESHOLD = 0.4;
+
+  // 오탈자 없이 완전히 같은 문항 외에도, 여러 회차에 걸쳐 문구만 다시 써서(전개 방식,
+  // 예시 추가 등) 재출제된 단답형 문제가 있다(예: RIP 설명 문제가 5개 회차에 각각
+  // 조금씩 다르게 서술됨). written 항목만 대상으로, 문제 문장과 정답이 모두 충분히
+  // 비슷할 때만 하나로 묶는다. ip 문제는 제외한다 — 안내 문구(템플릿)는 거의 같아도
+  // 실제 네트워크 대역/계산 값이 회차마다 달라 유사도만으로는 구분이 안 된다.
+  function dedupeWrittenNearMatches(pool) {
+    const eligible = [];
+    pool.forEach((entry, index) => {
+      if (entry.kind === "written" && !isChoiceLabelAnswer(entry.item.answer)) eligible.push(index);
+    });
+
+    const uf = makeUnionFind(pool.length);
+    for (let a = 0; a < eligible.length; a++) {
+      const i = eligible[a];
+      for (let b = a + 1; b < eligible.length; b++) {
+        const j = eligible[b];
+        const itemA = pool[i].item;
+        const itemB = pool[j].item;
+        const promptSim = textSim(normalizeForDedupe(itemA.prompt), normalizeForDedupe(itemB.prompt));
+        if (promptSim < NEAR_DUP_PROMPT_THRESHOLD) continue;
+        if (answerSimilarity(itemA.answer, itemB.answer) < NEAR_DUP_ANSWER_THRESHOLD) continue;
+        uf.union(i, j);
+      }
+    }
+
+    const seenRoot = new Set();
+    const result = [];
+    pool.forEach((entry, index) => {
+      const root = uf.find(index);
+      if (seenRoot.has(root)) return;
+      seenRoot.add(root);
+      result.push(entry);
+    });
+    return result;
+  }
+
   // Flat pool of answerable items (ip / written) across every round, for random mode.
   // Practice-only items are excluded since they have no answer to check; router items are
   // excluded from random mode by request (CLI topology problems don't fit the quick-drill flow).
@@ -458,7 +557,7 @@
       if (r.ip) list.push({ kind: "ip", round: r.round, item: r.ip });
       (r.written || []).forEach((w) => list.push({ kind: "written", round: r.round, item: w }));
     });
-    return dedupePoolItems(list);
+    return dedupeWrittenNearMatches(dedupePoolItems(list));
   }
 
   function updateRandomScore() {

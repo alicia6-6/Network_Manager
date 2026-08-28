@@ -16,9 +16,86 @@ async function loadQuestionBank() {
 
 function normalizeText(str) {
   return String(str || "")
+    .replace(/[！-～]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0)) // 전각(full-width) 문자 -> 반각
+    .replace(/[‐-―−]/g, "-") // en-dash/em-dash/minus 등 다양한 대시 -> 하이픈
     .replace(/\s+/g, "")
     .replace(/[.,·・\-()\[\]{}'"“”‘’!?~%]/g, "")
     .toLowerCase();
+}
+
+function levenshtein(a, b) {
+  const m = a.length;
+  const n = b.length;
+  if (!m) return n;
+  if (!n) return m;
+  let prev = Array.from({ length: n + 1 }, (_, j) => j);
+  for (let i = 1; i <= m; i++) {
+    const curr = [i];
+    for (let j = 1; j <= n; j++) {
+      curr[j] = a[i - 1] === b[j - 1] ? prev[j - 1] : 1 + Math.min(prev[j - 1], prev[j], curr[j - 1]);
+    }
+    prev = curr;
+  }
+  return prev[n];
+}
+
+function textSimilarity(a, b) {
+  const d = levenshtein(a, b);
+  const len = Math.max(a.length, b.length) || 1;
+  return 1 - d / len;
+}
+
+// 보기 순서가 회차마다 다를 수 있으므로, A의 각 보기를 B에서 가장 비슷한 보기와 짝지어
+// 평균 유사도를 낸다(순서 무관 비교).
+function choiceSetSimilarity(choicesA, choicesB) {
+  const normA = choicesA.map(normalizeText);
+  const normB = choicesB.map(normalizeText);
+  if (!normA.length) return 0;
+  const total = normA.reduce((sum, a) => sum + normB.reduce((max, b) => Math.max(max, textSimilarity(a, b)), 0), 0);
+  return total / normA.length;
+}
+
+function bestMatchIndex(target, list) {
+  let bestIdx = -1;
+  let best = -1;
+  list.forEach((item, i) => {
+    const s = textSimilarity(target, item);
+    if (s > best) { best = s; bestIdx = i; }
+  });
+  return bestIdx;
+}
+
+const NEAR_DUP_THRESHOLD = 0.7;
+
+// 오탈자/띄어쓰기/용어 표기만 살짝 다르게 재출제된 문제를 잡아낸다. 문제 문장이 완전히
+// 같은 것끼리만 비교해(우연히 같은 문장 틀을 재사용한 서로 다른 문제와 섞이지 않도록),
+// 보기 내용이 실질적으로 같고(threshold 이상) 정답 위치도 서로 대응할 때만 중복으로 본다.
+function dedupeNearMatches(questions) {
+  const groups = new Map();
+  questions.forEach((q) => {
+    const key = normalizeText(q.question);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(q);
+  });
+
+  const drop = new Set();
+  groups.forEach((group) => {
+    if (group.length < 2) return;
+    for (let i = 0; i < group.length; i++) {
+      if (drop.has(group[i].id)) continue;
+      for (let j = i + 1; j < group.length; j++) {
+        if (drop.has(group[j].id)) continue;
+        const simScore = choiceSetSimilarity(group[i].choices || [], group[j].choices || []);
+        if (simScore < NEAR_DUP_THRESHOLD) continue;
+        const answerA = normalizeText((group[i].choices || [])[group[i].answer - 1] || "");
+        const matchIdx = bestMatchIndex(answerA, (group[j].choices || []).map(normalizeText));
+        if (matchIdx !== group[j].answer - 1) continue; // 정답 위치가 안 맞으면 실제로는 다른 문제
+        drop.add(group[j].id);
+      }
+    }
+  });
+
+  return questions.filter((q) => !drop.has(q.id));
 }
 
 // 동일/유사 문제를 하나의 그룹으로 묶어 출제 빈도를 계산한다.
@@ -55,14 +132,14 @@ function getFrequentQuestions(questions, minCount = 2) {
 // 하므로 이 함수는 원본 배열을 바꾸지 않고 별도 목록만 만들어 반환한다.
 function dedupeQuestions(questions) {
   const seen = new Set();
-  const result = [];
+  const exact = [];
   questions.forEach((q) => {
     const key = normalizeText(q.question) + "|" + (q.choices || []).map(normalizeText).sort().join(",");
     if (seen.has(key)) return;
     seen.add(key);
-    result.push(q);
+    exact.push(q);
   });
-  return result;
+  return dedupeNearMatches(exact);
 }
 
 function getRounds(questions) {

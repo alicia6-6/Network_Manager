@@ -96,6 +96,7 @@
     return String(str || "")
       .toLowerCase()
       .replace(/\(.*?\)/g, "")
+      .replace(/(\d+)\s*개/g, "$1")
       .replace(/[\s:.\-]/g, "");
   }
 

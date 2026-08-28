@@ -165,6 +165,95 @@
       </div>`;
   }
 
+  // 드래그앤드롭형 answers show up in a few different shapes in the source data:
+  //   "(A) : grub / (B) : /etc/fstab / (C) : init"
+  //   "A-RAM, B-NVRAM, C-FLASH, D-ROM"
+  //   "설명A → RIP\n설명B → OSPF"
+  //   "7계층(응용): Data, 6계층(표현): Data, ..."
+  // Each is tried in turn; the first that yields pairs wins.
+  function parseDragAnswerPairs(answerStr) {
+    const str = String(answerStr || "").trim();
+    if (!str) return [];
+
+    if (/\([^)]+\)\s*:/.test(str) && str.includes("/")) {
+      const pairs = [];
+      const re = /\(([^)]+)\)\s*:\s*(.+?)(?=\/\s*\([^)]+\)\s*:|$)/g;
+      let m;
+      while ((m = re.exec(str))) {
+        const value = m[2].trim().replace(/\/\s*$/, "").trim();
+        if (value) pairs.push({ label: m[1].trim(), value });
+      }
+      if (pairs.length) return pairs;
+    }
+
+    if (/→|->/.test(str)) {
+      const pairs = str.split("\n").map((line) => {
+        const m = /^(.+?)\s*(?:→|->)\s*(.+)$/.exec(line.trim());
+        return m ? { label: m[1].trim(), value: m[2].trim() } : null;
+      }).filter(Boolean);
+      if (pairs.length) return pairs;
+    }
+
+    if (str.includes(",") && /[:：]/.test(str)) {
+      const pairs = str.split(",").map((part) => {
+        const idx = part.search(/[:：]/);
+        if (idx === -1) return null;
+        return { label: part.slice(0, idx).trim(), value: part.slice(idx + 1).trim() };
+      }).filter(Boolean);
+      if (pairs.length) return pairs;
+    }
+
+    if (str.includes(",") && str.includes("-")) {
+      const pairs = str.split(",").map((part) => {
+        const m = /^\s*([^-]+)-(.+)$/.exec(part.trim());
+        return m ? { label: m[1].trim(), value: m[2].trim() } : null;
+      }).filter(Boolean);
+      if (pairs.length) return pairs;
+    }
+
+    return [];
+  }
+
+  const DRAG_BANK_LINE_RE = /^(?:\[보기\]|보기\s*[:：]|드래그\s*대상\s*\(?보기\)?\s*[:：])\s*(.+)$/;
+
+  // Pulls the word-bank line ("[보기] a, b, c" / "보기: a, b, c" / "드래그 대상(보기): a, b, c")
+  // out of a 드래그앤드롭형 prompt, if the source data has one in a recognizable shape.
+  function extractDragBank(prompt) {
+    for (const line of String(prompt || "").split("\n")) {
+      const m = DRAG_BANK_LINE_RE.exec(line.trim());
+      if (m) return m[1].split(/[,、]/).map((s) => s.trim()).filter(Boolean);
+    }
+    return null;
+  }
+
+  function dragDropStem(prompt) {
+    return String(prompt || "")
+      .split("\n")
+      .filter((line) => !DRAG_BANK_LINE_RE.test(line.trim()))
+      .join("\n")
+      .trim();
+  }
+
+  function dragDropCheckBlock(pairs, bank) {
+    const chips = bank.map((word) => `
+      <button type="button" class="drag-chip" draggable="true" data-word="${escapeHtml(word)}">${escapeHtml(word)}</button>`).join("");
+    const slots = pairs.map((p, i) => `
+      <div class="drag-slot">
+        <span class="slot-label">${escapeHtml(p.label)}</span>
+        <span class="slot-drop" data-index="${i}" data-answer="${escapeHtml(p.value)}" data-filled="">여기로 드래그 또는 클릭</span>
+      </div>`).join("");
+    return `
+      <div class="drag-check">
+        <div class="dragdrop-bank">${chips}</div>
+        <div class="dragdrop-slots">${slots}</div>
+        <div class="answer-actions">
+          <button type="button" class="btn check-drag-btn">정답 확인</button>
+          <button type="button" class="btn ghost reveal-btn">정답 보기</button>
+        </div>
+        <div class="check-summary"></div>
+      </div>`;
+  }
+
   function topologyBlock(topology) {
     if (!topology) return "";
     return `<div class="plain-box"><b class="pb-label">구성도</b>${nl2br(escapeHtml(topology))}</div>`;
@@ -240,7 +329,10 @@
     const isChoice = Boolean(choiceData && choiceData.choices.length >= 2);
     const labeledParts = isShortAnswer ? parseLabeledAnswerParts(item.answer) : [];
     const isMultiPart = labeledParts.length >= 2;
-    const checkable = isShortAnswer || isChoice || (type === "선택형" && !isChoice);
+    const isDragDrop = type === "드래그앤드롭형";
+    const dragPairs = isDragDrop ? parseDragAnswerPairs(item.answer) : [];
+    const isDraggable = isDragDrop && dragPairs.length >= 2;
+    const checkable = isShortAnswer || isChoice || isDraggable || (type === "선택형" && !isChoice);
 
     let promptText = item.prompt || "";
     let answerArea;
@@ -249,6 +341,14 @@
       answerArea = `${choiceCheckBlock(choiceData.choices, item.answer)}${answerBlock(item.answer, item.explanation, false)}`;
     } else if (isMultiPart) {
       answerArea = multiFieldAnswerArea(item, labeledParts);
+    } else if (isDraggable) {
+      promptText = dragDropStem(item.prompt);
+      let bank = extractDragBank(item.prompt) || [];
+      if (!bank.length) bank = dragPairs.map((p) => p.value);
+      dragPairs.forEach((p) => {
+        if (!bank.some((b) => normalizeFree(b) === normalizeFree(p.value))) bank.push(p.value);
+      });
+      answerArea = `${dragDropCheckBlock(dragPairs, bank)}${answerBlock(item.answer, item.explanation, false)}`;
     } else if (isShortAnswer || type === "선택형") {
       answerArea = shortAnswerArea(item);
     } else {
@@ -467,7 +567,7 @@
   }
 
   function handleReveal(btn) {
-    const wrap = btn.closest(".answer-check, .choice-check");
+    const wrap = btn.closest(".answer-check, .choice-check, .drag-check");
     const card = btn.closest(".practical-card");
     const explainBox = card.querySelector(".explain-box");
     if (explainBox) explainBox.classList.add("show");
@@ -512,6 +612,52 @@
     }
   }
 
+  const DRAG_SLOT_PLACEHOLDER = "여기로 드래그 또는 클릭";
+
+  function fillDragSlot(slot, word) {
+    slot.dataset.filled = word;
+    slot.textContent = word;
+    slot.classList.add("filled");
+    slot.classList.remove("correct", "wrong");
+    const summary = slot.closest(".drag-check").querySelector(".check-summary");
+    summary.className = "check-summary";
+    summary.textContent = "";
+  }
+
+  function clearDragSlot(slot) {
+    slot.dataset.filled = "";
+    slot.textContent = DRAG_SLOT_PLACEHOLDER;
+    slot.classList.remove("filled", "correct", "wrong");
+  }
+
+  function handleDragCheck(btn) {
+    const wrap = btn.closest(".drag-check");
+    const card = btn.closest(".practical-card");
+    const slots = Array.from(wrap.querySelectorAll(".slot-drop"));
+    const filledCount = slots.filter((slot) => slot.dataset.filled).length;
+    let allCorrect = true;
+
+    slots.forEach((slot) => {
+      const filled = slot.dataset.filled || "";
+      const ok = Boolean(filled) && normalizeFree(filled) === normalizeFree(slot.dataset.answer);
+      slot.classList.toggle("correct", ok);
+      slot.classList.toggle("wrong", Boolean(filled) && !ok);
+      if (!ok) allCorrect = false;
+    });
+
+    const summary = wrap.querySelector(".check-summary");
+    summary.textContent = !filledCount
+      ? "빈칸에 보기를 배치해 주세요."
+      : allCorrect ? "✓ 정답입니다!" : "✗ 오답이 있습니다. 아래 정답을 확인하세요.";
+    summary.className = `check-summary show ${!filledCount ? "" : allCorrect ? "ok" : "no"}`;
+
+    if (filledCount) {
+      const explainBox = card.querySelector(".explain-box");
+      if (explainBox) explainBox.classList.add("show");
+      markScored(card, allCorrect);
+    }
+  }
+
   area.addEventListener("click", (e) => {
     const opt = e.target.closest(".choice-opt");
     if (opt) {
@@ -523,12 +669,53 @@
       summary.textContent = "";
       return;
     }
+    const chip = e.target.closest(".drag-chip");
+    if (chip) {
+      const wrap = chip.closest(".drag-check");
+      const wasSelected = chip.classList.contains("selected");
+      wrap.querySelectorAll(".drag-chip.selected").forEach((c) => c.classList.remove("selected"));
+      if (!wasSelected) chip.classList.add("selected");
+      return;
+    }
+    const slot = e.target.closest(".slot-drop");
+    if (slot) {
+      const wrap = slot.closest(".drag-check");
+      const selectedChip = wrap.querySelector(".drag-chip.selected");
+      if (selectedChip) {
+        fillDragSlot(slot, selectedChip.dataset.word);
+        selectedChip.classList.remove("selected");
+      } else if (slot.dataset.filled) {
+        clearDragSlot(slot);
+      }
+      return;
+    }
     const checkChoiceBtn = e.target.closest(".check-choice-btn");
     if (checkChoiceBtn) { handleChoiceCheck(checkChoiceBtn); return; }
+    const checkDragBtn = e.target.closest(".check-drag-btn");
+    if (checkDragBtn) { handleDragCheck(checkDragBtn); return; }
     const checkBtn = e.target.closest(".check-btn");
     if (checkBtn) { handleCheck(checkBtn); return; }
     const revealBtn = e.target.closest(".reveal-btn");
     if (revealBtn) { handleReveal(revealBtn); return; }
+  });
+
+  area.addEventListener("dragstart", (e) => {
+    const chip = e.target.closest(".drag-chip");
+    if (!chip) return;
+    e.dataTransfer.setData("text/plain", chip.dataset.word);
+    e.dataTransfer.effectAllowed = "copy";
+  });
+
+  area.addEventListener("dragover", (e) => {
+    if (e.target.closest(".slot-drop")) e.preventDefault();
+  });
+
+  area.addEventListener("drop", (e) => {
+    const slot = e.target.closest(".slot-drop");
+    if (!slot) return;
+    e.preventDefault();
+    const word = e.dataTransfer.getData("text/plain");
+    if (word) fillDragSlot(slot, word);
   });
 
   area.addEventListener("keydown", (e) => {

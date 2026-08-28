@@ -873,6 +873,43 @@ section.block { margin: 0 0 76px; }
 }
 .empty-note { color: var(--text-muted); font-size: .86rem; }
 
+.drag-check { margin-top: 14px; }
+.dragdrop-bank { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.drag-chip {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: .86rem;
+  font-family: inherit;
+  cursor: grab;
+}
+.drag-chip.selected { border-color: var(--primary); background: var(--primary-soft); color: var(--primary-dark); }
+.dragdrop-slots { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.drag-slot { display: flex; align-items: center; gap: 10px; }
+.drag-slot .slot-label { flex: 0 0 130px; font-size: .82rem; color: var(--text-muted); font-weight: 600; }
+.slot-drop {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 12px;
+  border-radius: 9px;
+  border: 1px dashed var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: .88rem;
+  text-align: center;
+  cursor: pointer;
+}
+.slot-drop.filled { border-style: solid; color: var(--text); font-weight: 600; }
+.slot-drop.correct { border-color: var(--success); background: var(--success-soft); color: var(--success); }
+.slot-drop.wrong { border-color: var(--danger); background: var(--danger-soft); color: var(--danger); }
+
+@media (max-width: 640px) {
+  .drag-slot { flex-wrap: wrap; }
+  .drag-slot .slot-label { flex: 0 0 100%; }
+}
+
 @media (max-width: 760px) {
   .practical-round-bar.round-controls,
   .practical-random-bar.round-controls { align-items: stretch; flex-direction: column; }

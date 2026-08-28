@@ -325,11 +325,13 @@
   function writtenCard(item, roundLabel) {
     const type = item.type || "단답형";
     const isShortAnswer = type === "단답형";
+    const isDragDrop = type === "드래그앤드롭형";
     const choiceData = type === "선택형" ? parseChoiceLines(item.prompt) : null;
     const isChoice = Boolean(choiceData && choiceData.choices.length >= 2);
-    const labeledParts = isShortAnswer ? parseLabeledAnswerParts(item.answer) : [];
+    // (A)/(B) 두 칸짜리 답은 소스 데이터에서 가끔 선택형으로 잘못 분류돼 있는데(예: 108회#13),
+    // 실제로 보기 목록이 없으면(= isChoice가 아니면) 단답형과 동일하게 분리 입력을 적용한다.
+    const labeledParts = !isDragDrop && !isChoice ? parseLabeledAnswerParts(item.answer) : [];
     const isMultiPart = labeledParts.length >= 2;
-    const isDragDrop = type === "드래그앤드롭형";
     const dragPairs = isDragDrop ? parseDragAnswerPairs(item.answer) : [];
     const isDraggable = isDragDrop && dragPairs.length >= 2;
     const checkable = isShortAnswer || isChoice || isDraggable || (type === "선택형" && !isChoice);

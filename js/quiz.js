@@ -46,7 +46,7 @@ async function init() {
   }
   if (MODE === "frequent") state.queue = shuffle(getFrequentQuestions(state.all, 2));
   else if (MODE === "wrong") state.queue = shuffle(getWrongQuestions());
-  else if (MODE === "random") state.queue = shuffle(state.all);
+  else if (MODE === "random") state.queue = shuffle(dedupeQuestions(state.all));
 
   if (!state.queue.length) return showEmpty(MODE === "wrong" ? "오답노트가 비어 있습니다." : "표시할 문제가 없습니다.");
   beginSequentialSession();

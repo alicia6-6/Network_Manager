@@ -50,6 +50,21 @@ function getFrequentQuestions(questions, minCount = 2) {
   return result;
 }
 
+// 같은 문제가 여러 회차에 그대로 재출제된 경우(보기 순서만 다를 수 있음) 랜덤 모드에서
+// 한 번만 나오도록 걸러낸다. 빈출문제/회차별 모의고사는 회차별 원본 데이터가 그대로 있어야
+// 하므로 이 함수는 원본 배열을 바꾸지 않고 별도 목록만 만들어 반환한다.
+function dedupeQuestions(questions) {
+  const seen = new Set();
+  const result = [];
+  questions.forEach((q) => {
+    const key = normalizeText(q.question) + "|" + (q.choices || []).map(normalizeText).sort().join(",");
+    if (seen.has(key)) return;
+    seen.add(key);
+    result.push(q);
+  });
+  return result;
+}
+
 function getRounds(questions) {
   const set = new Set(questions.map((q) => q.round));
   return [...set].sort();

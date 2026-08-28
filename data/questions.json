@@ -8987,7 +8987,7 @@
       "explanation": "라우터와 스위치의 시간을 서로 맞추고(동기화) UDP 123번 포트를 사용하는 프로토콜은 SNTP(Simple Network Time Protocol, 간이 시간 동기화 프로토콜)예요.",
       "image": null,
       "tags": [],
-      "imageText": "네트워크 관리자 Kim은 라우터 및 스위치의 시간 동기화를 위하여 ( A ) 프로토콜을 사용하려고 한다. ( A ) 프로토콜은 포트 123을 대상으로 작동한다.",
+      "imageText": "네트워크관리사 Kim은 라우터 및 스위치 장비의 시간 동기화를 위하여 ( A ) 프로토콜을 사용하려고 한다. ( A ) 프로토콜은 포트 123을 대상으로 작동한다.",
       "imageOriginal": "data/images/2025-08/q17.gif"
     },
     {
@@ -10983,11 +10983,11 @@
         "ICMP 패킷이 왕복한 평균 시간은 7.450ms 이다."
       ],
       "answer": 4,
-      "explanation": "결과 화면의 rtt min/avg/max/mdev 값을 보면 최소 7.085ms, 평균 7.377ms, 최대 7.450ms, 편차 0.155ms로 나와 있다. 즉 7.450ms는 평균이 아니라 가장 오래 걸린 최대 시간이므로 '평균 왕복시간이 7.450ms'라는 설명은 틀렸다. 목적지 주소, 3회 송수신, 최소 시간 7.085ms에 대한 나머지 설명은 화면 내용과 모두 일치한다.",
+      "explanation": "결과 화면의 rtt min/avg/max/mdev 값을 보면 최소 7.085ms, 평균 7.237ms, 최대 7.450ms, 편차 0.155ms로 나와 있다. 즉 7.450ms는 평균이 아니라 가장 오래 걸린 최대 시간이므로 '평균 왕복시간이 7.450ms'라는 설명은 틀렸다. 목적지 주소, 3회 송수신, 최소 시간 7.085ms에 대한 나머지 설명은 화면 내용과 모두 일치한다.",
       "image": null,
       "tags": [],
       "imageOriginal": "data/images/2026-02/q32.gif",
-      "imageText": "icqa@icqa-PC001:~$ ping -c 3 icqa.or.kr\nPING icqa.or.kr (210.103.175.224) 56(84) bytes of data.\n64 bytes from 210.103.175.224 (210.103.175.224): icmp_seq=1 ttl=54 time=7.45 ms\n64 bytes from 210.103.175.224 (210.103.175.224): icmp_seq=2 ttl=54 time=7.17 ms\n64 bytes from 210.103.175.224 (210.103.175.224): icmp_seq=3 ttl=54 time=7.08 ms\n\n--- icqa.or.kr ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2002ms\nrtt min/avg/max/mdev = 7.085/7.377/7.450/0.155 ms"
+      "imageText": "icqa@icqa-PC001:~$ ping -c 3 icqa.or.kr\nPING icqa.or.kr (210.103.175.224) 56(84) bytes of data.\n64 bytes from 210.103.175.224 (210.103.175.224): icmp_seq=1 ttl=54 time=7.45 ms\n64 bytes from 210.103.175.224 (210.103.175.224): icmp_seq=2 ttl=54 time=7.17 ms\n64 bytes from 210.103.175.224 (210.103.175.224): icmp_seq=3 ttl=54 time=7.08 ms\n\n--- icqa.or.kr ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2002ms\nrtt min/avg/max/mdev = 7.085/7.237/7.450/0.155 ms"
     },
     {
       "id": "2026-02-33",

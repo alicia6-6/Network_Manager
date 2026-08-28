@@ -7,3 +7,5 @@ node_modules/
 
 # Practical exam answer-key PDFs (commercial CBT-site content) — local-only source material.
 2026년_네트워크관리사_실기(수정)/
+pdf/
+*.pdf

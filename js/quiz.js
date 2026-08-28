@@ -119,15 +119,15 @@ function renderQuestionCard(q, opts = {}) {
       <div class="quiz-actions">
         <div class="action-group">
           <a class="btn secondary" href="index.html">나가기</a>
-          ${MODE === "random" ? `<button class="btn ai-share-trigger" id="shareBtn-main" type="button">AI에게 질문</button>` : ""}
+          ${!state.exam ? `<button class="btn ai-share-trigger" id="shareBtn-main" type="button">AI에게 질문</button>` : ""}
         </div>
         <div class="action-group">
           ${state.exam && state.index > 0 ? `<button class="btn ghost" id="prevBtn" type="button">이전</button>` : ""}
           ${state.exam ? `<button class="btn ghost" id="nextBtn" type="button">${state.index === state.queue.length - 1 ? "처음으로" : "다음"}</button><button class="btn submit-btn" id="submitBtn" type="button">답안 제출</button>` : `<button class="btn" id="nextBtn" type="button" ${state.currentAnswered ? "" : "disabled"}>다음 문제</button>`}
         </div>
       </div>
-      ${MODE === "random" ? `<div class="ai-share-menu" id="aiShareMenu-main" hidden>
-        <div><strong>어디에 질문할까요?</strong><span>문제와 보기 내용이 복사되고 새 창이 열립니다.</span></div>
+      ${!state.exam ? `<div class="ai-share-menu" id="aiShareMenu-main" hidden>
+        <div><strong>어디에 질문할까요?</strong><span>클립보드에 복사됐어요. AI를 선택하면 새 창이 열립니다.</span></div>
         <div class="ai-share-links">
           <a id="chatgptLink-main" class="ai-link chatgpt" href="#" target="_blank" rel="noopener noreferrer"><b>ChatGPT</b><small>OpenAI</small></a>
           <a id="geminiLink-main" class="ai-link gemini" href="#" target="_blank" rel="noopener noreferrer"><b>Gemini</b><small>Google</small></a>
@@ -141,7 +141,7 @@ function renderQuestionCard(q, opts = {}) {
   document.getElementById("prevBtn")?.addEventListener("click", () => goToQuestion(state.index - 1));
   document.getElementById("nextBtn")?.addEventListener("click", () => state.exam ? goToQuestion((state.index + 1) % state.queue.length) : goNext());
   document.getElementById("submitBtn")?.addEventListener("click", () => submitExam(false));
-  if (MODE === "random") setupAiWidget(q, "main", () => state.lastChoice);
+  if (!state.exam) setupAiWidget(q, "main", () => state.lastChoice);
 }
 
 function renderQuestionMaterial(q) {
@@ -161,7 +161,7 @@ function buildAiPrompt(q, chosenIdx) {
 function renderAiWidget(idSuffix) {
   return `<button class="btn ai-share-trigger" id="shareBtn-${idSuffix}" type="button">AI에게 질문</button>
     <div class="ai-share-menu" id="aiShareMenu-${idSuffix}" hidden>
-      <div><strong>어디에 질문할까요?</strong><span>문제와 보기 내용이 복사되고 새 창이 열립니다.</span></div>
+      <div><strong>어디에 질문할까요?</strong><span>클립보드에 복사됐어요. AI를 선택하면 새 창이 열립니다.</span></div>
       <div class="ai-share-links">
         <a id="chatgptLink-${idSuffix}" class="ai-link chatgpt" href="#" target="_blank" rel="noopener noreferrer"><b>ChatGPT</b><small>OpenAI</small></a>
         <a id="geminiLink-${idSuffix}" class="ai-link gemini" href="#" target="_blank" rel="noopener noreferrer"><b>Gemini</b><small>Google</small></a>
@@ -186,19 +186,19 @@ function setupAiWidget(q, idSuffix, getChosen) {
     claude.href = `https://claude.ai/new?q=${encoded}`;
   };
   refreshLinks();
-  trigger.addEventListener("click", () => {
+  trigger.addEventListener("click", async () => {
     refreshLinks();
+    const opening = menu.hidden;
     menu.hidden = !menu.hidden;
     trigger.setAttribute("aria-expanded", String(!menu.hidden));
-  });
-  [chatgpt, gemini, claude].forEach((link) => link.addEventListener("click", async () => {
+    if (!opening) return;
     try {
       await navigator.clipboard.writeText(buildAiPrompt(q, getChosen()));
-      status.textContent = "질문 내용을 복사했습니다. 입력창이 비어 있으면 붙여넣어 주세요.";
+      status.textContent = "질문 내용을 클립보드에 복사했습니다. 아래에서 AI를 선택하면 새 창이 열립니다.";
     } catch {
-      status.textContent = "새 창에서 문제와 보기를 붙여넣어 질문해 주세요.";
+      status.textContent = "복사에 실패했습니다. 새 창에서 문제와 보기를 직접 붙여넣어 주세요.";
     }
-  }));
+  });
 }
 
 function onSelectChoice(q, idx) {
